@@ -1,5 +1,4 @@
-
-body {color: black; background-color: white; background-image: none; font-family: arial, helvetica, sans-serif; font-size: 90%;}
+body {color: black; background-color: #d7f5d7; background-image: none; font-family: arial, helvetica, sans-serif; font-size: 90%;}
 
 a:visited {color:blue; text-decoration: none;}
 a:hover {color:blue; text-decoration: underline;}
