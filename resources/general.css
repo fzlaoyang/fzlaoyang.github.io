@@ -1,9 +1,0 @@
-body {color: black; background-color:#d7f5d7; background-image: none; font-family: arial, helvetica, sans-serif; font-size: 90%;}
-
-a:visited {color:blue; text-decoration: none;}
-a:hover {color:blue; text-decoration: underline;}
-a:link {color:blue; text-decoration: none;}
-
-h1, h2, address {text-align: center;}
-address {font-style: normal; font-size: x-small;}
-img {border-style: none;}
