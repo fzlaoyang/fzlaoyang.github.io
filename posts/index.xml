@@ -5,10 +5,10 @@
         <description>所有文章 | 福州老杨</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 13 Mar 2023 11:54:38 &#43;0800</lastBuildDate><atom:link href="https://example.com/posts/" rel="self" type="application/rss+xml" /><item>
     <title>业余无线电爱好者入门知识</title>
-    <link>https://example.com/radio/</link>
+    <link>https://example.com/2023/radio/</link>
     <pubDate>Mon, 13 Mar 2023 11:54:38 &#43;0800</pubDate>
     <author>BG5VGE</author>
-    <guid>https://example.com/radio/</guid>
+    <guid>https://example.com/2023/radio/</guid>
     <description><![CDATA[无线电的发展史 22 无线电对讲机]]></description>
 </item>
 </channel>
