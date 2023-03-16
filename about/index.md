@@ -5,7 +5,7 @@ ___
 # About
 ---
 
-[网址导航](http://ooyang.cn/a/)
+[网址导航](http://ooyang.cn/a/)   [福州老杨的仓库](http://ooyang.cn/index2.html)
 
 网站名称:福州老杨
 
@@ -15,4 +15,4 @@ ___
 
 联系邮箱:BG5VGE @ QQ.com
 
-[wechat](../img/wechat.gif)
+[wechat](http://ooyang.cn/img/wechat.gif)
