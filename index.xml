@@ -3,7 +3,15 @@
         <title>福州老杨</title>
         <link>https://example.com/</link>
         <description>福州老杨,福州老杨的仓库,ooyang.cn</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 13 Mar 2023 10:30:37 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 13 Mar 2023 11:54:38 &#43;0800</lastBuildDate>
             <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
-        </channel>
+        <item>
+    <title>业余无线电爱好者入门知识</title>
+    <link>https://example.com/radio/</link>
+    <pubDate>Mon, 13 Mar 2023 11:54:38 &#43;0800</pubDate>
+    <author>BG5VGE</author>
+    <guid>https://example.com/radio/</guid>
+    <description><![CDATA[无线电的发展史 22 无线电对讲机]]></description>
+</item>
+</channel>
 </rss>
