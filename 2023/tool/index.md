@@ -1,4 +1,4 @@
-# 业余无线电爱好者入门知识
+# 个人常用的内容工具等收藏
 
 
 
@@ -7,17 +7,21 @@
 
 ### git常用命令
 
-```添加到库
+添加到库
+```
 git add .
 ```
 
-```提交修改到库
+提交修改到本地库
+```
 git commit -m "first commit"
 ```
-```推送push
+
+推送push
+```
 git push -u origin main
 ```
-#### 呼号
+
 
 
 {{< admonition note "T1" >}}
