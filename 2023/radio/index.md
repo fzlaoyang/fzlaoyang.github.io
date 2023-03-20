@@ -155,9 +155,9 @@ SSTV解码软件 robot36 DroidSSTV
 
 
 
-{{< admonition note "T1" >}}
+{{&lt; admonition note &#34;T1&#34; &gt;}}
 
-{{< /admonition >}}
+{{&lt; /admonition &gt;}}
 
 陆续更新中...
 
