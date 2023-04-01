@@ -38,7 +38,7 @@ var _hmt = _hmt || [];
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/ooyang.cn\/2023\/aprs\/"
-        },"image": ["http:\/\/ooyang.cn\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "APRS","wordcount":  661 ,
+        },"image": ["http:\/\/ooyang.cn\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "APRS","wordcount":  1594 ,
         "url": "http:\/\/ooyang.cn\/2023\/aprs\/","datePublished": "2023-03-28T14:40:00+08:00","dateModified": "2023-03-28T14:40:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "BG5VGE","logo": "http:\/\/ooyang.cn\/img\/avatar.png"},"author": {
@@ -112,8 +112,8 @@ var _hmt = _hmt || [];
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">APRS(Automatic Packet Report System)自动位置回报系统</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/about/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>BG5VGE</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%97%A0%E7%BA%BF%E7%94%B5/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>无线电</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-28">2023-03-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 661 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-28">2023-03-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1594 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -123,14 +123,16 @@ var _hmt = _hmt || [];
   <ul>
     <li>
       <ul>
-        <li><a href="#什么是aprs">什么是APRS</a>
-          <ul>
-            <li><a href="#aprs-地图网站">APRS 地图网站</a></li>
-            <li><a href="#aprs使用频率">APRS使用频率</a></li>
-            <li><a href="#aprs软件">APRS软件</a></li>
-            <li><a href="#aprs功能的电台列表">APRS功能的电台列表</a></li>
-          </ul>
-        </li>
+        <li><a href="#什么是aprs">什么是APRS</a></li>
+        <li><a href="#什么是aprs网络">什么是APRS网络</a></li>
+        <li><a href="#aprs-地图网站">APRS 地图网站</a></li>
+        <li><a href="#aprs使用频率">APRS使用频率</a></li>
+        <li><a href="#aprs软件">APRS软件</a></li>
+        <li><a href="#aprs功能的电台列表">APRS功能的电台列表</a></li>
+        <li><a href="#aprs的实现方法">APRS的实现方法</a></li>
+        <li><a href="#aprs验证码">APRS验证码</a></li>
+        <li><a href="#kbd如何申请aprs-is的验证码kbd"><kbd>如何申请APRS-IS的验证码</kbd></a></li>
+        <li><a href="#aprs验证码的计算">APRS验证码的计算</a></li>
       </ul>
     </li>
   </ul>
@@ -146,7 +148,12 @@ var _hmt = _hmt || [];
 <p>电台使用无连接分组基于一对多进行数据发布，类似于广播电台和听众的关系。随着APRS的发展，现在APRS的设备大抵分为<code>APRS节点、APRS网关(IGate)、APRS服务器</code>等。</p>
 <hr>
 <br>
-<h4 id="aprs-地图网站">APRS 地图网站</h4>
+<h3 id="什么是aprs网络">什么是APRS网络</h3>
+<p>APRS的网络一般可以理解由两个部分组成，其中一部分为电台射频网络（简称“APRS-RF”网络），另一部分为互联网服务网络（Internet Service，简称“APRS-IS”网络），而电台射频网络和互联网服务网络又可以通过互联网网关（Internet Gateway，简称“IGate”）连接起来，实现各种台站信标、气象信息、短消息等数据的双向传递，从而形成一个大型的APRS数据传输网络。</p>
+ <img src="/images/2023/aprs_net.jpg"  alt="aprs网络组成示意图"  width="600">
+<hr>
+<br>
+<h3 id="aprs-地图网站">APRS 地图网站</h3>
 <p>大家所熟悉的</p>
 <p><a href="https://aprs.fi" target="_blank" rel="noopener noreffer ">aprs.fi</a></p>
 <p><a href="https://aprs.tv" target="_blank" rel="noopener noreffer ">aprs.tv</a></p>
@@ -155,36 +162,71 @@ var _hmt = _hmt || [];
 <p>而是一种APRS-IS网络发展出来的一个终端服务产品，它们的工作原理是，从APRS的某个服务器中收取整个网络的实时数据，然后在地图上的实时数据显示、历史数据查询、台站覆盖范围推测（PHG）、台站收听列表显示（Heard List）等各种强大的扩展功能供爱好者读取使用。</p>
 <hr>
 <br>
-<h4 id="aprs使用频率">APRS使用频率</h4>
+<h3 id="aprs使用频率">APRS使用频率</h3>
 <p>中国APRS使用<code>144.640MHz</code>频率</p>
 <hr>
 <br>
-<h4 id="aprs软件">APRS软件</h4>
+<h3 id="aprs软件">APRS软件</h3>
 <p>APRSdroid <a href="http://aprsdroid.org/download" target="_blank" rel="noopener noreffer ">http://aprsdroid.org/download</a></p>
 <p>UISS  普通电台和电脑收发APRS信号的软件</p>
 <hr>
 <br>
-<h4 id="aprs功能的电台列表">APRS功能的电台列表</h4>
+<h3 id="aprs功能的电台列表">APRS功能的电台列表</h3>
 <p>联畅HG-UV98</p>
 <p>自由通AnyTone AT-D868UV</p>
 <p>自由通AnyTone AT-D878</p>
 <p>八重洲多款型号</p>
 <p>威诺VR-N7500车台</p>
 <p>威诺n75手台</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left"></th>
-<th style="text-align:left"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-</tbody>
-</table>
+<hr>
+<br>
+<h3 id="aprs的实现方法">APRS的实现方法</h3>
+<ul>
+<li>APRS软件</li>
+</ul>
+<p>: 即使没有硬件设备，你也可以向 APRS 网络发送信息。当然，前提是您已经取得了呼号，因为你通过网络发送的信息可能会通过一些双向网关转发到射频信号。</p>
+<dl>
+<dt><kbd><img src="/images/2023/aprs-baofeng.jpg"  alt="软件和普通手台实现aprs"></kbd></dt>
+<dd>
+<p>安卓手机APP,名称<code>APRSdroid</code>，利用手机本身的定位功能收集定位数据后定时通过Internet收发到 APRS 网络。这些软件可以让你直接体验 APRS。在其它平台上也有很多优秀的多功能软件。</p>
+</dd>
+</dl>
+<ul>
+<li>APRS硬件</li>
+</ul>
+<p>: 一个普通的电台连接TNC就能实现APRS,例如国内知名的马工开发的APRS盒子。</p>
+<p><kbd><img src="/images/2023/aprs-tnc.jpg"  alt="TNC盒子"></kbd></p>
+<ul>
+<li>声卡软件</li>
+</ul>
+<dl>
+<dt>: 将声卡用作调制解调器的软件,比如 UISS 软件就内置了软件调制解调器，你只需要连接音频，它就可以收发 APRS 信号。</dt>
+<dd>
+<p>安卓软件 APRSdroid 和 HT 也具备这样的功能，只需音频线连接电台，即可收发 APRS 信号，不仅仅是位置信号，还可以发送和接收 APRS 短信。</p>
+</dd>
+</dl>
+<hr>
+<br>
+<h3 id="aprs验证码">APRS验证码</h3>
+<p>APRS网络由互联网和无线电组成，我们需要一种方法来阻止未经许可的用户被传输到无线电网络。当 APRS系统与服务器连接时，需要验证一个号码。这个号码就像一个密码，根据你的呼号计算出来，它是唯一的。也就是说，连接到互联网服务器的 I-gate网关和软件都需要验证密码，因为它们发出的信息可能会被其它电台通过无线电发送出去。</p>
+<h3 id="kbd如何申请aprs-is的验证码kbd"><kbd>如何申请APRS-IS的验证码</kbd></h3>
+<p>申请APRS-IS的验证码的网址https://aprsdroid.org/passcode</p>
+<p><kbd><img src="/images/2023/aprs-1.jpg"  alt="如何申请APRS-IS的验证码"  width="450"></kbd></p>
+<p>其中Grid square：为HAM QTH 梅登黑德定位信息。
+成功提交之后的几天,您的邮箱将会收到验证码了。这种方法获得验证码的时间比较慢。</p>
+<hr>
+<br>
+<blockquote>
+<h3 id="aprs验证码的计算">APRS验证码的计算</h3>
+</blockquote>
+<ul>
+<li>
+<p>是的APRS验证码是可以根据呼号被计算出来的,苹果手机应用商店里面就有APRS计算的app服务,不过是收费的。</p>
+</li>
+<li>
+<p><code>老杨免费提供APRS验证码的计算</code>,只需把无线电执照带呼号页面拍照并发邮件到<img src="/img/email1.png"  alt="MAIL TO BG5VGE"></p>
+</li>
+</ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
