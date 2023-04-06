@@ -3,9 +3,17 @@
         <title>福州老杨</title>
         <link>https://ooyang.cn/</link>
         <description>福州老杨,福州老杨的仓库,ooyang.cn</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 01 Apr 2023 10:54:38 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 06 Apr 2023 11:39:00 &#43;0800</lastBuildDate>
             <atom:link href="https://ooyang.cn/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>中国无线电呼号的含义</title>
+    <link>https://ooyang.cn/2023/radio1/</link>
+    <pubDate>Thu, 06 Apr 2023 11:39:00 &#43;0800</pubDate>
+    <author>BG5VGE</author>
+    <guid>https://ooyang.cn/2023/radio1/</guid>
+    <description><![CDATA[中国的无线电爱好者使用的呼号有10个前缀，最常见的只有5个。下面我们以BG5VGE这个呼号为例，介绍一下中国呼号中各个部分的含义。我们首先将]]></description>
+</item>
+<item>
     <title>404错误页面源码模板大全,提供下载</title>
     <link>https://ooyang.cn/2023/404/</link>
     <pubDate>Sat, 01 Apr 2023 10:54:38 &#43;0800</pubDate>
@@ -14,7 +22,7 @@
     <description><![CDATA[404代码的由来 404是一个http错误代码，指的是网页不存在。这些错误代码是一个叫Tim Berners-Lee定义的。他在1990年开发了]]></description>
 </item>
 <item>
-    <title>APRS(Automatic Packet Report System)自动位置回报系统</title>
+    <title>APRS自动位置回报系统</title>
     <link>https://ooyang.cn/2023/aprs/</link>
     <pubDate>Tue, 28 Mar 2023 14:40:00 &#43;0800</pubDate>
     <author>BG5VGE</author>
