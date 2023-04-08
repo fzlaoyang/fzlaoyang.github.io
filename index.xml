@@ -3,9 +3,17 @@
         <title>福州老杨</title>
         <link>https://ooyang.cn/</link>
         <description>福州老杨,福州老杨的仓库,ooyang.cn</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 07 Apr 2023 11:39:00 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 08 Apr 2023 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://ooyang.cn/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>经验之谈，Java自学多久可以找到工作?</title>
+    <link>https://ooyang.cn/2023/javalean/</link>
+    <pubDate>Sat, 08 Apr 2023 00:00:00 &#43;0000</pubDate>
+    <author>qq_51082517</author>
+    <guid>https://ooyang.cn/2023/javalean/</guid>
+    <description><![CDATA[自学Java多久才可以出去找工作，这个其实也不固定，根据每个人的吸收情况来说，有的学习4个月就敢出去找工作，一般正常来说学6-8个月就可以找]]></description>
+</item>
+<item>
     <title>CQCQCQ的正确呼叫方法与通联相关知识</title>
     <link>https://ooyang.cn/2023/radio3/</link>
     <pubDate>Fri, 07 Apr 2023 11:39:00 &#43;0800</pubDate>
@@ -28,6 +36,14 @@
     <author>BG5VGE</author>
     <guid>https://ooyang.cn/2023/radio2/</guid>
     <description><![CDATA[什么是中继？ 由于建筑物/地形等的遮挡，在地面上的2个电台之间的信号可能无法互相传送到。通常5W手台，在市区，2公里以外就无法通连了。为此，人]]></description>
+</item>
+<item>
+    <title>福州老杨的博客日志</title>
+    <link>https://ooyang.cn/2023/myblog/</link>
+    <pubDate>Fri, 07 Apr 2023 00:00:00 &#43;0000</pubDate>
+    <author>ooyang.cn</author>
+    <guid>https://ooyang.cn/2023/myblog/</guid>
+    <description><![CDATA[2023-04-08 博客初步搭建完成，针对loveit的css做了部分修改，文章10篇，域名续费3年。]]></description>
 </item>
 <item>
     <title>中国业余无线电呼号的含义</title>
