@@ -3,9 +3,17 @@
         <title>福州老杨</title>
         <link>https://ooyang.cn/</link>
         <description>福州老杨,福州老杨的仓库,ooyang.cn</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 12 Apr 2023 00:00:00 &#43;0000</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 14 Apr 2023 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://ooyang.cn/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>hugo loveit 主题的美化扩展标签admonition</title>
+    <link>https://ooyang.cn/2023/hugoloveit1/</link>
+    <pubDate>Fri, 14 Apr 2023 00:00:00 &#43;0000</pubDate>
+    <author>福州老杨</author>
+    <guid>https://ooyang.cn/2023/hugoloveit1/</guid>
+    <description><![CDATA[hugo loveit 主题的美化扩展标签 admonition shortcode 支持12种颜色样式,更好的展现美化您的文章. 支持Markdown或者HTML格式. admonition的语法 type 横幅]]></description>
+</item>
+<item>
     <title>java最简单最全入门基础笔记</title>
     <link>https://ooyang.cn/2023/javalean3/</link>
     <pubDate>Wed, 12 Apr 2023 00:00:00 &#43;0000</pubDate>
@@ -76,14 +84,6 @@
     <author>福州老杨</author>
     <guid>https://ooyang.cn/2023/404/</guid>
     <description><![CDATA[404代码的由来 404是一个http错误代码，指的是网页不存在。这些错误代码是一个叫Tim Berners-Lee定义的。他在1990年开发了]]></description>
-</item>
-<item>
-    <title>APRS自动位置回报系统</title>
-    <link>https://ooyang.cn/2023/aprs/</link>
-    <pubDate>Tue, 28 Mar 2023 14:40:00 &#43;0800</pubDate>
-    <author>BG5VGE</author>
-    <guid>https://ooyang.cn/2023/aprs/</guid>
-    <description><![CDATA[什么是APRS APRS 是一种自动位置报告系统为业余无线电中的一个项目, 可使业余无线电操作者迅速的将实时事件相关的数据发布出去， 并在电脑或手机上的地]]></description>
 </item>
 </channel>
 </rss>

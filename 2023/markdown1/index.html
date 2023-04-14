@@ -111,7 +111,7 @@ var _hmt = _hmt || [];
             <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Markdown怎么实现前景色、背景色</h1><h2 class="single-subtitle">Markdown怎么实现前景色、背景色</h2><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/about" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>BG5VGE</a></span></div>
+            <div class="post-meta-line"><span class="post-author"><a href="/about" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>BG5VGE</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/website/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>website</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-04-07">2023-04-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1446 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -121,37 +121,29 @@ var _hmt = _hmt || [];
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#font-stylebackground-linear-gradient-to-right-36c945-10a5ce-1前言_-font"><font style="background: linear-gradient( to right, #36c945, #10a5ce);"> 1.前言_ </font></a></li>
+    <li><a href="#2语法详解">2.语法详解</a>
       <ul>
-        <li>
-          <ul>
-            <li><a href="#font-stylebackground-linear-gradient-to-right-36c945-10a5ce-1前言_-font"><font style="background: linear-gradient( to right, #36c945, #10a5ce);"> 1.前言_ </font></a></li>
-            <li><a href="#2语法详解">2.语法详解</a>
-              <ul>
-                <li><a href="#21-前景色">2.1 前景色</a></li>
-                <li><a href="#22-背景色">2.2 背景色</a></li>
-              </ul>
-            </li>
-            <li><a href="#3-使用场景及应用实例">3. 使用场景及应用实例</a></li>
-            <li><a href="#小结">小结</a></li>
-          </ul>
-        </li>
+        <li><a href="#21-前景色">2.1 前景色</a></li>
+        <li><a href="#22-背景色">2.2 背景色</a></li>
       </ul>
     </li>
+    <li><a href="#3-使用场景及应用实例">3. 使用场景及应用实例</a></li>
+    <li><a href="#小结">小结</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><hr>
-<h4 id="font-stylebackground-linear-gradient-to-right-36c945-10a5ce-1前言_-font"><font style="background: linear-gradient( to right, #36c945, #10a5ce);"> 1.前言_ </font></h4>
+<h2 id="font-stylebackground-linear-gradient-to-right-36c945-10a5ce-1前言_-font"><font style="background: linear-gradient( to right, #36c945, #10a5ce);"> 1.前言_ </font></h2>
 <p>颜色可以使普通文字表达出更深刻的含义，比如红色用于醒目与警示、绿色用于表达良好与正常等。</p>
 <p><code>Markdown</code>使普通文本具有格式，但它的原生语法并不支持修改前景色和背景色。为了实现丰富文本颜色的需求，我们需要通过增加 HTML 标签实现此类效果。</p>
 <p><strong>环境说明：</strong></p>
 <p>考虑到 Markdown 工具之间的不兼容，有的内容直接从页面复制粘贴到本地不会正常显示，大家学习时自己动手写是肯定没问题的。本节所有实例代码及演示效果均使用 Typora 工具完成。
 本节所有截图均为 Typora 导出为 HTML 后渲染效果。</p>
-<h4 id="2语法详解">2.语法详解</h4>
-<h5 id="21-前景色">2.1 前景色</h5>
+<h2 id="2语法详解">2.语法详解</h2>
+<h3 id="21-前景色">2.1 前景色</h3>
 <p>在 Markdown 文件中，建议使用 <font> 标签的 color 属性修改文字颜色。</p>
 <hr>
-<p><strong>实例 1：</strong></p>
+<p><kbd>实例 1：</kbd></p>
 <p>使用<code>&lt;font&gt;</code> 的标签的修改文字前景色</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -177,7 +169,7 @@ var _hmt = _hmt || [];
 <p><font color="#FF00BB">使用十六进制颜色值</font></p>
 <p>除了修改<code>color</code>属性外，还可以使用<code>style</code>样式属性修改文字颜色。</p>
 <hr>
-<p><strong>实例 2：</strong></p>
+<p><kbd>实例 2：</kbd></p>
 <p><kdb>使用<code>style</code> 的标签的修改文字前景色</kdb></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -201,10 +193,10 @@ var _hmt = _hmt || [];
 <p><font style="color: blue">蓝色</font></p>
 <p><font style="color: rgb(200,100,100)">使用 rgb 颜色值</font></p>
 <p><font style="color: #FF00BB">使用十六进制颜色值</font></p>
-<h5 id="22-背景色">2.2 背景色</h5>
+<h3 id="22-背景色">2.2 背景色</h3>
 <p>Markdown 文档中定义文字背景色需要通过修改 style 样式实现。</p>
 <hr>
-<p><strong>实例 3：</strong></p>
+<p><kbd>实例 3：</kbd></p>
 <p><strong>使用<code>style</code> 属性修改文字的背景色</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -229,7 +221,7 @@ var _hmt = _hmt || [];
 <p><font style="background: rgb(200,100,100)">使用 rgb 颜色值</font></p>
 <p><font style="background: #FF00BB">使用十六进制颜色值</font></p>
 <hr>
-<p><strong>实例 4：</strong></p>
+<p><kbd>实例 4：</kbd></p>
 <p>利用 style 的丰富样式，我们可以定义出丰富的文字形式。</p>
 <p><strong>更丰富背景样式</strong></p>
 <p>使用图片作背景</p>
@@ -252,9 +244,9 @@ var _hmt = _hmt || [];
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><font style="background: linear-gradient( to right, #ff1616, #ff7716, #ffdc16, #36c945, #10a5ce, #0f0096, #a51eff, #ff1616);">太阳太阳，给我们带来，七色光彩</font></p>
-<h4 id="3-使用场景及应用实例">3. 使用场景及应用实例</h4>
+<h2 id="3-使用场景及应用实例">3. 使用场景及应用实例</h2>
 <p>利用前景色和背景色、以及字体字号等样式，我们可以定义出丰富的渲染主题，以适应不同的设备或阅读需求，比如阅读类 APP 中常见的夜晚模式、笔记类 APP 的更换纸张的效果等。</p>
-<p><strong>实例 5：</strong></p>
+<p><kbd>实例 5：</kbd></p>
 <p><strong>夜读模式</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -266,7 +258,7 @@ var _hmt = _hmt || [];
 </span></span><span class="line"><span class="cl"><span class="nt">h1</span><span class="o">,</span><span class="nt">h2</span><span class="o">,</span><span class="nt">h3</span><span class="o">,</span><span class="nt">h4</span><span class="o">,</span><span class="nt">h5</span><span class="o">,</span><span class="nt">h6</span><span class="o">,</span><span class="nt">h7</span><span class="o">,</span><span class="nt">p</span> <span class="p">{</span> <span class="k">color</span><span class="p">:</span> <span class="mh">#999</span> <span class="cp">!important</span><span class="p">;</span> <span class="p">}&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="小结">小结</h4>
+</div><h2 id="小结">小结</h2>
 <p>同一颜色值在不同显示器上会有色差，选取颜色时尽量使用安全色。
 为了确保整篇文章的整体风格一致，通常只需要配置全局的前景色和背景色即可。
 对于颜色，请尽量使用柔和的颜色，防止刺伤眼睛。</p>
