@@ -6,6 +6,14 @@
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 14 Apr 2023 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://ooyang.cn/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>hugo loveit 主题的美化:修改字体</title>
+    <link>https://ooyang.cn/2023/hugoloveit2/</link>
+    <pubDate>Fri, 14 Apr 2023 00:00:00 &#43;0000</pubDate>
+    <author>福州老杨</author>
+    <guid>https://ooyang.cn/2023/hugoloveit2/</guid>
+    <description><![CDATA[本文:(hugo loveit 主题的美化:修改字体)的版权声明 版权声明：本文为福州老杨的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及]]></description>
+</item>
+<item>
     <title>hugo loveit 主题的美化扩展标签admonition</title>
     <link>https://ooyang.cn/2023/hugoloveit1/</link>
     <pubDate>Fri, 14 Apr 2023 00:00:00 &#43;0000</pubDate>
@@ -76,14 +84,6 @@
     <author>BG5VGE</author>
     <guid>https://ooyang.cn/2023/radio1/</guid>
     <description><![CDATA[中国的无线电爱好者使用的呼号有10个前缀，最常见的只有5个。下面我们以BG5VGE这个呼号为例，介绍一下中国呼号中各个部分的含义。我们首先将]]></description>
-</item>
-<item>
-    <title>404错误页面源码模板大全,提供下载</title>
-    <link>https://ooyang.cn/2023/404/</link>
-    <pubDate>Sat, 01 Apr 2023 10:54:38 &#43;0800</pubDate>
-    <author>福州老杨</author>
-    <guid>https://ooyang.cn/2023/404/</guid>
-    <description><![CDATA[404代码的由来 404是一个http错误代码，指的是网页不存在。这些错误代码是一个叫Tim Berners-Lee定义的。他在1990年开发了]]></description>
 </item>
 </channel>
 </rss>
