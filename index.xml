@@ -3,9 +3,25 @@
         <title>福州老杨</title>
         <link>https://ooyang.cn/</link>
         <description>福州老杨,福州老杨的仓库,ooyang.cn</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 14 Apr 2023 00:00:00 &#43;0000</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 18 Apr 2023 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://ooyang.cn/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Markdown文件怎么注释</title>
+    <link>https://ooyang.cn/2023/markdown2/</link>
+    <pubDate>Tue, 18 Apr 2023 00:00:00 &#43;0000</pubDate>
+    <author>BG5VGE</author>
+    <guid>https://ooyang.cn/2023/markdown2/</guid>
+    <description><![CDATA[Markdown 的注释可以通过三种方法实现 第一是通过 html 的 &lt;!-- --&gt; 标记。 第二可以通过样式隐藏段落内容，即 &lt;div style=&quot;display:none&qu]]></description>
+</item>
+<item>
+    <title>旗山湖露营</title>
+    <link>https://ooyang.cn/2023/myblog2/</link>
+    <pubDate>Tue, 18 Apr 2023 00:00:00 &#43;0000</pubDate>
+    <author>BG5VGE</author>
+    <guid>https://ooyang.cn/2023/myblog2/</guid>
+    <description><![CDATA[旗山湖公园1露营2视频: 照片: 旗山湖项目位于上街福州大学城的中心共享区，建成后将成为一座兼具水利与景观的生态湖，水域面积将超福州西湖，成为福]]></description>
+</item>
+<item>
     <title>hugo loveit 主题的美化:修改字体</title>
     <link>https://ooyang.cn/2023/hugoloveit2/</link>
     <pubDate>Fri, 14 Apr 2023 00:00:00 &#43;0000</pubDate>
@@ -68,22 +84,6 @@
     <author>BG5VGE</author>
     <guid>https://ooyang.cn/2023/radio2/</guid>
     <description><![CDATA[什么是中继？ 由于建筑物/地形等的遮挡，在地面上的2个电台之间的信号可能无法互相传送到。通常5W手台，在市区，2公里以外就无法通连了。为此，人]]></description>
-</item>
-<item>
-    <title>福州老杨的博客日志</title>
-    <link>https://ooyang.cn/2023/myblog/</link>
-    <pubDate>Fri, 07 Apr 2023 00:00:00 &#43;0000</pubDate>
-    <author>ooyang.cn</author>
-    <guid>https://ooyang.cn/2023/myblog/</guid>
-    <description><![CDATA[2023-04-10 java入门课程下载开始学习。 2023-04-08 博客初步搭建完成，针对loveit的css做了部分修改，文章10篇，域名续费3年。]]></description>
-</item>
-<item>
-    <title>中国业余无线电呼号的含义</title>
-    <link>https://ooyang.cn/2023/radio1/</link>
-    <pubDate>Thu, 06 Apr 2023 11:39:00 &#43;0800</pubDate>
-    <author>BG5VGE</author>
-    <guid>https://ooyang.cn/2023/radio1/</guid>
-    <description><![CDATA[中国的无线电爱好者使用的呼号有10个前缀，最常见的只有5个。下面我们以BG5VGE这个呼号为例，介绍一下中国呼号中各个部分的含义。我们首先将]]></description>
 </item>
 </channel>
 </rss>
