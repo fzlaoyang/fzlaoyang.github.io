@@ -3,9 +3,17 @@
         <title>福州老杨</title>
         <link>https://ooyang.cn/</link>
         <description>福州老杨,福州老杨的仓库,ooyang.cn</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 25 Apr 2023 00:00:00 &#43;0000</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 05 May 2023 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://ooyang.cn/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Nas黑群晖与白群晖的区别（黑群与白群差异）</title>
+    <link>https://ooyang.cn/2023/nas1/</link>
+    <pubDate>Fri, 05 May 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://ooyang.cn/2023/nas1/</guid>
+    <description><![CDATA[一、什么是群或群晖Nas 群或群晖指的是Synology公司的的群晖Nas。 二、黑群晖与白群晖的定义 白群晖Nas：官方授权的硬件与群晖Nas软]]></description>
+</item>
+<item>
     <title>免费静态无广告html网址导航源代码</title>
     <link>https://ooyang.cn/2023/hao123/</link>
     <pubDate>Tue, 25 Apr 2023 00:00:00 &#43;0000</pubDate>
@@ -76,14 +84,6 @@
     <author>BG5VGE</author>
     <guid>https://ooyang.cn/2023/radio3/</guid>
     <description><![CDATA[正确呼叫方法 中文呼叫法：CQ CQ CQ，这里是 BG1XXX ，BRAVO GOLF ONE X-RAY X-RAY X-RAY ，BG1XXX呼叫CQ并等待回答。 英文呼叫法：CQ CQ CQ，This is BG1]]></description>
-</item>
-<item>
-    <title>Markdown怎么实现前景色、背景色</title>
-    <link>https://ooyang.cn/2023/markdown1/</link>
-    <pubDate>Fri, 07 Apr 2023 11:39:00 &#43;0800</pubDate>
-    <author>BG5VGE</author>
-    <guid>https://ooyang.cn/2023/markdown1/</guid>
-    <description><![CDATA[1.前言_ 颜色可以使普通文字表达出更深刻的含义，比如红色用于醒目与警示、绿色用于表达良好与正常等。 Markdown使普通文本具有格式，但它的]]></description>
 </item>
 </channel>
 </rss>
