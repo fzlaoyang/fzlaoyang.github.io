@@ -3,9 +3,17 @@
         <title>福州老杨</title>
         <link>https://ooyang.cn/</link>
         <description>福州老杨,福州老杨的仓库,ooyang.cn</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 05 May 2023 00:00:00 &#43;0000</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 16 May 2023 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://ooyang.cn/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>适合新手小白的的最具性价比NAS设备入门推荐</title>
+    <link>https://ooyang.cn/2023/nas2/</link>
+    <pubDate>Tue, 16 May 2023 00:00:00 &#43;0000</pubDate>
+    <author>BG58VGE</author>
+    <guid>https://ooyang.cn/2023/nas2/</guid>
+    <description><![CDATA[群晖Synology DS220j 具有非常强的性价比，它针对的是想要花尽量少的钱获得存储需求的用户。有了这个系统，您就可以做到这一点，而且您还可以获得低]]></description>
+</item>
+<item>
     <title>Nas黑群晖与白群晖的区别（黑群与白群差异）</title>
     <link>https://ooyang.cn/2023/nas1/</link>
     <pubDate>Fri, 05 May 2023 00:00:00 &#43;0000</pubDate>
@@ -76,14 +84,6 @@
     <author>qq_51082517</author>
     <guid>https://ooyang.cn/2023/javalean/</guid>
     <description><![CDATA[自学Java多久才可以出去找工作，这个其实也不固定，根据每个人的吸收情况来说，有的学习4个月就敢出去找工作，一般正常来说学6-8个月就可以找]]></description>
-</item>
-<item>
-    <title>CQCQCQ的正确呼叫方法与通联相关知识</title>
-    <link>https://ooyang.cn/2023/radio3/</link>
-    <pubDate>Fri, 07 Apr 2023 11:39:00 &#43;0800</pubDate>
-    <author>BG5VGE</author>
-    <guid>https://ooyang.cn/2023/radio3/</guid>
-    <description><![CDATA[正确呼叫方法 中文呼叫法：CQ CQ CQ，这里是 BG1XXX ，BRAVO GOLF ONE X-RAY X-RAY X-RAY ，BG1XXX呼叫CQ并等待回答。 英文呼叫法：CQ CQ CQ，This is BG1]]></description>
 </item>
 </channel>
 </rss>
