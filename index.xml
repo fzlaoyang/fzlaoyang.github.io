@@ -3,9 +3,17 @@
         <title>福州老杨</title>
         <link>https://ooyang.cn/</link>
         <description>福州老杨,福州老杨的仓库,ooyang.cn</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 16 May 2023 00:00:00 &#43;0000</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 27 May 2023 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://ooyang.cn/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>安卓系统的开屏广告自动跳过助手</title>
+    <link>https://ooyang.cn/2023/soft/</link>
+    <pubDate>Sat, 27 May 2023 00:00:00 &#43;0000</pubDate>
+    <author>BG58VGE</author>
+    <guid>https://ooyang.cn/2023/soft/</guid>
+    <description><![CDATA[现在的安卓手机app软件，10款有9款都是有开屏广告，尤其是常用的软件。虽然大部分广告都是有“跳过或关闭”按钮，但仍觉得体验不佳，每次都需要]]></description>
+</item>
+<item>
     <title>适合新手小白的的最具性价比NAS设备入门推荐</title>
     <link>https://ooyang.cn/2023/nas2/</link>
     <pubDate>Tue, 16 May 2023 00:00:00 &#43;0000</pubDate>
@@ -76,14 +84,6 @@
     <author>卑微的小白菜</author>
     <guid>https://ooyang.cn/2023/javalean2/</guid>
     <description><![CDATA[我学习Java 已经快三年了，在Java 学习这条路上也踩过无数次的坑，恰巧有小伙伴问我Java学习的路线，我想着趁这次机会分享自己学Java的]]></description>
-</item>
-<item>
-    <title>经验之谈，Java自学多久可以找到工作?</title>
-    <link>https://ooyang.cn/2023/javalean/</link>
-    <pubDate>Sat, 08 Apr 2023 00:00:00 &#43;0000</pubDate>
-    <author>qq_51082517</author>
-    <guid>https://ooyang.cn/2023/javalean/</guid>
-    <description><![CDATA[自学Java多久才可以出去找工作，这个其实也不固定，根据每个人的吸收情况来说，有的学习4个月就敢出去找工作，一般正常来说学6-8个月就可以找]]></description>
 </item>
 </channel>
 </rss>
