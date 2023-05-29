@@ -3,9 +3,25 @@
         <title>福州老杨</title>
         <link>https://ooyang.cn/</link>
         <description>福州老杨,福州老杨的仓库,ooyang.cn</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 27 May 2023 00:00:00 &#43;0000</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 29 May 2023 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://ooyang.cn/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>HTML常用emoji表情大全,可复制</title>
+    <link>https://ooyang.cn/2023/emoji/</link>
+    <pubDate>Mon, 29 May 2023 00:00:00 &#43;0000</pubDate>
+    <author>BG58VGE</author>
+    <guid>https://ooyang.cn/2023/emoji/</guid>
+    <description><![CDATA[绘文字（日语：絵文字/えもじ emoji）是日本在无线通信中所使用的视觉情感符号，绘指图画，文字指的则是字符，可用来代表多种表情，如笑脸表示笑]]></description>
+</item>
+<item>
+    <title>软件推荐:篡改猴(tampermonkey浏览器扩展)</title>
+    <link>https://ooyang.cn/2023/soft-tampermonkey/</link>
+    <pubDate>Sun, 28 May 2023 00:00:00 &#43;0000</pubDate>
+    <author>BG58VGE</author>
+    <guid>https://ooyang.cn/2023/soft-tampermonkey/</guid>
+    <description><![CDATA[提升您的浏览体验，使用篡改猴！🌐🚀 关键词 免费破解视频网站加密广告,破解会员,适用:爱奇艺,腾讯视频,优酷等主流的视频网站 推荐理由 最近几年由于]]></description>
+</item>
+<item>
     <title>安卓系统的开屏广告自动跳过助手</title>
     <link>https://ooyang.cn/2023/soft/</link>
     <pubDate>Sat, 27 May 2023 00:00:00 &#43;0000</pubDate>
@@ -68,22 +84,6 @@
     <author>福州老杨</author>
     <guid>https://ooyang.cn/2023/hugoloveit1/</guid>
     <description><![CDATA[hugo loveit 主题的美化扩展标签 admonition shortcode 支持12种颜色样式,更好的展现美化您的文章. 支持Markdown或者HTML格式. admonition的语法 type 横幅]]></description>
-</item>
-<item>
-    <title>java最简单最全入门基础笔记</title>
-    <link>https://ooyang.cn/2023/javalean3/</link>
-    <pubDate>Wed, 12 Apr 2023 00:00:00 &#43;0000</pubDate>
-    <author>大灰狼わ</author>
-    <guid>https://ooyang.cn/2023/javalean3/</guid>
-    <description><![CDATA[一、初始java 1 生活中的程序： 从起床到教室上课的过程 穿衣打扮》起床》洗漱》出宿舍》》吃早餐》到教室 按照特定的顺序去完成某一件事的过程我们叫]]></description>
-</item>
-<item>
-    <title>JAVA详细学习路线</title>
-    <link>https://ooyang.cn/2023/javalean2/</link>
-    <pubDate>Mon, 10 Apr 2023 00:00:00 &#43;0000</pubDate>
-    <author>卑微的小白菜</author>
-    <guid>https://ooyang.cn/2023/javalean2/</guid>
-    <description><![CDATA[我学习Java 已经快三年了，在Java 学习这条路上也踩过无数次的坑，恰巧有小伙伴问我Java学习的路线，我想着趁这次机会分享自己学Java的]]></description>
 </item>
 </channel>
 </rss>
