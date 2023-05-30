@@ -3,9 +3,17 @@
         <title>福州老杨</title>
         <link>https://ooyang.cn/</link>
         <description>福州老杨,福州老杨的仓库,ooyang.cn</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 29 May 2023 00:00:00 &#43;0000</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 30 May 2023 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://ooyang.cn/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>一个使用 AI 制作生成中国老照片的网站</title>
+    <link>https://ooyang.cn/2023/news1/</link>
+    <pubDate>Tue, 30 May 2023 00:00:00 &#43;0000</pubDate>
+    <author>BG58VGE</author>
+    <guid>https://ooyang.cn/2023/news1/</guid>
+    <description><![CDATA[国外媒体报道，一些中国创作者正在使用 AI 生成中国90年代的复古照片，比如，上图是乡村婚礼，下图是西湖边吃快餐的情侣，都是 AI 作品。 关键词 ai 网址h]]></description>
+</item>
+<item>
     <title>HTML常用emoji表情大全,可复制</title>
     <link>https://ooyang.cn/2023/emoji/</link>
     <pubDate>Mon, 29 May 2023 00:00:00 &#43;0000</pubDate>
@@ -76,14 +84,6 @@
     <author>福州老杨</author>
     <guid>https://ooyang.cn/2023/hugoloveit2/</guid>
     <description><![CDATA[本文:(hugo loveit 主题的美化:修改字体)的版权声明 版权声明：本文为福州老杨的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及]]></description>
-</item>
-<item>
-    <title>hugo loveit 主题的美化扩展标签admonition</title>
-    <link>https://ooyang.cn/2023/hugoloveit1/</link>
-    <pubDate>Fri, 14 Apr 2023 00:00:00 &#43;0000</pubDate>
-    <author>福州老杨</author>
-    <guid>https://ooyang.cn/2023/hugoloveit1/</guid>
-    <description><![CDATA[hugo loveit 主题的美化扩展标签 admonition shortcode 支持12种颜色样式,更好的展现美化您的文章. 支持Markdown或者HTML格式. admonition的语法 type 横幅]]></description>
 </item>
 </channel>
 </rss>
