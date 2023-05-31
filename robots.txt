@@ -61,4 +61,4 @@ Disallow: /
 User-agent: ZoominfoBot
 Disallow: /
 
-Sitemap: https://ooyang.cn/sitemap.xml
+Sitemap: http://ooyang.cn/sitemap.xml
