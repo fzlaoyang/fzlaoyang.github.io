@@ -3,12 +3,20 @@
         <title>福州老杨</title>
         <link>http://ooyang.cn/</link>
         <description>福州老杨,福州老杨的仓库,ooyang.cn</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 30 May 2023 00:00:00 &#43;0000</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 31 May 2023 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="http://ooyang.cn/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>群晖NAS各种型号的区别对比</title>
+    <link>http://ooyang.cn/2023/nas3/</link>
+    <pubDate>Wed, 31 May 2023 00:00:00 &#43;0000</pubDate>
+    <author>BG5VGE</author>
+    <guid>http://ooyang.cn/2023/nas3/</guid>
+    <description><![CDATA[NAS（网络附加存储）是一种用于存储和分享文件的设备，是一种可以在局域网内连接到计算机或其他设备的存储设备。群晖（Synology）是一个知]]></description>
+</item>
+<item>
     <title>一个使用 AI 制作生成中国老照片的网站</title>
     <link>http://ooyang.cn/2023/news1/</link>
-    <pubDate>Tue, 30 May 2023 00:00:00 &#43;0000</pubDate>
+    <pubDate>Wed, 31 May 2023 00:00:00 &#43;0000</pubDate>
     <author>BG5VGE</author>
     <guid>http://ooyang.cn/2023/news1/</guid>
     <description><![CDATA[<div class="featured-image">
@@ -78,14 +86,6 @@
     <author>BG5VGE</author>
     <guid>http://ooyang.cn/2023/myblog2/</guid>
     <description><![CDATA[旗山湖公园1露营2视频: 照片: 旗山湖项目位于上街福州大学城的中心共享区，建成后将成为一座兼具水利与景观的生态湖，水域面积将超福州西湖，成为福]]></description>
-</item>
-<item>
-    <title>hugo loveit 主题的美化:修改字体</title>
-    <link>http://ooyang.cn/2023/hugoloveit2/</link>
-    <pubDate>Fri, 14 Apr 2023 00:00:00 &#43;0000</pubDate>
-    <author>福州老杨</author>
-    <guid>http://ooyang.cn/2023/hugoloveit2/</guid>
-    <description><![CDATA[本文:(hugo loveit 主题的美化:修改字体)的版权声明 版权声明：本文为福州老杨的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及]]></description>
 </item>
 </channel>
 </rss>
