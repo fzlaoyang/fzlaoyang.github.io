@@ -3,9 +3,17 @@
         <title>福州老杨</title>
         <link>http://ooyang.cn/</link>
         <description>福州老杨,福州老杨的仓库,ooyang.cn</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 31 May 2023 00:00:00 &#43;0000</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 08 Jun 2023 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="http://ooyang.cn/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>数字对讲机宝锋DM-5R与宝锋DM-5R plus的区别</title>
+    <link>http://ooyang.cn/2023/radio4/</link>
+    <pubDate>Thu, 08 Jun 2023 00:00:00 &#43;0000</pubDate>
+    <author>bg6ud</author>
+    <guid>http://ooyang.cn/2023/radio4/</guid>
+    <description><![CDATA[宝锋DM-5R一代机型可称为是伪双时隙机 1、真正双时隙版本DM-5R plus，可上DMR中继，UV双段，数模两用，数模支持混合双待； 2、全中]]></description>
+</item>
+<item>
     <title>群晖NAS各种型号的区别对比</title>
     <link>http://ooyang.cn/2023/nas3/</link>
     <pubDate>Wed, 31 May 2023 00:00:00 &#43;0000</pubDate>
@@ -78,14 +86,6 @@
     <author>BG5VGE</author>
     <guid>http://ooyang.cn/2023/markdown2/</guid>
     <description><![CDATA[Markdown 的注释可以通过三种方法实现 第一是通过 html 的 &lt;!-- --&gt; 标记。 第二可以通过样式隐藏段落内容，即 &lt;div style=&quot;display:none&qu]]></description>
-</item>
-<item>
-    <title>旗山湖露营</title>
-    <link>http://ooyang.cn/2023/myblog2/</link>
-    <pubDate>Tue, 18 Apr 2023 00:00:00 &#43;0000</pubDate>
-    <author>BG5VGE</author>
-    <guid>http://ooyang.cn/2023/myblog2/</guid>
-    <description><![CDATA[旗山湖公园1露营2视频: 照片: 旗山湖项目位于上街福州大学城的中心共享区，建成后将成为一座兼具水利与景观的生态湖，水域面积将超福州西湖，成为福]]></description>
 </item>
 </channel>
 </rss>
