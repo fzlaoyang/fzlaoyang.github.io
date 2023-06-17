@@ -3,9 +3,17 @@
         <title>福州老杨</title>
         <link>http://ooyang.cn/</link>
         <description>福州老杨,福州老杨的仓库,ooyang.cn</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 08 Jun 2023 00:00:00 &#43;0000</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 17 Jun 2023 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="http://ooyang.cn/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>宝锋 BAOFENG DM1702双时隙 DMR 数字对讲机</title>
+    <link>http://ooyang.cn/2023/baofeng-dm-1702/</link>
+    <pubDate>Sat, 17 Jun 2023 00:00:00 &#43;0000</pubDate>
+    <author>bg6ud</author>
+    <guid>http://ooyang.cn/2023/baofeng-dm-1702/</guid>
+    <description><![CDATA[宝锋dm1702数字对讲机 🛡 特性 完美兼容 MOTOTRBO(摩托罗拉数字系统) Hytera Tier II(海能达系统) 对讲机及中继器 UV双段频率 VHF 137-174MHz 和 UHF 400-470MHz GPS]]></description>
+</item>
+<item>
     <title>数字对讲机宝锋DM-5R与宝锋DM-5R plus的区别</title>
     <link>http://ooyang.cn/2023/radio4/</link>
     <pubDate>Thu, 08 Jun 2023 00:00:00 &#43;0000</pubDate>
@@ -78,14 +86,6 @@
     <author>BG5VGE</author>
     <guid>http://ooyang.cn/2023/hao123/</guid>
     <description><![CDATA[常用网站 搜索 百度 Bing 搜狗 谷歌 资讯 新浪 网易 腾讯 搜狐| 视频抖音 快手 Bilibili 西瓜 邮箱]]></description>
-</item>
-<item>
-    <title>Markdown文件怎么注释</title>
-    <link>http://ooyang.cn/2023/markdown2/</link>
-    <pubDate>Tue, 18 Apr 2023 00:00:00 &#43;0000</pubDate>
-    <author>BG5VGE</author>
-    <guid>http://ooyang.cn/2023/markdown2/</guid>
-    <description><![CDATA[Markdown 的注释可以通过三种方法实现 第一是通过 html 的 &lt;!-- --&gt; 标记。 第二可以通过样式隐藏段落内容，即 &lt;div style=&quot;display:none&qu]]></description>
 </item>
 </channel>
 </rss>
