@@ -1,5 +1,5 @@
 baseURL = "http://ooyang.cn"
-
+publishDir = "public"
 # theme
 # 主题
 theme = "LoveIt"
