@@ -1,0 +1,49 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>福州老杨</title>
+        <link>http://ooyang.cn/</link>
+        <description>福州老杨,福州老杨的仓库,ooyang.cn</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 28 Sep 2025 11:54:38 &#43;0800</lastBuildDate>
+            <atom:link href="http://ooyang.cn/index.xml" rel="self" type="application/rss+xml" />
+        <item>
+    <title>中国业余电台常用频率(短波)</title>
+    <link>http://ooyang.cn/2025/radio13/</link>
+    <pubDate>Sun, 28 Sep 2025 11:54:38 &#43;0800</pubDate>
+    <author>bg5vge</author>
+    <guid>http://ooyang.cn/2025/radio13/</guid>
+    <description><![CDATA[80m 波段:3.840MHz 3.843MHz 3.850MHz 3.855MHz 40m 波段:7.030MHz(CW) 7.050MHz 7.O53MHz 7.055MHz 7.060MHz 7.068MHz 20m 波段:14.180MHz 14.225MHz 14.270MHz 14.330MHz 15m 波段:21.400MHz 10m波段]]></description>
+</item>
+<item>
+    <title>公网转模拟对讲机方案全解析及优缺点分析</title>
+    <link>http://ooyang.cn/2025/radiopocptt/</link>
+    <pubDate>Fri, 12 Sep 2025 09:54:38 &#43;0800</pubDate>
+    <author>BG5VGE</author>
+    <guid>http://ooyang.cn/2025/radiopocptt/</guid>
+    <description><![CDATA[一、公网对讲机与模拟对讲机简介 （一）公网对讲机 公网对讲机，又称 PoC（Push - to - Talk over Cellular）对讲机，利用公共蜂窝移动通信网络（]]></description>
+</item>
+<item>
+    <title>APRS(Automatic Packet Report System)自动位置回报系统</title>
+    <link>http://ooyang.cn/2023/aprs/</link>
+    <pubDate>Tue, 28 Mar 2023 14:40:00 &#43;0800</pubDate>
+    <author>BG5VGE</author>
+    <guid>http://ooyang.cn/2023/aprs/</guid>
+    <description><![CDATA[什么是APRS APRS 是一种自动位置报告系统为业余无线电中的一个项目, 可使业余无线电操作者迅速的将实时事件相关的数据发布出去， 并在电脑或手机上的地]]></description>
+</item>
+<item>
+    <title>个人常用的内容工具等收藏</title>
+    <link>http://ooyang.cn/2023/tool/</link>
+    <pubDate>Mon, 13 Mar 2023 11:54:38 &#43;0800</pubDate>
+    <author>bg5vge</author>
+    <guid>http://ooyang.cn/2023/tool/</guid>
+    <description><![CDATA[常用网站 百度 Bing 翻译 微博 福州老杨 网址导航 github gitee 社保 医保 QQ邮箱 百度统计 git常用命令 添加到库 1 git add . 提交修改到本地库 1 git commit -m &#34;1&#34; 推送push&nd]]></description>
+</item>
+<item>
+    <title>业余无线电爱好者入门知识</title>
+    <link>http://ooyang.cn/2023/radio/</link>
+    <pubDate>Mon, 13 Mar 2023 11:54:38 &#43;0800</pubDate>
+    <author>BG5VGE</author>
+    <guid>http://ooyang.cn/2023/radio/</guid>
+    <description><![CDATA[无线电爱好者介绍,入门基础知识 介绍 无线电爱好者是无线电领域里的一群特殊的群体，被称为“火腿族”，英文HAM；他们不是专门从事无线电工作的，却]]></description>
+</item>
+</channel>
+</rss>

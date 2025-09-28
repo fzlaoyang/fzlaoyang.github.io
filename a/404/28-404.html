@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang=en>
+  <meta charset=utf-8>
+  <meta name=viewport content="initial-scale=1, minimum-scale=1, width=device-width">
+  <title>可提取当前访问地址的404错误页Error 404</title>
+  <style>
+    *{margin:0;padding:0}
+    html,body{font-size:14px;}
+    html,code{font:12px arial,sans-serif;color:#112fae}
+    html{background:#fff;color:#222;padding:15px}
+    body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}
+    * > body{padding-right:205px}
+    p{margin:11px 0 22px;overflow:hidden}
+    ins{color:#777;text-decoration:none}
+    a img{border:0}
+    @media screen and (max-width:772px){
+        body{background:none;margin-top:0;max-width:none;padding-right:0}
+    }
+    #logo{margin-left:-5px}
+    @media only screen and (min-resolution:192dpi){}
+    @media only screen and (-webkit-min-device-pixel-ratio:2){
+      #logo{-webkit-background-size:100% 100%}
+    }
+    #logo{display:inline-block;height:54px;width:150px}
+    p{line-height:180%;}
+    div{font-size:11px;line-height:180%;}
+  </style>
+  <h4>404.</h4>
+  <p><ins>Could not find your resource.</ins></p>
+  <p><ins>您访问的页面没有找到.</ins></p>
+  <div>The requested URL <code id=code></code> was not found on this server.  That’s all we know.</div>
+  <p><a href="/2023/404/">返回主页</p>
+  <script>
+  document.getElementById('code').innerHTML=location.href
+  </script>
+  <script src="http://ooyang.cn/img/tongji.js"></script>
