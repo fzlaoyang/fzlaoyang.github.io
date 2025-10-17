@@ -1,2 +1,2 @@
 User-Agent: *
-Sitemap: https://example.com/sitemap.xml
+Sitemap: http://ooyang.cn/sitemap.xml
