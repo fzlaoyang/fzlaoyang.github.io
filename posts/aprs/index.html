@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="https://example.com/images/favicon.png" />
+<title>APRS(Automatic Packet Report System)自动位置回报系统 | 福州老杨</title>
+<meta name="title" content="APRS(Automatic Packet Report System)自动位置回报系统" />
+<meta name="description" content="APRS是一种自动位置报告系统，为业余无线电中的一个项目,可使业余无线电操作者迅速的将实时事件相关的数据发布出去，并在电脑或手机上的地图软件显示这些数据(定位)的软硬件系统。可以通过电台，手机将从GPS得到的定位数据自动发送到接收端igate基站(APRS网关)再转发到互联网或直接上传到互联网上" />
+<meta name="keywords" content="APRS," />
+
+
+<meta property="og:url" content="https://example.com/posts/aprs/">
+  <meta property="og:site_name" content="福州老杨">
+  <meta property="og:title" content="APRS(Automatic Packet Report System)自动位置回报系统">
+  <meta property="og:description" content="APRS是一种自动位置报告系统，为业余无线电中的一个项目,可使业余无线电操作者迅速的将实时事件相关的数据发布出去，并在电脑或手机上的地图软件显示这些数据(定位)的软硬件系统。可以通过电台，手机将从GPS得到的定位数据自动发送到接收端igate基站(APRS网关)再转发到互联网或直接上传到互联网上">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-03-28T14:40:00+08:00">
+    <meta property="article:modified_time" content="2023-03-28T14:40:00+08:00">
+    <meta property="article:tag" content="APRS">
+    <meta property="og:image" content="https://example.com/images/share.png">
+
+
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://example.com/images/share.png">
+  <meta name="twitter:title" content="APRS(Automatic Packet Report System)自动位置回报系统">
+  <meta name="twitter:description" content="APRS是一种自动位置报告系统，为业余无线电中的一个项目,可使业余无线电操作者迅速的将实时事件相关的数据发布出去，并在电脑或手机上的地图软件显示这些数据(定位)的软硬件系统。可以通过电台，手机将从GPS得到的定位数据自动发送到接收端igate基站(APRS网关)再转发到互联网或直接上传到互联网上">
+
+
+
+
+  <meta itemprop="name" content="APRS(Automatic Packet Report System)自动位置回报系统">
+  <meta itemprop="description" content="APRS是一种自动位置报告系统，为业余无线电中的一个项目,可使业余无线电操作者迅速的将实时事件相关的数据发布出去，并在电脑或手机上的地图软件显示这些数据(定位)的软硬件系统。可以通过电台，手机将从GPS得到的定位数据自动发送到接收端igate基站(APRS网关)再转发到互联网或直接上传到互联网上">
+  <meta itemprop="datePublished" content="2023-03-28T14:40:00+08:00">
+  <meta itemprop="dateModified" content="2023-03-28T14:40:00+08:00">
+  <meta itemprop="wordCount" content="87">
+  <meta itemprop="image" content="https://example.com/images/share.png">
+  <meta itemprop="keywords" content="APRS">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+  <style>
+  :root {
+    --width: 720px;
+    --font-main: Verdana, sans-serif;
+    --font-secondary: Verdana, sans-serif;
+    --font-scale: 1em;
+    --background-color: #fff;
+    --heading-color: #222;
+    --text-color: #444;
+    --link-color: #3273dc;
+    --visited-color: #8b6fcb;
+    --blockquote-color: #222;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background-color: #01242e;
+      --heading-color: #eee;
+      --text-color: #ddd;
+      --link-color: #8cc2dd;
+      --visited-color: #8b6fcb;
+      --blockquote-color: #ccc;
+    }
+  }
+
+  body {font-family: var(--font-secondary);font-size: var(--font-scale);
+    margin: auto;padding: 20px;max-width: var(--width);
+    text-align: left;background-color: var(--background-color);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.5;color: var(--text-color);}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {font-family: var(--font-main);color: var(--heading-color);}
+  a {color: var(--link-color);cursor: pointer;text-decoration: none;}
+  a:hover {text-decoration: underline;}
+  nav a {margin-right: 8px;}
+  strong,
+  b {color: var(--heading-color);}
+  button {margin: 0;cursor: pointer;}
+  time {font-family: monospace;font-style: normal;font-size: 15px;}
+  main {line-height: 1.6;}
+  table {width: 100%;}
+  hr {border: 0;border-top: 1px dashed;}
+  img {max-width: 100%;}
+  code {font-family: monospace;padding: 2px;border-radius: 3px;}
+  blockquote {border-left: 1px solid #999;color: var(--blockquote-color);padding-left: 20px;font-style: italic;}
+  footer {padding: 25px 0;text-align: center;}
+  .title:hover {text-decoration: none;}
+  .title h1 {font-size: 1.5em;}
+  .inline {width: auto !important;}
+  .highlight,
+  .code {border-radius: 3px;margin-block-start: 1em;margin-block-end: 1em;overflow-x: auto;}
+   
+  ul.blog-posts {list-style-type: none;padding: unset;}
+  ul.blog-posts li {display: flex;}
+  ul.blog-posts li span {flex: 0 0 130px;}
+  ul.blog-posts li a:visited {color: var(--visited-color);}
+
+</style>
+
+
+</head>
+
+<body>
+  <header><a href="/" class="title">
+  <h2>福州老杨</h2>
+</a>
+<nav>
+</nav>
+<a href="/">首页</a>
+<a href="/a/dh.html" target="_blank">网址导航</a>
+<a href="/posts">文章</a>
+<a href="/categories">分类</a>
+<a href="/about">关于我们</a></header>
+  <main>
+
+<content>
+  <hr>
+<h3 id="什么是aprs">什么是APRS</h3>
+<p>APRS 是一种自动位置报告系统为业余无线电中的一个项目,
+可使业余无线电操作者迅速的将实时事件相关的数据发布出去，
+并在电脑或手机上的地图软件显示这些数据(定位)的软硬件系统。</p>
+<p>可以通过电台，手机将从GPS得到的定位数据自动发送到接收端igate基站(APRS网关)再转发到互联网或直接上传到互联网上，</p>
+<p>这样其他无线电爱好者可以通过电子地图（例如https://aprs.fi/ <a href="http://aprs.cn/">http://aprs.cn/</a> 实时获得对方的地理位置，行动方向和运动速度。</p>
+<p>简单说GPS导航可以让自己知道在什么地方，APRS不但可以知道自己在哪里，也可让其他人知道你在哪里。</p>
+<p>电台使用无连接分组基于一对多进行数据发布，类似于广播电台和听众的关系。随着APRS的发展，现在APRS的设备大抵分为<code>APRS节点、APRS网关(IGate)、APRS服务器</code>等。</p>
+<hr>
+<h3 id="什么是aprs网络">什么是APRS网络</h3>
+<p>APRS的网络一般可以理解由两个部分组成，其中一部分为电台射频网络（简称“APRS-RF”网络），另一部分为互联网服务网络（Internet Service，简称“APRS-IS”网络），而电台射频网络和互联网服务网络又可以通过互联网网关（Internet Gateway，简称“IGate”）连接起来，实现各种台站信标、气象信息、短消息等数据的双向传递，从而形成一个大型的APRS数据传输网络。</p>
+<h2 id="aprs网络组成示意图"><a href="/images/2023/aprs_net.jpg">aprs网络组成示意图</a></h2>
+<h3 id="aprs-地图网站">APRS 地图网站</h3>
+<p>大家所熟悉的</p>
+<p><a href="https://aprs.fi">aprs.fi</a></p>
+<p><a href="https://aprs.tv">aprs.tv</a></p>
+<p><a href="http://aprs.cn">aprs.cn</a></p>
+<p>等网站具有地图显示台站等功能的网站，其实并不是APRS互联网服务网络体系的一部分.</p>
+<p>而是一种APRS-IS网络发展出来的一个终端服务产品，它们的工作原理是，从APRS的某个服务器中收取整个网络的实时数据，然后在地图上的实时数据显示、历史数据查询、台站覆盖范围推测（PHG）、台站收听列表显示（Heard List）等各种强大的扩展功能供爱好者读取使用。</p>
+<hr>
+<h3 id="aprs使用频率">APRS使用频率</h3>
+<p>中国APRS使用<code>144.640MHz</code>频率</p>
+<hr>
+<h3 id="aprs软件">APRS软件</h3>
+<p>APRSdroid <a href="http://aprsdroid.org/download">http://aprsdroid.org/download</a></p>
+<p>UISS  普通电台和电脑收发APRS信号的软件</p>
+<hr>
+<h3 id="aprs功能的电台列表">APRS功能的电台列表</h3>
+<p>联畅HG-UV98</p>
+<p>自由通AnyTone AT-D868UV</p>
+<p>自由通AnyTone AT-D878</p>
+<p>八重洲多款型号</p>
+<p>威诺VR-N7500车台</p>
+<p>威诺n75手台</p>
+<hr>
+<h3 id="aprs的实现方法">APRS的实现方法</h3>
+<ul>
+<li>APRS软件</li>
+</ul>
+<p>: 即使没有硬件设备，你也可以向 APRS 网络发送信息。当然，前提是您已经取得了呼号，因为你通过网络发送的信息可能会通过一些双向网关转发到射频信号。</p>
+<dl>
+<dt><!-- raw HTML omitted --><a href="/images/2023/aprs-baofeng.jpg">软件和普通手台实现aprs</a><!-- raw HTML omitted --></dt>
+<dd>
+<p>安卓手机APP,名称<code>APRSdroid</code>，利用手机本身的定位功能收集定位数据后定时通过Internet收发到 APRS 网络。这些软件可以让你直接体验 APRS。在其它平台上也有很多优秀的多功能软件。</p>
+</dd>
+</dl>
+<ul>
+<li>APRS硬件</li>
+</ul>
+<p>: 一个普通的电台连接TNC就能实现APRS,例如国内知名的马工开发的APRS盒子。</p>
+<p><!-- raw HTML omitted --><a href="/images/2023/aprs-tnc.jpg">TNC盒子</a><!-- raw HTML omitted --></p>
+<ul>
+<li>声卡软件</li>
+</ul>
+<dl>
+<dt>: 将声卡用作调制解调器的软件,比如 UISS 软件就内置了软件调制解调器，你只需要连接音频，它就可以收发 APRS 信号。</dt>
+<dd>
+<p>安卓软件 APRSdroid 和 HT 也具备这样的功能，只需音频线连接电台，即可收发 APRS 信号，不仅仅是位置信号，还可以发送和接收 APRS 短信。</p>
+</dd>
+</dl>
+<hr>
+<h3 id="aprs验证码">APRS验证码</h3>
+<p>APRS网络由互联网和无线电组成，我们需要一种方法来阻止未经许可的用户被传输到无线电网络。当 APRS系统与服务器连接时，需要验证一个号码。这个号码就像一个密码，根据你的呼号计算出来，它是唯一的。也就是说，连接到互联网服务器的 I-gate网关和软件都需要验证密码，因为它们发出的信息可能会被其它电台通过无线电发送出去。</p>
+<h3 id="如何申请aprs-is的验证码"><!-- raw HTML omitted -->如何申请APRS-IS的验证码<!-- raw HTML omitted --></h3>
+<p>申请APRS-IS的验证码的网址https://aprsdroid.org/passcode</p>
+<p><!-- raw HTML omitted --><a href="/images/2023/aprs-1.jpg">如何申请APRS-IS的验证码</a><!-- raw HTML omitted --></p>
+<p>其中Grid square：为HAM QTH 梅登黑德定位信息。
+成功提交之后的几天,您的邮箱将会收到验证码了。这种方法获得验证码的时间比较慢。</p>
+<hr>
+<blockquote>
+<h3 id="aprs验证码的计算">APRS验证码的计算</h3></blockquote>
+<ul>
+<li>
+<p>是的APRS验证码是可以根据呼号被计算出来的,苹果手机应用商店里面就有APRS计算的app服务,不过是收费的。</p>
+</li>
+<li>
+<p><code>老杨免费提供APRS验证码的计算</code>,只需把无线电执照带呼号页面拍照并发邮件到<!-- raw HTML omitted --></p>
+</li>
+</ul>
+
+</content>
+
+
+
+<p>
+  
+  <a href="https://example.com/tags/aprs/">#APRS</a>
+  
+</p>
+
+  </main>
+  <footer>ooyang.cn
+</footer>
+
+  
+
+</body>
+
+</html>

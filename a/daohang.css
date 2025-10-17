@@ -1,0 +1,37 @@
+body { font-family:"宋体",Arial,sans-serif; font-size:12px; color:#000; margin:0; padding:10px; background-color:#F0F8FF; }
+#top-actions { text-align:right; margin-bottom:10px; padding-right:10px; }
+#top-actions a { color:#003366; text-decoration:none; margin-left:15px; }
+#top-actions a:hover { text-decoration:underline; color:#FF6600; }
+#container { width:600px; margin:0 auto; background:#FFF; border:1px solid #CCC; padding:10px; }
+#header { background:#0066CC; margin-bottom:10px; padding:10px; height:60px; line-height:60px; }
+#header h1 { margin:0; padding:0; color:#FFF; font-size:24px; font-family:"宋体",sans-serif; float:left; }
+#search { float:right; margin-top:5px; }
+#search input { width:200px; padding:3px; font-size:12px; }
+#search button { background:#FF9900; border:1px solid #FF6600; color:#FFF; cursor:pointer; padding:3px 8px; }
+.clearfix:after { content:""; display:table; clear:both; }
+#main-nav { background:#E8F3FF; height:30px; margin-bottom:10px; border:1px solid #CCE1FF; clear:both; }
+#main-nav ul { margin:0; padding:0; list-style:none; }
+#main-nav li { float:left; line-height:30px; padding:0 15px; border-right:1px solid #CCE1FF; }
+#main-nav a { color:#003366; text-decoration:none; font-weight:bold; }
+#main-nav a:hover { color:#FF6600; text-decoration:underline; }
+#collapse-controls { background:#F5F5F5; padding:8px; margin-bottom:10px; border:1px solid #DDD; }
+#collapse-controls button { background:#E8F3FF; border:1px solid #99BBE8; padding:2px 8px; margin-right:10px; cursor:pointer; font-size:12px; }
+.category { margin-bottom:15px; border:1px solid #CCE1FF; }
+.category h2 { background:#E8F3FF; margin:0; padding:5px 10px; font-size:16px; color:#003366; border-bottom:1px solid #CCE1FF; cursor:pointer; }
+.category h2 span { float:right; font-weight:bold; }
+.links-grid { padding:10px; overflow:hidden; }
+.links-grid a { display:inline-block; font-size:14px; width:60px; height:22px; line-height:22px; white-space:nowrap; overflow:hidden; padding:3px 0; border-bottom:1px dashed #EEE; }
+.links-list { padding:5px 10px; }
+.links-list a { display:block; font-size:14px; line-height:16px; padding:3px 0; border-bottom:1px dashed #EEE; }
+.links-list a:last-child { border-bottom:none; }
+a { color:#000; text-decoration:none; }
+a:hover { color:#F00; text-decoration:underline; }
+.hot { color:#F00; font-weight:bold; }
+.new { color:#090; font-weight:bold; }
+/* 修复垂直对齐问题 - 关键修改处 */
+.h3new { color:#090; font-weight:bold; display:inline-block; font-size:14px; height:22px; line-height:22px;  /* 确保行高一致 */overflow:hidden; vertical-align:top; /* 部对齐 */padding:3px 0; /* 与链接保持相同内边距 */ }
+.red { color:#F00; font-weight:bold; }
+.collapsed .links-grid, .collapsed .links-list { display:none; }
+.highlight { background:#FFC; color:#F00; font-weight:bold; }
+#footer { text-align:center; padding:10px; color:#666; border-top:1px solid #CCC; margin-top:20px; }
+#footer a { color:#666; margin:0 5px; }

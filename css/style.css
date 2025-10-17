@@ -1,0 +1,251 @@
+/* 基础样式 */
+body { 
+    font-family:"宋体",Arial,sans-serif; 
+    font-size:12px; 
+    color:#000; 
+    margin:0; 
+    padding:10px; 
+    background-color:#F0F8FF; 
+}
+#top-actions { 
+    text-align:right; 
+    margin-bottom:10px; 
+    padding-right:10px; 
+}
+#top-actions a { 
+    color:#003366; 
+    text-decoration:none; 
+    margin-left:15px; 
+}
+#top-actions a:hover { 
+    text-decoration:underline; 
+    color:#FF6600; 
+}
+#container { 
+    width:90%;
+    max-width:1000px;
+    margin:0 auto; 
+    background:#FFF; 
+    border:1px solid #CCC; 
+    padding:10px; 
+}
+#header { 
+    background:#0066CC; 
+    margin-bottom:10px; 
+    padding:10px; 
+    height:60px; 
+    line-height:60px; 
+}
+#header h1 { 
+    margin:0; 
+    padding:0; 
+    color:#FFF; 
+    font-size:24px; 
+    font-family:"宋体",sans-serif; 
+    float:left; 
+}
+#search { 
+    float:right; 
+    margin-top:15px; 
+}
+#search input { 
+    width:200px; 
+    padding:3px; 
+    font-size:12px; 
+}
+#search button { 
+    background:#FF9900; 
+    border:1px solid #FF6600; 
+    color:#FFF; 
+    cursor:pointer; 
+    padding:3px 8px; 
+}
+.clearfix:after { 
+    content:""; 
+    display:table; 
+    clear:both; 
+}
+#main-nav { 
+    background:#E8F3FF; 
+    height:30px; 
+    margin-bottom:10px; 
+    border:1px solid #CCE1FF; 
+    clear:both; 
+}
+#main-nav ul { 
+    margin:0; 
+    padding:0; 
+    list-style:none; 
+}
+#main-nav li { 
+    float:left; 
+    line-height:30px; 
+    padding:0 15px; 
+    border-right:1px solid #CCE1FF; 
+}
+#main-nav a { 
+    color:#003366; 
+    text-decoration:none; 
+    font-weight:bold; 
+}
+#main-nav a:hover, #main-nav a.active { 
+    color:#FF6600; 
+    text-decoration:underline; 
+}
+.category { 
+    margin-bottom:15px; 
+    border:1px solid #CCE1FF; 
+}
+.category h2 { 
+    background:#E8F3FF; 
+    margin:0; 
+    padding:5px 10px; 
+    font-size:16px; 
+    color:#003366; 
+    border-bottom:1px solid #CCE1FF; 
+}
+.category-icon {
+    margin-right:10px;
+    color:#003366;
+}
+.links-grid { 
+    padding:10px; 
+    overflow:hidden; 
+}
+.links-grid a { 
+    display:inline-block; 
+    font-size:14px; 
+    width:120px; 
+    height:22px; 
+    line-height:22px; 
+    white-space:nowrap; 
+    overflow:hidden; 
+    padding:3px 0; 
+    border-bottom:1px dashed #EEE; 
+    margin-right:15px;
+}
+.links-list { 
+    padding:15px; 
+    line-height:1.6;
+    font-size:14px;
+}
+.links-list a { 
+    display:block; 
+    font-size:14px; 
+    line-height:24px; 
+    padding:3px 0; 
+    border-bottom:1px dashed #EEE; 
+}
+.links-list a:last-child { 
+    border-bottom:none; 
+}
+a { 
+    color:#000; 
+    text-decoration:none; 
+}
+a:hover { 
+    color:#F00; 
+    text-decoration:underline; 
+}
+.hot { 
+    color:#F00; 
+    font-weight:bold; 
+}
+.new { 
+    color:#090; 
+    font-weight:bold; 
+    font-size:12px;
+    margin-left:10px;
+}
+.h3new { 
+    color:#090; 
+    font-weight:bold; 
+    display:inline-block; 
+    font-size:14px; 
+    height:22px; 
+    line-height:22px; 
+    overflow:hidden; 
+    vertical-align:top; 
+    padding:3px 0; 
+}
+.red { 
+    color:#F00; 
+    font-weight:bold; 
+}
+.highlight { 
+    background:#FFC; 
+    color:#F00; 
+    font-weight:bold; 
+}
+#footer { 
+    text-align:center; 
+    padding:10px; 
+    color:#666; 
+    border-top:1px solid #CCC; 
+    margin-top:20px; 
+}
+#footer a { 
+    color:#666; 
+    margin:0 5px; 
+}
+
+/* 文章内容样式 */
+.links-list h1, .links-list h2, .links-list h3 {
+    color:#003366;
+    margin:15px 0 10px;
+}
+
+/* 文章列表样式 */
+.post-item {
+    margin-bottom:15px;
+    padding-bottom:10px;
+    border-bottom:1px dashed #EEE;
+}
+.post-title {
+    font-size:16px;
+    font-weight:bold;
+    margin-bottom:5px;
+}
+.post-meta {
+    color:#666;
+    font-size:11px;
+    margin-bottom:8px;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    #container {
+        width: 100%;
+        padding: 5px;
+    }
+    
+    #header {
+        height: auto;
+        line-height: normal;
+        padding: 10px;
+    }
+    
+    #header h1 {
+        float: none;
+        margin-bottom: 10px;
+    }
+    
+    #search {
+        float: none;
+        margin-top: 0;
+    }
+    
+    #main-nav {
+        height: auto;
+    }
+    
+    #main-nav li {
+        float: none;
+        border-right: none;
+        border-bottom: 1px solid #CCE1FF;
+    }
+    
+    .links-grid a {
+        width: 45%;
+    }
+}
