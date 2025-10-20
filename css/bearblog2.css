@@ -3,10 +3,7 @@
             --content-width: 720px;
         }
         
-        body {
-            margin: 0;
-            padding: 0 1rem;
-        }
+        body {margin: 0;padding: 0 1rem;}
         
         .container {
             max-width: var(--content-width);
@@ -14,27 +11,12 @@
             padding: 2rem 0;
         }
         
-        header {margin: 2rem 0;
-            text-align: left;
-        }
+        header {margin: 2rem 0;text-align: left;}
 		footer {margin: 2rem 0;text-align: center;}
-        
-        .post-list {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .post-item {
-            margin-bottom: 2rem;
-        }
-        
-        .post-title {
-            margin-bottom: 0.5rem;
-        }
-        
-        .post-meta {
-            font-size: 0.9rem;
-        }
+        .post-list {list-style: none;padding: 0;}
+        .post-item {margin-bottom: 2rem;}
+        .post-title {margin-bottom: 0.5rem;}
+        .post-meta {font-size: 0.9rem;}
         
         /* 集成仿旧电脑系统风格 - 来自 404 页面的样式 */
         @import 'https://fonts.googleapis.com/css?family=Inconsolata';
@@ -96,15 +78,9 @@
         }
         
         @keyframes scan {
-            0%        { background-position: 0 -100vh; }
-            35%, 100% { background-position: 0 100vh; }
-        }
+            0%        { background-position: 0 -100vh; }35%, 100% { background-position: 0 100vh; }}
         
-        h1, h2, h3, h4, h5, h6 {
-            color: #fff;
-            text-transform: uppercase;
-        }
-        
+        h1, h2, h3, h4, h5, h6 {color: #fff;text-transform: uppercase;}
         a {color: #fff;text-decoration: none;}
 		a:hover {text-decoration: underline;}
 hr {border: 0;border-top: 1px dashed;}
@@ -115,19 +91,8 @@ hr {border: 0;border-top: 1px dashed;}
             margin-bottom: 1rem;
         }
         
-        .post-content img {
-            max-width: 100%;
-            border: 1px solid rgba(128, 255, 128, 0.3);
-        }
+        .post-content img {max-width: 100%;border: 1px solid rgba(128, 255, 128, 0.3);}
         
         /* 代码块样式 - 增强终端感 */
-        pre, code {
-            background-color: rgba(0, 30, 0, 0.5);
-            padding: 0.2rem 0.4rem;
-            border-radius: 2px;
-        }
-        
-        pre {
-            padding: 1rem;
-            overflow-x: auto;
-        }
+        pre, code {background-color: rgba(0, 30, 0, 0.5);padding: 0.2rem 0.4rem;border-radius: 2px;}
+        pre {padding: 1rem;overflow-x: auto;}
