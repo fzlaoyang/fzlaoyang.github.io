@@ -58,3 +58,5 @@
   ul.blog-posts li {display: flex;}
   ul.blog-posts li span {flex: 0 0 130px;}
   ul.blog-posts li a:visited {color: var(--visited-color);}
+        pre{background-color: #F5F5F5;border: 0px solid #CCCCCC;padding: 0.2rem 0.4rem;border-radius: 2px;}
+        pre {padding: 1rem;overflow-x: auto;}
