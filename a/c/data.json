@@ -113,6 +113,16 @@
         {"name": "MS-DOS 6.22 (简体中文).exe", "url": "ed2k://|file|SC_MSDOS622sc.exe|10020288|0B2B0878B8BBD2233D23022EE5339637|/"},
         {"name": "Windows 3.1.exe  16bit", "url": "ed2k://|file|SC_Windows31.exe|8472384|84037137FFF3932707F286EC852F2ABC|/"},
         {"name": "Windows XP Professional SP3 (x86)(简体中文)- ISO镜像", "url": "ed2k://|file|zh-hans_windows_xp_professional_with_service_pack_3_x86_cd_x14-80404.iso|630239232|CD0900AFA058ACB6345761969CBCBFF4|/"}
+		{"name": "Windows 98.exe", "url": "ed2k://|file|SC_WIN98SE.exe|278540368|939909E688963174901F822123E55F7E|/"}
+		{"name": "Windows ME.ex", "url": "ed2k://|file|SC_WINME.exe|174098008|EEBAABADCD0162DA9F66F68E91B1B92A|/"}
+		{"name": "Windows XP Home SP3 (x86)(简体中文)  - ISO镜像", "url": "ed2k://|file|zh-hans_windows_xp_home_with_service_pack_3_x86_cd_x14-92408.iso|611794944|81DC0766DFB4082E18F1985D535C14D6|/"}
+		{"name": "Windows XP Professional SP2 (简体中文) - ISO镜像", "url": "ed2k://|file|sc_winxp_pro_with_sp2.iso|629227520|505B810E128351482AF8B83AC4D04FD2|/"}
+		{"name": "Windows XP Professional SP3 (x86)(简体中文)- ISO镜像", "url": "ed2k://|file|zh-hans_windows_xp_professional_with_service_pack_3_x86_cd_x14-80404.iso|630239232|CD0900AFA058ACB6345761969CBCBFF4|/"}
+		{"name": "Windows XP SP3 (x86)(简体中文)- ISO镜像", "url": "ed2k://|file|zh-hans_windows_xp_service_pack_3_x86_cd_x14-60563.iso|417675264|2AAB7F0CD4BE378D9113557B1D24D8D0|/"}
+		{"name": "Windows XP Professional(简体中文)- ISO镜像", "url": "ed2k://|file|CN_WINXP_PRO_ISO.img|530186240|7855069CE4216615D761654E2B75A4F7|/"}
+		{"name": "", "url": ""}
+		{"name": "", "url": ""}
+		{"name": "", "url": ""}
       ]
     }
   ]
