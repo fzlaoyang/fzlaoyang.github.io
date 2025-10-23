@@ -240,14 +240,9 @@ function initCategories() {
     var categories = document.getElementsByClassName('category'),
         expandAllBtn = document.getElementById('expand-all'),
         collapseAllBtn = document.getElementById('collapse-all');
-    
     for (var i = 0; i < categories.length; i++) {
-        var header = categories[i].getElementsByTagName('h2')[0],
-            symbol = header.getElementsByTagName('span')[0];
-        
-        categories[i].classList.remove('collapsed');
-        symbol.innerHTML = '-';
-        
+    var header = categories[i].getElementsByTagName('h2')[0],symbol = header.getElementsByTagName('span')[0];
+        categories[i].classList.remove('collapsed');symbol.innerHTML = '-';
         header.onclick = function() {
             var category = this.parentNode,
                 symbol = this.getElementsByTagName('span')[0];
@@ -257,19 +252,14 @@ function initCategories() {
                 symbol.innerHTML = '-';
             } else {
                 category.classList.add('collapsed');
-                symbol.innerHTML = '+';
-            }
-        };
-    }
+                symbol.innerHTML = '+';}};}
     
     expandAllBtn.onclick = function() {
         for (var i = 0; i < categories.length; i++) {
             var category = categories[i],
                 symbol = category.getElementsByTagName('span')[0];
             category.classList.remove('collapsed');
-            symbol.innerHTML = '-';
-        }
-    };
+            symbol.innerHTML = '-';}};
     
     collapseAllBtn.onclick = function() {
         for (var i = 0; i < categories.length; i++) {
@@ -283,82 +273,48 @@ function initCategories() {
 function saveOriginalContent() {
     var links = document.querySelectorAll('.links-grid, .links-list');
     for (var i = 0; i < links.length; i++) {
-        originalHTML[links[i].className + i] = links[i].innerHTML;
-    }
-}
+        originalHTML[links[i].className + i] = links[i].innerHTML;}}
 function searchSite() {
     var searchTerm = document.getElementById('search-input').value.trim().toLowerCase();
-    
-    if (searchTerm === '' || searchTerm === '请输入关键词搜索') {
-        resetSearch();
-        return;
-    }
-    
+    if (searchTerm === '' || searchTerm === '请输入关键词搜索') {resetSearch();return;}
     resetSearch();
     var found = false,
         categories = document.getElementsByClassName('category');
-    
     for (var i = 0; i < categories.length; i++) {
         var category = categories[i],
             linksContainer = category.querySelector('.links-grid, .links-list'),
-            links = linksContainer.getElementsByTagName('a'),
-            hasMatch = false;
-        
-        for (var j = 0; j < links.length; j++) {
-            var link = links[j],
-                text = link.textContent.toLowerCase();
-            
+            // 扩展搜索范围：包含a标签、h3new标题和ed2k-item中的文字描述
+            elements = linksContainer.querySelectorAll('a, span.h3new, .ed2k-item span:first-child'),
+            hasMatch = false;        
+        for (var j = 0; j < elements.length; j++) {
+            var element = elements[j],
+                text = element.textContent.toLowerCase();
+            if (element.tagName === 'A' && element.getAttribute('href') && element.getAttribute('href').startsWith('ed2k://')) {continue;}
             if (text.indexOf(searchTerm) !== -1) {
-                hasMatch = true;
-                found = true;
-                var originalText = link.innerHTML,
-                    regex = new RegExp('(' + searchTerm + ')', 'gi');
-                link.innerHTML = originalText.replace(regex, '<span class="highlight">$1</span>');
-            }
-        }
-        
-        if (hasMatch) {
-            category.classList.remove('collapsed');
-            category.getElementsByTagName('span')[0].innerHTML = '-';
-        } else {
-            category.classList.add('collapsed');
-            category.getElementsByTagName('span')[0].innerHTML = '+';
-        }
-    }
-    
-    if (!found) alert('没有找到与 "' + searchTerm + '" 相关的内容');
-}
+                hasMatch = true;found = true;var originalText = element.innerHTML,regex = new RegExp('(' + searchTerm + ')', 'gi');element.innerHTML = originalText.replace(regex, '<span class="highlight">$1</span>');}}
+        if (hasMatch) {category.classList.remove('collapsed');category.getElementsByTagName('span')[0].innerHTML = '-';} else {category.classList.add('collapsed');category.getElementsByTagName('span')[0].innerHTML = '+';}}
+    if (!found) alert('没有找到与 "' + searchTerm + '" 相关的内容');}
 function resetSearch() {
     var links = document.querySelectorAll('.links-grid, .links-list');
-    for (var i = 0; i < links.length; i++) {
-        links[i].innerHTML = originalHTML[links[i].className + i];
-    }
-}
+    for (var i = 0; i < links.length; i++) {links[i].innerHTML = originalHTML[links[i].className + i];}}
 </script>
 <script>
     // 复制ED2K地址的函数
     function copyEd2k(ed2kUrl) {
-// 创建临时输入框
         const tempInput = document.createElement('input');
         document.body.appendChild(tempInput);
         tempInput.value = ed2kUrl;
-// 选中并复制
         tempInput.select();
         document.execCommand('copy');
-// 移除临时输入框
         document.body.removeChild(tempInput);
-// 显示提示
         const tooltip = event.target.nextElementSibling;
         tooltip.textContent = '已复制到剪贴板！';
         tooltip.style.backgroundColor = '#dff0d8';
         tooltip.style.color = '#3c763d';
         tooltip.style.display = 'inline-block';
-// 3秒后隐藏提示
         setTimeout(() => {
             tooltip.textContent = '';
-            tooltip.style.display = 'none';
-        }, 3000);
-    }
+            tooltip.style.display = 'none';}, 3000);}
 </script>
 </body>
 </html>
