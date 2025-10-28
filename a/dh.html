@@ -24,6 +24,13 @@
             <button onclick="searchSite()">搜索</button>
         </div>
     </div>
+	 <div id="main-nav">
+            <ul>
+                <li><a href="/a/dh.html">首页</a></li>
+                <li><a href="/posts">文章</a></li>
+                <li><a href="/about"title="关于我们">关于</a></li>
+            </ul>
+        </div>
     <div id="collapse-controls">
         <button id="expand-all">全部展开</button>
         <button id="collapse-all">全部折叠</button>
@@ -208,5 +215,11 @@ function resetSearch() {var links = document.querySelectorAll('.links-grid, .lin
 </script>
 <script>// 复制ED2K地址的函数
 function copyEd2k(ed2kUrl) {const tempInput = document.createElement('input');document.body.appendChild(tempInput);tempInput.value = ed2kUrl;tempInput.select();document.execCommand('copy');document.body.removeChild(tempInput);const tooltip = event.target.nextElementSibling;tooltip.textContent = '已复制到剪贴板！';tooltip.style.backgroundColor = '#dff0d8';tooltip.style.color = '#3c763d';tooltip.style.display = 'inline-block';setTimeout(() => {tooltip.textContent = '';tooltip.style.display = 'none';}, 3000);}</script>
+<script type="text/javascript">
+// 禁止右键
+document.oncontextmenu = function() {
+    return false; // 阻断事件默认行为，不显示右键菜单
+};
+</script>
 </body>
 </html>
