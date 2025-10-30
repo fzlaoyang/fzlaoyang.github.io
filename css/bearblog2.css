@@ -1,19 +1,11 @@
 
-        :root {
-            --content-width: 720px;
-        }
-        
+        :root {--content-width: 720px;}
         body {margin: 0;padding: 0 1rem;}
-        
-        .container {
-            max-width: var(--content-width);
-            margin: 0 auto;
-            padding: 2rem 0;
-        }
+        .container {max-width: var(--content-width);margin: 0 auto;padding: 2rem 0;}
         
         header {margin: 2rem 0;text-align: left;}
-		nav {text-align: right;}
-		nav a {padding:0px 15px;}
+		nav {text-align: left;}
+		nav a {padding-left: 0;padding-right: 25px;}
 
 		footer {margin: 2rem 0;text-align: center;}
         .post-list {list-style: none;padding: 0;}
