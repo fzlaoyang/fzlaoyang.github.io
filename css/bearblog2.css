@@ -12,7 +12,9 @@
         }
         
         header {margin: 2rem 0;text-align: left;}
-		nav {margin: 0 30px;}
+		nav {text-align: right;}
+		nav a {padding:0px 15px;}
+
 		footer {margin: 2rem 0;text-align: center;}
         .post-list {list-style: none;padding: 0;}
         .post-item {margin-bottom: 2rem;}
