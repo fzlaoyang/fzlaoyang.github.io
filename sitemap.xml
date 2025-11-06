@@ -2,40 +2,40 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>http://ooyang.cn/posts/</loc>
     <lastmod>2025-09-28T11:54:38+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>http://ooyang.cn/categories/</loc>
     <lastmod>2025-09-28T11:54:38+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/radio/</loc>
+    <loc>http://ooyang.cn/tags/radio/</loc>
     <lastmod>2025-09-28T11:54:38+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/2025/radio13/</loc>
+    <loc>http://ooyang.cn/2025/radio13/</loc>
     <lastmod>2025-09-28T11:54:38+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/2025/motorolagpsoft/</loc>
+    <loc>http://ooyang.cn/2025/motorolagpsoft/</loc>
     <lastmod>2025-09-28T11:54:38+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/2025/radiopocptt/</loc>
+    <loc>http://ooyang.cn/2025/radiopocptt/</loc>
     <lastmod>2025-09-12T09:54:38+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>http://ooyang.cn/</loc>
     <lastmod>2023-09-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/aprs/</loc>
+    <loc>http://ooyang.cn/tags/aprs/</loc>
     <lastmod>2023-03-28T14:40:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/2023/aprs/</loc>
+    <loc>http://ooyang.cn/2023/aprs/</loc>
     <lastmod>2023-03-28T14:40:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>http://ooyang.cn/about/</loc>
     <lastmod>2023-03-13T14:03:57+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/2023/radio/</loc>
+    <loc>http://ooyang.cn/2023/radio/</loc>
     <lastmod>2023-03-12T15:20:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/2023/tool/</loc>
+    <loc>http://ooyang.cn/2023/tool/</loc>
     <lastmod>2023-03-16T11:54:38+08:00</lastmod>
   </url>
 </urlset>
