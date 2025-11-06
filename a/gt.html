@@ -41,10 +41,12 @@
         const gitalk = new Gitalk({
             clientID: 'Ov23likpmz0NDZccBg3G',
             clientSecret: '71fecff88677be6bf24cad70c081c8a0c56ed412',
-            repo: 'fzlaoyang', // 例如：'blog-comments'
+            repo: 'BBS', // 例如：'blog-comments'
             owner: 'fzlaoyang', // 例如：'your-github-username'
             admin: ['fzlaoyang'], // 通常与 owner 一致
             id: location.pathname, // 用于区分不同页面的评论（默认用当前页面路径）
+			title: document.title, // Issues 的标题（默认用页面标题，可选自定义）
+			labels: ['gitalk', 'ooyang.cn'], // 给 Issues 加标签（便于管理，可选）
             distractionFreeMode: false // 是否启用无干扰模式（隐藏右上角 GitHub 图标）
         })
 
