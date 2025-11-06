@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="http://ooyang.cn/favicon.svg" />
+<title>ooyang.cn福州老杨-留言板</title>
+<meta name="title" content="关于我们" />
+<meta name="description" content="网站名称:福州老杨
+网站地址:http://ooyang.cn
+作者呼号:BG5VGE
+联系邮箱:
+
+无广告网址导航、资源导航
+联系我们或留言" />
+<meta name="keywords" content="" />
+<link rel="stylesheet" type="text/css" href="/css/bearblog2.css">
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+</head>
+<body>
+  <header>    <div class="overlay"></div>
+	<a href="/" class="title"><h2>福州老杨</h2></a>
+<nav><a href="/" title="Home">首页</a><a href="/a" target="_blank" title="Website Navigation">网址导航</a><a href="/posts" title="Article">文章列表</a><a href="/about" title="About Us">关于我们</a><a href="https://github.com/fzlaoyang/BBS/issues/1" target="_blank" title="Contact">联系我们</a><hr></nav>
+</header>
+  <main>
+
+ <div id="gitalk-container"></div>
+
+    <!-- 引入 Gitalk 脚本 -->
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    <!-- 初始化 Gitalk -->
+    <script>
+        const gitalk = new Gitalk({
+            clientID: 'Ov23likpmz0NDZccBg3G',
+            clientSecret: '71fecff88677be6bf24cad70c081c8a0c56ed412',
+            repo: 'BBS', // 例如：'blog-comments'
+            owner: 'fzlaoyang', // 例如：'your-github-username'
+            admin: ['fzlaoyang'], // 通常与 owner 一致
+            id: location.pathname, // 用于区分不同页面的评论（默认用当前页面路径）
+			title: document.title, // Issues 的标题（默认用页面标题，可选自定义）
+			labels: ['gitalk', 'ooyang.cn'], // 给 Issues 加标签（便于管理，可选）
+            distractionFreeMode: false // 是否启用无干扰模式（隐藏右上角 GitHub 图标）
+        })
+
+        // 渲染评论区
+        gitalk.render('gitalk-container')
+    </script>
+
+  </main>
+  <footer><small>ooyang.cn</small>
+</footer>
+
+</body>
+</html>
