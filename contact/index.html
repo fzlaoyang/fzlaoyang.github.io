@@ -35,6 +35,7 @@
             owner: 'fzlaoyang', // 例如：'your-github-username'
             admin: ['fzlaoyang'], // 通常与 owner 一致
             id: location.pathname, // 用于区分不同页面的评论（默认用当前页面路径）
+			autoCreate: 'true', // 关键参数：开启自动创建 Issue（值为字符串 'true'，非布尔值）
 			title: location.href, // Issues 的标题（默认用页面标题，可选自定义）
 			labels: ['contact'], // 给 Issues 加标签（便于管理，可选）
             distractionFreeMode: false // 是否启用无干扰模式（隐藏右上角 GitHub 图标）
