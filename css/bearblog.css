@@ -45,7 +45,7 @@
   table {width: 100%;}
   hr {border: 0;border-top: 1px solid #eaecef;margin: 1rem 0;}
   img {max-width: 100%;}
-  code {padding: 10px;padding-top: 0.2em;padding-bottom: 0.2em;margin: 0;background-color: rgba(27,31,35,0.05);}
+  code {padding: 10px;padding-top: 0.2em;padding-bottom: 0.2em;margin: 0;background-color:#e8eaea;}
   blockquote {border-left: 1px solid #999;color: var(--blockquote-color);padding-left: 20px;font-style: italic;}
   footer {padding: 25px 0;text-align: center;}
   .title:hover {text-decoration: none;}
@@ -58,5 +58,5 @@
   ul.blog-posts li {display: flex;}
   ul.blog-posts li span {flex: 0 0 130px;}
   ul.blog-posts li a:visited {color: var(--visited-color);}
-        pre{padding: 16px;overflow: auto;line-height: 1.45;background-color: rgba(27,31,35,0.05);}
+        pre{padding: 16px;overflow: auto;line-height: 1.45;background-color:#e8eaea;}
 
