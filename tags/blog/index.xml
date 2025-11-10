@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog on 福州老杨</title>
-    <link>http://localhost:1313/tags/blog/</link>
+    <link>http://ooyang.cn/tags/blog/</link>
     <description>Recent content in Blog on 福州老杨</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
     <copyright>Copyright © 2022-2025, BG5VGE.</copyright>
     <lastBuildDate>Tue, 18 Apr 2023 11:54:38 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://ooyang.cn/tags/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>旗山湖露营</title>
-      <link>http://localhost:1313/2023/myblog2/</link>
+      <link>http://ooyang.cn/2023/myblog2/</link>
       <pubDate>Tue, 18 Apr 2023 11:54:38 +0800</pubDate>
-      <guid>http://localhost:1313/2023/myblog2/</guid>
-      <description>&lt;p&gt;旗山湖公园露营视频:&lt;/p&gt;&#xA;&lt;div class=&#34;bilibili&#34;&gt;&lt;iframe src=&#34;//player.bilibili.com/player.html?bvid=BV1XM411L7En&amp;page=1&#34; scrolling=&#34;no&#34; border=&#34;0&#34; frameborder=&#34;no&#34; framespacing=&#34;0&#34; allowfullscreen=&#34;true&#34;&gt;&lt;/iframe&gt;&lt;/div&gt;&#xD;&#xA;&lt;p&gt;照片:&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/photo/20230416_1.jpg&#34; alt=&#34;旗山湖公园露营&#34;&gt;&#xA;&lt;img src=&#34;http://localhost:1313/images/photo/20230416_2.jpg&#34; alt=&#34;旗山湖公园露营&#34;&gt;&#xA;&lt;img src=&#34;http://localhost:1313/images/photo/20230416_3.jpg&#34; alt=&#34;旗山湖公园露营&#34;&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xD;&#xA;&lt;p&gt;旗山湖项目位于上街福州大学城的中心共享区，建成后将成为一座兼具水利与景观的生态湖，水域面积将超福州西湖，成为福州“第一大湖”&lt;/p&gt;&#xA;&lt;p&gt;露营是一种短时的户外生活方式，是为了工程、军事、测绘、旅游等而特设临时的户外驻扎区，包括营帐、草棚、车房等简易形式的短时户外居住营所。&lt;/p&gt;</description>
+      <guid>http://ooyang.cn/2023/myblog2/</guid>
+      <description>&lt;p&gt;旗山湖公园露营视频:&lt;/p&gt;&#xA;&lt;div class=&#34;bilibili&#34;&gt;&lt;iframe src=&#34;//player.bilibili.com/player.html?bvid=BV1XM411L7En&amp;page=1&#34; scrolling=&#34;no&#34; border=&#34;0&#34; frameborder=&#34;no&#34; framespacing=&#34;0&#34; allowfullscreen=&#34;true&#34;&gt;&lt;/iframe&gt;&lt;/div&gt;&#xD;&#xA;&lt;p&gt;照片:&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://ooyang.cn/images/photo/20230416_1.jpg&#34; alt=&#34;旗山湖公园露营&#34;&gt;&#xA;&lt;img src=&#34;http://ooyang.cn/images/photo/20230416_2.jpg&#34; alt=&#34;旗山湖公园露营&#34;&gt;&#xA;&lt;img src=&#34;http://ooyang.cn/images/photo/20230416_3.jpg&#34; alt=&#34;旗山湖公园露营&#34;&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xD;&#xA;&lt;p&gt;旗山湖项目位于上街福州大学城的中心共享区，建成后将成为一座兼具水利与景观的生态湖，水域面积将超福州西湖，成为福州“第一大湖”&lt;/p&gt;&#xA;&lt;p&gt;露营是一种短时的户外生活方式，是为了工程、军事、测绘、旅游等而特设临时的户外驻扎区，包括营帐、草棚、车房等简易形式的短时户外居住营所。&lt;/p&gt;</description>
     </item>
     <item>
       <title>福州老杨的博客日志☀️</title>
-      <link>http://localhost:1313/2023/myblog/</link>
+      <link>http://ooyang.cn/2023/myblog/</link>
       <pubDate>Fri, 07 Apr 2023 11:54:38 +0800</pubDate>
-      <guid>http://localhost:1313/2023/myblog/</guid>
+      <guid>http://ooyang.cn/2023/myblog/</guid>
       <description>&lt;hr&gt;&#xA;&lt;p&gt;&lt;em&gt;2025-11-06&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;引入bear blog主题 并修改了旧电脑绿色风格css&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;2023-05-29&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;对博客的字体做css的美化调整，使文字更易阅读。&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;2023-04-18&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;上传第一个bilibili视频:福州旗山湖露营。&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;2023-04-10&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;java入门课程下载开始学习。&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;2023-04-08&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;博客初步搭建完成，针对loveit的css做了部分修改，文章10篇，域名续费3年。&lt;/p&gt;</description>
     </item>
   </channel>
