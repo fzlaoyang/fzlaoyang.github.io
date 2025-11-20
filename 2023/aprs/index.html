@@ -57,29 +57,12 @@
 <hr>
 <h3 id="aprs的实现方法">APRS的实现方法</h3>
 <ul>
-<li>APRS软件</li>
+<li><strong>APRS软件</strong>  即使没有硬件设备，你也可以向 APRS 网络发送信息。当然，前提是您已经取得了呼号，因为你通过网络发送的信息可能会通过一些双向网关转发到射频信号。安卓手机APP,名称<code>APRSdroid</code>，利用手机本身的定位功能收集定位数据后定时通过Internet收发到 APRS 网络。这些软件可以让你直接体验 APRS。在其它平台上也有很多优秀的多功能软件。
+<img src="/images/2023/aprs-baofeng.jpg" alt="软件和普通手台实现aprs"></li>
+<li><strong>APRS硬件</strong>  一个普通的电台连接TNC就能实现APRS,例如国内知名的马工开发的APRS盒子。
+<img src="/images/2023/aprs-tnc.jpg" alt="TNC盒子"></li>
+<li><strong>声卡软件</strong> 将声卡用作调制解调器的软件,比如 UISS 软件就内置了软件调制解调器，你只需要连接音频，它就可以收发 APRS 信号。安卓软件 APRSdroid 和 HT 也具备这样的功能，只需音频线连接电台，即可收发 APRS 信号，不仅仅是位置信号，还可以发送和接收 APRS 短信。</li>
 </ul>
-<p>: 即使没有硬件设备，你也可以向 APRS 网络发送信息。当然，前提是您已经取得了呼号，因为你通过网络发送的信息可能会通过一些双向网关转发到射频信号。</p>
-<dl>
-<dt><img src="/images/2023/aprs-baofeng.jpg" alt="软件和普通手台实现aprs"></dt>
-<dd>
-<p>安卓手机APP,名称<code>APRSdroid</code>，利用手机本身的定位功能收集定位数据后定时通过Internet收发到 APRS 网络。这些软件可以让你直接体验 APRS。在其它平台上也有很多优秀的多功能软件。</p>
-</dd>
-</dl>
-<ul>
-<li>APRS硬件</li>
-</ul>
-<p>: 一个普通的电台连接TNC就能实现APRS,例如国内知名的马工开发的APRS盒子。</p>
-<p><img src="/images/2023/aprs-tnc.jpg" alt="TNC盒子"></p>
-<ul>
-<li>声卡软件</li>
-</ul>
-<dl>
-<dt>: 将声卡用作调制解调器的软件,比如 UISS 软件就内置了软件调制解调器，你只需要连接音频，它就可以收发 APRS 信号。</dt>
-<dd>
-<p>安卓软件 APRSdroid 和 HT 也具备这样的功能，只需音频线连接电台，即可收发 APRS 信号，不仅仅是位置信号，还可以发送和接收 APRS 短信。</p>
-</dd>
-</dl>
 <hr>
 <h3 id="aprs验证码">APRS验证码</h3>
 <p>APRS网络由互联网和无线电组成，我们需要一种方法来阻止未经许可的用户被传输到无线电网络。当 APRS系统与服务器连接时，需要验证一个号码。这个号码就像一个密码，根据你的呼号计算出来，它是唯一的。也就是说，连接到互联网服务器的 I-gate网关和软件都需要验证密码，因为它们发出的信息可能会被其它电台通过无线电发送出去。</p>
