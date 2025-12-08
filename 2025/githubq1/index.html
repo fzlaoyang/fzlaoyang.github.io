@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="http://ooyang.cn/favicon.ico" />
+<title>GitHub Pages 域名绑定官方 IP 的踩坑与现状：能访问却藏隐患 | 福州老杨</title>
+<meta name="title" content="GitHub Pages 域名绑定官方 IP 的踩坑与现状：能访问却藏隐患" />
+<meta name="description" content="GitHub Pages 域名绑定官方 IP 的踩坑与现状：能访问却藏隐患" />
+<meta name="keywords" content="github," />
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?2593792a8d16bc9ab393449c82b032f8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<link rel="stylesheet" type="text/css" href="/css/bearblog.css">
+
+</head>
+<body>
+  <header>    <div class="overlay"></div>
+	<a href="/" class="title" title="福州老杨"><h1>OOyang</h1></a>
+<nav><a href="/" title="首页">Home</a><a href="/a" target="_blank" title="Website网址导航">Navigation</a><a href="/posts" title="文章列表">Article</a><a href="/about" title="关于我们">About Us</a><a href="https://github.com/fzlaoyang/BBS/issues/1" target="_blank" title="联系我们">Contact</a><hr></nav>
+</header>
+  <main>
+
+<h2 style="text-align: center;">GitHub Pages 域名绑定官方 IP 的踩坑与现状：能访问却藏隐患</h2>
+
+<content><blockquote>
+<p>在使用 GitHub Pages 搭建个人博客、静态网站的过程中，不少开发者会遇到一个共性问题：直接通过 GitHub 提供的默认二级域名<a href="https://fzlaoyang.github.io">fzlaoyang.github.io</a>或绑定自己域名<a href="http://ooyang.cn">ooyang.cn</a>时官方提供的ip<code>(185.199.108.153 ,185.199.109.153,185.199.110.153 ,185.199.111.153 </code>时访问偶尔卡顿且经常打不开网页，而手动将自定义域名绑定到 GitHub 官方前几年公布的公开 IP（192.30.252.154 和 192.30.252.153）后，网站访问稳定性明显提升，但随之而来的两个 “小麻烦” 却让人纠结 ——GitHub 域名设置页面持续提示 “绑定了旧的 IP 地址”，且安全证书（HTTPS）无法正常生效，不过好在核心的网站访问功能并未受影响。</p></blockquote>
+<h3 id="一初衷为解决访问不畅选择绑定固定-ip">一、初衷：为解决访问不畅，选择绑定固定 IP</h3>
+<p>GitHub Pages 作为免费且稳定的静态网站托管服务，深受开发者青睐，但由于网络跨区域访问的复杂性，部分地区用户会频繁遇到网站加载缓慢、超时甚至无法访问的问题。排查原因时发现，默认情况下，自定义域名通过 DNS 解析到 GitHub Pages 的服务器集群，而 DNS 解析可能存在路由跳转过多、节点拥堵等情况，导致访问体验不佳。
+查阅 GitHub 早期官方文档时发现，其曾公开过 GitHub Pages 的核心服务器 IP：192.30.252.153 和 192.30.252.154（这两个 IP 实际对应 github.com 及 GitHub Pages 的核心节点）。于是尝试在域名服务商的 DNS 控制台中，将自定义域名的 A 记录直接指向这两个固定 IP，替代默认的 DNS 解析方式。
+修改完成后，效果立竿见影：之前频繁卡顿、超时的问题大幅缓解，无论在国内不同网络环境（移动、联通、电信）还是境外网络中，网站都能快速加载、稳定打开，核心访问需求得到了满足。对于追求 “能正常访问” 为首要目标的用户来说，这个修改似乎是 “治标” 的有效方案。</p>
+<h3 id="二后遗症两处异常提示却不影响核心访问">二、后遗症：两处异常提示，却不影响核心访问</h3>
+<p>然而，绑定固定 IP 后，两个明显的异常提示随之出现，成为了 “美中不足” 的隐患：</p>
+<ul>
+<li>
+<ol>
+<li>GitHub 域名设置页面的 “旧 IP 警告”
+登录 GitHub 仓库的「Settings → Pages → Custom domain」页面时，会看到明确的警告提示，大意是 “检测到你的域名绑定了旧的 GitHub IP 地址，建议使用 DNS 解析到 GitHub Pages 的官方域名（而非直接绑定 IP），以确保服务稳定性”。
+这一提示的核心原因是，GitHub 官方早已更新了 GitHub Pages 的服务架构：当前推荐的解析方式是将自定义域名通过 CNAME 记录指向 xxx.github.io（个人 / 组织仓库），或通过 A 记录指向 GitHub 动态维护的 IP 池（而非固定的 192.30.252.153/154）。这两个 IP 实际是 GitHub 早期的服务器节点，虽未完全停用，但已不属于官方推荐的解析目标，因此被标记为 “旧 IP”。</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>安全证书（HTTPS）失效
+GitHub Pages 为自定义域名提供免费的 Let&rsquo;s Encrypt 证书，前提是域名解析符合官方规范（如正确配置 CNAME 记录或指向官方推荐的 IP 池）。而直接绑定 192.30.252.153/154 后，GitHub 的证书验证机制无法正常识别域名与站点的关联，导致 HTTPS 证书无法生效 —— 访问网站时，浏览器会提示 “证书无效”“连接不安全”，用户需手动点击 “继续访问” 才能打开页面。
+这一问题的本质是，HTTPS 证书的验证依赖域名解析的规范性：GitHub 需要通过 DNS 记录确认 “该域名确实属于你的 GitHub Pages 站点”，而直接绑定固定 IP 跳过了这一验证流程，证书自然无法正常签发和生效。</li>
+</ol>
+</li>
+</ul>
+<h3 id="三现状能访问-与-规范-的权衡">三、现状：“能访问” 与 “规范” 的权衡</h3>
+<p>尽管存在上述两个异常提示，但实际使用中，网站的核心访问功能并未受影响：无论是 PC 端还是移动端，无论是通过 HTTP 协议（需手动输入 http://）还是忽略证书警告访问 HTTPS，页面都能正常加载、内容完整展示，且访问速度和稳定性相比默认解析有明显提升。
+这种 “不规范但能用” 的状态，成为了不少开发者的折中选择 —— 尤其对于国内用户来说，网络访问的稳定性优先级往往高于 “无警告提示” 和 “HTTPS 证书生效”。毕竟，对于个人博客、静态展示站点等非商业用途的网站，“能被顺利访问” 是首要需求，而证书警告和 GitHub 后台的提示，更多是 “视觉上的困扰” 而非 “功能上的障碍”。</p>
+<h3 id="四补充说明潜在风险与优化建议">四、补充说明：潜在风险与优化建议</h3>
+<p>需要明确的是，这种 “绑定旧 IP” 的方式虽能解决当下的访问问题，但存在两个潜在风险：</p>
+<ul>
+<li>
+<p>1.服务稳定性无保障：GitHub 可能随时停用或调整 192.30.252.153/154 这两个旧节点，届时域名会直接解析失败，网站无法访问；</p>
+</li>
+<li>
+<p>2.安全风险：HTTPS 证书失效后，用户数据传输（如评论提交、表单填写等）处于未加密状态，存在数据泄露风险（若站点无交互功能，风险较低）。
+若希望兼顾 “访问稳定” 与 “规范安全”，更推荐的优化方案的是：</p>
+</li>
+<li>
+<p>1.优先使用官方推荐的解析方式：将自定义域名通过 CNAME 记录指向 xxx.github.io，或通过 A 记录指向 GitHub 官方公开的 IP 池（可在 GitHub Docs 中查询最新 IP 列表）；</p>
+</li>
+<li>
+<p>2.借助 CDN 加速：使用 Cloudflare 等免费 CDN 服务，将域名解析到 Cloudflare，再由 Cloudflare 转发到 GitHub Pages，既解决国内访问慢的问题，又能享受 CDN 提供的免费 HTTPS 证书；</p>
+</li>
+<li>
+<p>3.若坚持绑定固定 IP：定期检查 GitHub 官方文档，确认 IP 是否仍有效，同时提醒站点访客 “忽略证书警告仅适用于非敏感站点”。</p>
+</li>
+</ul>
+<h3 id="总结">总结</h3>
+<p>直接绑定 192.30.252.153/154 这两个 GitHub 旧 IP，确实是解决 GitHub Pages 访问不畅的 “应急方案”—— 它能快速提升访问稳定性，且不影响核心功能，但代价是 GitHub 后台的警告提示和 HTTPS 证书失效。对于非商业、非敏感的个人站点，这种折中方案或许可行，但从长期使用和安全性来看，遵循官方规范的解析方式或借助 CDN 加速，才是更稳妥的选择。毕竟，“能访问” 只是基础，“稳定、安全、规范” 才是站点长期运行的核心保障。</p>
+</content>
+
+
+<p>  
+  标签：<a href="http://ooyang.cn/tags/github/">#Github</a>
+  </p>
+
+  </main>
+  <footer>
+<small><script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+Total visits:<span id="busuanzi_site_pv">load...</span> | 
+Page views:<span id="busuanzi_page_pv">load...</span><br>
+Copyright © 2025 ooyang.cn</small>
+
+</footer>
+
+</body>
+</html>
