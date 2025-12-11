@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Excel on 福州老杨</title>
+    <link>http://localhost:1313/tags/excel/</link>
+    <description>Recent content in Excel on 福州老杨</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <copyright>Copyright © 2022-2025, BG5VGE.</copyright>
+    <lastBuildDate>Thu, 11 Dec 2025 15:20:00 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/excel/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>如何在Excel/WPS中统计一列中的重复项或数字公式COUNTIF函数</title>
+      <link>http://localhost:1313/2025/excel1/</link>
+      <pubDate>Thu, 11 Dec 2025 15:20:00 +0800</pubDate>
+      <guid>http://localhost:1313/2025/excel1/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;在 Excel/WPS 中，查询某一列是否存在重复数字，有精准定位重复项、统计重复次数、判断整列是否有重复 三类核心公式，适配不同需求，以下是详细用法（以 “数据在 A 列，从 A2 开始到 A100” 为例）：&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;h3 id=&#34;一基础需求判断单个单元格是否重复定位重复项&#34;&gt;一、基础需求：判断单个单元格是否重复（定位重复项）&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;公式&lt;/strong&gt;（输入到 B2 单元格，下拉填充）：&lt;/p&gt;&#xA;&lt;p&gt;&lt;code&gt;=IF(COUNTIF($A:$A,A2)&amp;gt;1,&amp;quot;重复&amp;quot;,&amp;quot;不重复&amp;quot;)&lt;/code&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;说明&#34;&gt;说明：&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;COUNTIF($A:$A,A2)：统计 A 列中与当前单元格（A2）相同的数字出现次数；&lt;/li&gt;&#xA;&lt;li&gt;$A:$A 是绝对引用整列，下拉时不会偏移，确保始终查询整列；&lt;/li&gt;&#xA;&lt;li&gt;结果会显示 “重复”/“不重复”，快速标记哪些数字重复。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;二统计需求计算每个数字的重复次数&#34;&gt;二、统计需求：计算每个数字的重复次数&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;公式&lt;/strong&gt;（输入到 B2 单元格，下拉填充）：&lt;/p&gt;&#xA;&lt;p&gt;&lt;code&gt;=COUNTIF($A:$A,A2)&lt;/code&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;全局需求判断整列是否存在任意重复数字&#34;&gt;全局需求：判断整列是否存在任意重复数字&lt;/h3&gt;&#xA;&lt;p&gt;公式（输入到任意空白单元格，如 B1）：&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;=IF(SUMPRODUCT(1/COUNTIF($A2:$A100,$A2:$A100))&amp;lt;COUNTA($A2:$A100),&amp;#34;有重复&amp;#34;,&amp;#34;无重复&amp;#34;)&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;说明：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;SUMPRODUCT(1/COUNTIF(区域,区域))：计算区域内 “不重复值的数量”；&lt;/li&gt;&#xA;&lt;li&gt;COUNTA($A2:$A100)：计算 A 列非空单元格总数；&lt;/li&gt;&#xA;&lt;li&gt;若 “不重复数量 &amp;lt; 总数”，说明有重复，反之无重复；&lt;/li&gt;&#xA;&lt;li&gt;可替换 $A2:$A100 为实际数据范围（避免包含空单元格）。&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+  </channel>
+</rss>

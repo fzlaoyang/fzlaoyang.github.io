@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="http://ooyang.cn/favicon.ico" />
+<title>打工人必备！我的Excel和WPS表格函数私藏清单 | 福州老杨</title>
+<meta name="title" content="打工人必备！我的Excel和WPS表格函数私藏清单" />
+<meta name="description" content="常用Excel和WPS表格的函数整理" />
+<meta name="keywords" content="" />
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?2593792a8d16bc9ab393449c82b032f8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<link rel="stylesheet" type="text/css" href="/css/bearblog.css">
+
+</head>
+<body>
+  <header>    <div class="overlay"></div>
+	<a href="/" class="title" title="福州老杨"><h1>OOyang</h1></a>
+<nav><a href="/" title="首页">Home</a><a href="/a" target="_blank" title="Website网址导航">Navigation</a><a href="/posts" title="文章列表">Article</a><a href="/about" title="关于我们">About Us</a><a href="https://github.com/fzlaoyang/BBS/issues/1" target="_blank" title="联系我们">Contact</a><hr></nav>
+</header>
+  <main>
+
+<h2 style="text-align: center;">打工人必备！我的Excel和WPS表格函数私藏清单</h2>
+
+<content><blockquote>
+<p>上班做报表真的离不开 Excel 函数，但每次用到复杂点的就卡壳，翻历史文件找公式太费时间，网上搜又要筛选一堆无关信息，急着交差的时候真的会抓狂！
+干脆花了一晚上，把工作中高频用到的函数都整理了一遍。从基础的求和、计数，到逻辑判断、数据查找，再到文本处理和日期计算，每个函数都配了自己常用的示例，精准适配职场报表场景。
+现在直接存在自己博客里，需要的时候打开就能复制粘贴，再也不用到处找攻略了。后续遇到新的实用函数，还会慢慢补充进来，打工人就是要自己给自己减负，这份专属工具清单真的越用越香～ 有同样需求的朋友也可以收藏起来，一起提高表格效率呀！</p></blockquote>
+<p>以下是<strong>Excel</strong>和<strong>WPS表格</strong>中经常用到的<strong>高频实用函数</strong>的分类整理，覆盖数据处理、计算、逻辑判断、文本操作、日期时间等核心场景，附简洁用法和示例，新手也能快速套用：</p>
+<h3 id="一基础计算函数数值运算必备">一、基础计算函数（数值运算必备）</h3>
+<table>
+  <thead>
+      <tr>
+          <th>函数</th>
+          <th>作用</th>
+          <th>语法示例</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>SUM</td>
+          <td>求和</td>
+          <td><code>=SUM(A2:A10)</code></td>
+          <td>计算A2到A10单元格数值总和</td>
+      </tr>
+      <tr>
+          <td>SUMIF</td>
+          <td>单条件求和</td>
+          <td><code>=SUMIF(A2:A10,&quot;&gt;100&quot;,B2:B10)</code></td>
+          <td>统计A列&gt;100对应的B列数值和</td>
+      </tr>
+      <tr>
+          <td>SUMIFS</td>
+          <td>多条件求和</td>
+          <td><code>=SUMIFS(C2:C10,A2:A10,&quot;北京&quot;,B2:B10,&quot;销售&quot;)</code></td>
+          <td>统计A列=北京且B列=销售的C列总和</td>
+      </tr>
+      <tr>
+          <td>AVERAGE</td>
+          <td>平均值</td>
+          <td><code>=AVERAGE(A2:A10)</code></td>
+          <td>计算A2到A10的算术平均值</td>
+      </tr>
+      <tr>
+          <td>AVERAGEIF</td>
+          <td>单条件平均值</td>
+          <td><code>=AVERAGEIF(A2:A10,&quot;&lt;&gt;0&quot;)</code></td>
+          <td>计算A列非0数值的平均值</td>
+      </tr>
+      <tr>
+          <td>MAX</td>
+          <td>最大值</td>
+          <td><code>=MAX(A2:A10)</code></td>
+          <td>取A2到A10中的最大值</td>
+      </tr>
+      <tr>
+          <td>MIN</td>
+          <td>最小值</td>
+          <td><code>=MIN(A2:A10)</code></td>
+          <td>取A2到A10中的最小值</td>
+      </tr>
+      <tr>
+          <td>COUNT</td>
+          <td>计数（仅数字）</td>
+          <td><code>=COUNT(A2:A10)</code></td>
+          <td>统计A列包含数字的单元格数量</td>
+      </tr>
+      <tr>
+          <td>COUNTA</td>
+          <td>计数（非空单元格）</td>
+          <td><code>=COUNTA(A2:A10)</code></td>
+          <td>统计A列非空单元格数量（含文本/数字）</td>
+      </tr>
+      <tr>
+          <td>COUNTIF</td>
+          <td>单条件计数</td>
+          <td><code>=COUNTIF(A2:A10,&quot;完成&quot;)</code></td>
+          <td>统计A列等于“完成”的单元格数量</td>
+      </tr>
+      <tr>
+          <td>COUNTIFS</td>
+          <td>多条件计数</td>
+          <td><code>=COUNTIFS(A2:A10,&quot;上海&quot;,B2:B10,&quot;&gt;50&quot;)</code></td>
+          <td>统计A列=上海且B列&gt;50的单元格数量</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="二逻辑判断函数条件筛选分支处理">二、逻辑判断函数（条件筛选/分支处理）</h3>
+<table>
+  <thead>
+      <tr>
+          <th>函数</th>
+          <th>作用</th>
+          <th>语法示例</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>IF</td>
+          <td>单条件判断</td>
+          <td><code>=IF(A2&gt;=60,&quot;及格&quot;,&quot;不及格&quot;)</code></td>
+          <td>A2≥60显示“及格”，否则显示“不及格”</td>
+      </tr>
+      <tr>
+          <td>IFERROR</td>
+          <td>错误处理</td>
+          <td><code>=IFERROR(VLOOKUP(A2,B:C,2,0),&quot;无数据&quot;)</code></td>
+          <td>VLOOKUP出错时显示“无数据”</td>
+      </tr>
+      <tr>
+          <td>AND</td>
+          <td>多条件同时满足</td>
+          <td><code>=AND(A2&gt;80,B2=&quot;优秀&quot;)</code></td>
+          <td>A2&gt;80且B2=优秀返回TRUE，否则FALSE</td>
+      </tr>
+      <tr>
+          <td>OR</td>
+          <td>任一条件满足</td>
+          <td><code>=OR(A2&gt;80,B2&gt;80)</code></td>
+          <td>A2&gt;80或B2&gt;80返回TRUE，否则FALSE</td>
+      </tr>
+      <tr>
+          <td>NOT</td>
+          <td>条件取反</td>
+          <td><code>=NOT(A2=&quot;已完成&quot;)</code></td>
+          <td>A2≠“已完成”返回TRUE，否则FALSE</td>
+      </tr>
+      <tr>
+          <td>IFS</td>
+          <td>多条件分支（Excel2019+）</td>
+          <td><code>=IFS(A2&gt;=90,&quot;优秀&quot;,A2&gt;=80,&quot;良好&quot;,A2&gt;=60,&quot;及格&quot;,TRUE,&quot;不及格&quot;)</code></td>
+          <td>按分数区间返回对应等级</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="三查找匹配函数数据关联查询">三、查找匹配函数（数据关联/查询）</h3>
+<table>
+  <thead>
+      <tr>
+          <th>函数</th>
+          <th>作用</th>
+          <th>语法示例</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>VLOOKUP</td>
+          <td>垂直查找（按列）</td>
+          <td><code>=VLOOKUP(A2,B:C,2,0)</code></td>
+          <td>在B列找A2的值，返回对应C列数据（0=精确匹配）</td>
+      </tr>
+      <tr>
+          <td>HLOOKUP</td>
+          <td>水平查找（按行）</td>
+          <td><code>=HLOOKUP(A2,B1:C10,3,0)</code></td>
+          <td>在第1行找A2的值，返回对应第3行数据</td>
+      </tr>
+      <tr>
+          <td>INDEX</td>
+          <td>按位置取值</td>
+          <td><code>=INDEX(B2:B10,5)</code></td>
+          <td>取B2:B10区域中第5行的数据</td>
+      </tr>
+      <tr>
+          <td>MATCH</td>
+          <td>找位置</td>
+          <td><code>=MATCH(A2,B2:B10,0)</code></td>
+          <td>找A2在B2:B10中的位置（行号）</td>
+      </tr>
+      <tr>
+          <td>XLOOKUP</td>
+          <td>新一代查找（Excel365+）</td>
+          <td><code>=XLOOKUP(A2,B:B,C:C,&quot;无结果&quot;,0)</code></td>
+          <td>替代VLOOKUP，支持反向查找、默认值</td>
+      </tr>
+      <tr>
+          <td>CHOOSE</td>
+          <td>按序号选值</td>
+          <td><code>=CHOOSE(A2,&quot;一月&quot;,&quot;二月&quot;,&quot;三月&quot;)</code></td>
+          <td>A2=1返回“一月”，A2=2返回“二月”</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="四文本处理函数字符字符串操作">四、文本处理函数（字符/字符串操作）</h3>
+<table>
+  <thead>
+      <tr>
+          <th>函数</th>
+          <th>作用</th>
+          <th>语法示例</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>CONCATENATE/ CONCAT</td>
+          <td>拼接文本</td>
+          <td><code>=CONCAT(A2,&quot;-&quot;,B2)</code></td>
+          <td>拼接A2、“-”、B2的内容（CONCAT兼容Excel365+）</td>
+      </tr>
+      <tr>
+          <td>LEFT</td>
+          <td>取左侧字符</td>
+          <td><code>=LEFT(A2,3)</code></td>
+          <td>取A2左侧3个字符（如A2=“12345”返回“123”）</td>
+      </tr>
+      <tr>
+          <td>RIGHT</td>
+          <td>取右侧字符</td>
+          <td><code>=RIGHT(A2,2)</code></td>
+          <td>取A2右侧2个字符</td>
+      </tr>
+      <tr>
+          <td>MID</td>
+          <td>取中间字符</td>
+          <td><code>=MID(A2,2,3)</code></td>
+          <td>从A2第2位开始，取3个字符</td>
+      </tr>
+      <tr>
+          <td>LEN</td>
+          <td>字符长度</td>
+          <td><code>=LEN(A2)</code></td>
+          <td>统计A2的字符数（含空格）</td>
+      </tr>
+      <tr>
+          <td>TRIM</td>
+          <td>清除多余空格</td>
+          <td><code>=TRIM(A2)</code></td>
+          <td>清除文本前后空格，保留中间单个空格</td>
+      </tr>
+      <tr>
+          <td>SUBSTITUTE</td>
+          <td>替换字符</td>
+          <td><code>=SUBSTITUTE(A2,&quot;旧&quot;,&quot;新&quot;)</code></td>
+          <td>将A2中所有“旧”替换为“新”</td>
+      </tr>
+      <tr>
+          <td>TEXT</td>
+          <td>格式转换</td>
+          <td><code>=TEXT(A2,&quot;0000&quot;)</code></td>
+          <td>将数字A2转为4位补零格式（如12→0012）</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="五日期时间函数时间计算格式转换">五、日期时间函数（时间计算/格式转换）</h3>
+<table>
+  <thead>
+      <tr>
+          <th>函数</th>
+          <th>作用</th>
+          <th>语法示例</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>TODAY</td>
+          <td>今日日期</td>
+          <td><code>=TODAY()</code></td>
+          <td>返回当前系统日期（无时间）</td>
+      </tr>
+      <tr>
+          <td>NOW</td>
+          <td>当前日期时间</td>
+          <td><code>=NOW()</code></td>
+          <td>返回当前系统日期+时间</td>
+      </tr>
+      <tr>
+          <td>YEAR</td>
+          <td>提取年份</td>
+          <td><code>=YEAR(A2)</code></td>
+          <td>取A2日期中的年份（如2025-01-01返回2025）</td>
+      </tr>
+      <tr>
+          <td>MONTH</td>
+          <td>提取月份</td>
+          <td><code>=MONTH(A2)</code></td>
+          <td>取A2日期中的月份（1-12）</td>
+      </tr>
+      <tr>
+          <td>DAY</td>
+          <td>提取日期</td>
+          <td><code>=DAY(A2)</code></td>
+          <td>取A2日期中的日（1-31）</td>
+      </tr>
+      <tr>
+          <td>WEEKDAY</td>
+          <td>星期几</td>
+          <td><code>=WEEKDAY(A2,2)</code></td>
+          <td>2=周一为1，周日为7；默认1=周日为1</td>
+      </tr>
+      <tr>
+          <td>DATEDIF</td>
+          <td>日期差</td>
+          <td><code>=DATEDIF(A2,TODAY(),&quot;D&quot;)</code></td>
+          <td>计算A2到今日的天数（&ldquo;M&rdquo;=月，&ldquo;Y&rdquo;=年）</td>
+      </tr>
+      <tr>
+          <td>EDATE</td>
+          <td>加减月份</td>
+          <td><code>=EDATE(A2,3)</code></td>
+          <td>A2日期加3个月（负数为减）</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="六进阶实用函数数据清洗动态计算">六、进阶实用函数（数据清洗/动态计算）</h3>
+<table>
+  <thead>
+      <tr>
+          <th>函数</th>
+          <th>作用</th>
+          <th>语法示例</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>UNIQUE</td>
+          <td>提取不重复值（Excel365+）</td>
+          <td><code>=UNIQUE(A2:A10)</code></td>
+          <td>提取A列唯一值，自动去重</td>
+      </tr>
+      <tr>
+          <td>FILTER</td>
+          <td>筛选数据（Excel365+）</td>
+          <td><code>=FILTER(A2:B10,B2:B10&gt;80)</code></td>
+          <td>筛选B列&gt;80对应的A/B列数据</td>
+      </tr>
+      <tr>
+          <td>SORT</td>
+          <td>排序（Excel365+）</td>
+          <td><code>=SORT(A2:B10,2,1)</code></td>
+          <td>按第2列升序排序（1=升序，-1=降序）</td>
+      </tr>
+      <tr>
+          <td>ROUND</td>
+          <td>四舍五入</td>
+          <td><code>=ROUND(A2,2)</code></td>
+          <td>A2保留2位小数（0=整数，负数=保留到十位/百位）</td>
+      </tr>
+      <tr>
+          <td>INT</td>
+          <td>向下取整</td>
+          <td><code>=INT(A2)</code></td>
+          <td>取A2的整数部分（如12.9→12）</td>
+      </tr>
+      <tr>
+          <td>MOD</td>
+          <td>取余数</td>
+          <td><code>=MOD(A2,2)</code></td>
+          <td>A2除以2的余数（判断奇偶：0=偶，1=奇）</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="七使用技巧">七、使用技巧</h3>
+<ol>
+<li><strong>绝对引用</strong>：公式中加<code>$</code>（如<code>$A$2:$A$10</code>），下拉/右拉时范围不偏移；</li>
+<li><strong>公式调试</strong>：选中公式单元格，按<code>F9</code>可查看部分计算结果，定位错误；</li>
+<li><strong>批量填充</strong>：输入公式后，双击单元格右下角“十字填充柄”，自动填充整列；</li>
+<li><strong>兼容提示</strong>：XLOOKUP/UNIQUE/FILTER仅Excel365/2021支持，低版本可用VLOOKUP+MATCH替代。</li>
+</ol>
+<hr>
+</content>
+
+
+<p>  </p>
+
+  </main>
+  <footer>
+<small><script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+Total visits:<span id="busuanzi_site_pv">load...</span> | 
+Page views:<span id="busuanzi_page_pv">load...</span><br>
+Copyright © 2025 ooyang.cn</small>
+
+</footer>
+
+</body>
+</html>
