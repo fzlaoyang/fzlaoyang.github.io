@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="http://ooyang.cn/favicon.ico" />
+<title>MD5 文本加密工具 | 福州老杨</title>
+<meta name="title" content="MD5 文本加密工具" />
+<meta name="description" content="MD5 文本加密工具" />
+<meta name="keywords" content="Tool," />
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?2593792a8d16bc9ab393449c82b032f8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<link rel="stylesheet" type="text/css" href="/css/bearblog.css">
+
+</head>
+<body>
+  <header>    <div class="overlay"></div>
+	<a href="/" class="title" title="福州老杨"><h1>OOyang</h1></a>
+<nav><a href="/" title="首页">Home</a><a href="/a" target="_blank" title="Website网址导航">Navigation</a><a href="/posts" title="文章列表">Article</a><a href="/about" title="关于我们">About Us</a><a href="https://github.com/fzlaoyang/BBS/issues/1" target="_blank" title="联系我们">Contact</a><hr></nav>
+</header>
+  <main>
+
+<h2 style="text-align: center;">MD5 文本加密工具</h2>
+
+<content><hr>
+<p><code>数据加密之MD5（Message-Digest Algorithm 5）是一种生成128位固定长度哈希值的加密算法，可将任意长度数据转换为32位十六进制字符串输出。 该算法在MD4基础上改良，通过特殊运算规则对数据进行摘要提取，对输入数据的微小变化具有高度敏感性，任何修改都会导致哈希值完全改变。其主要应用于文件传输完整性验证、API数据校验等非安全敏感场景，但因输出结果为不可逆的定长摘要值，无法还原原始数据，故不能作为数据加密方案使用。1996年该算法被发现存在哈希碰撞漏洞，导致无法保证加密数据唯一性 [1-3]。 当前增强安全性的方法包括添加盐值、使用哈希链等技术，官方推荐替代方案为SHA-256、BLAKE2等加密算法... </code></p>
+<div class="md5-encryptor" style="max-width: 100%; margin: 2rem auto; padding: 0 1rem;">
+  <textarea 
+    id="md5-input" 
+    placeholder="请输入需要加密的文本..." 
+    style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; min-height: 120px; margin-bottom: 1rem; font-size: 0.9rem; resize: vertical; font-family: inherit;"
+  ></textarea>
+  <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap;">
+    <button 
+      id="encrypt-btn" 
+      style="padding: 0.5rem 1.25rem; background: #0071e3; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9rem;"
+    >
+      生成 MD5
+    </button>
+    <button 
+      id="copy-btn" 
+      style="padding: 0.5rem 1.25rem; background: #34c759; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9rem;"
+    >
+      复制结果
+    </button>
+    <button 
+      id="clear-btn" 
+      style="padding: 0.5rem 1.25rem; background: #ff3b30; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9rem;"
+    >
+      清空内容
+    </button>
+  </div>
+  <div style="position: relative;">
+    <input 
+      type="text" 
+      id="md5-result" 
+      readonly 
+      placeholder="加密结果将显示在这里..."
+      style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 0.9rem; word-break: break-all; font-family: inherit;"
+    >
+  </div>
+  <p id="tip-text" style="margin-top: 0.5rem; font-size: 0.8rem; color: #666; display: none;"></p>
+</div>
+<script src="https://fastly.jsdelivr.net/npm/crypto-js@4.2.0/crypto-js.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const inputEl = document.getElementById('md5-input');
+  const resultEl = document.getElementById('md5-result');
+  const encryptBtn = document.getElementById('encrypt-btn');
+  const copyBtn = document.getElementById('copy-btn');
+  const clearBtn = document.getElementById('clear-btn');
+  const tipText = document.getElementById('tip-text');
+
+  function md5Encrypt(text) {
+    if (!text.trim()) return '';
+    return CryptoJS.MD5(text).toString();
+  }
+
+  encryptBtn.addEventListener('click', function() {
+    const inputText = inputEl.value;
+    if (!inputText.trim()) {
+      showTip('请输入需要加密的文本！', 'error');
+      return;
+    }
+    resultEl.value = md5Encrypt(inputText);
+    showTip('MD5 加密成功！', 'success');
+  });
+
+  copyBtn.addEventListener('click', function() {
+    const resultText = resultEl.value;
+    if (!resultText.trim()) {
+      showTip('暂无加密结果可复制！', 'error');
+      return;
+    }
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(resultText).then(() => {
+        showTip('加密结果已复制到剪贴板！', 'success');
+      }).catch(() => {
+        fallbackCopy();
+      });
+    } else {
+      fallbackCopy();
+    }
+  });
+
+  function fallbackCopy() {
+    resultEl.select();
+    document.execCommand('copy');
+    showTip('加密结果已复制到剪贴板！', 'success');
+  }
+
+  clearBtn.addEventListener('click', function() {
+    inputEl.value = '';
+    resultEl.value = '';
+    tipText.style.display = 'none';
+  });
+
+  function showTip(text, type) {
+    tipText.textContent = text;
+    tipText.style.display = 'block';
+    tipText.style.color = type === 'error' ? '#ff3b30' : '#34c759';
+    clearTimeout(tipText.timer);
+    tipText.timer = setTimeout(() => {
+      tipText.style.display = 'none';
+    }, 3000);
+  }
+});
+</script>
+<p>🔔 注意：<a href="/tool/md5/">MD5加密工具</a>是不可逆加密算法，仅适用于数据校验，不建议用于密码存储。本工具所有加密操作均在本地浏览器完成，不会上传任何文本数据。</p>
+</content>
+
+
+<p>  标签：
+  <a href="http://ooyang.cn/tags/tool/">#Tool</a>
+  </p>
+
+  </main>
+  <footer>
+<small><script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+Total visits:<span id="busuanzi_site_pv">load...</span> | 
+Page views:<span id="busuanzi_page_pv">load...</span><br>
+Copyright © 2025 ooyang.cn</small>
+
+</footer>
+
+</body>
+</html>
