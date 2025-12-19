@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="http://ooyang.cn/favicon.ico" />
+<title>摩尔斯电码转换工具 | 福州老杨</title>
+<meta name="title" content="摩尔斯电码转换工具" />
+<meta name="description" content="摩尔斯电码在线转换器" />
+<meta name="keywords" content="Tool,radio," />
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?2593792a8d16bc9ab393449c82b032f8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<link rel="stylesheet" type="text/css" href="/css/bearblog.css">
+
+</head>
+<body>
+  <header>    <div class="overlay"></div>
+	<a href="/" class="title" title="福州老杨"><h1>OOyang</h1></a>
+<nav><a href="/" title="首页">Home</a><a href="/a" target="_blank" title="Website网址导航">Navigation</a><a href="/posts" title="文章列表">Article</a><a href="/about" title="关于我们">About Us</a><a href="https://github.com/fzlaoyang/BBS/issues/1" target="_blank" title="联系我们">Contact</a><hr></nav>
+</header>
+  <main>
+
+<h2 style="text-align: center;">摩尔斯电码转换工具</h2>
+
+<content><style>
+.morse-tool * {margin: 0;padding: 0;box-sizing: border-box;font-family: "Microsoft YaHei", Inter, sans-serif;}
+.morse-tool {max-width: 800px;margin: 2rem auto;padding: 0 1rem;}
+.morse-tool .container {padding: 2rem;border-radius: 10px;}
+.morse-tool h1 {text-align: center;color: #333;margin-bottom: 2rem;font-size: 1.8rem;}
+.morse-tool .input-group {margin-bottom: 1.2rem;}
+.morse-tool label {display: block;margin-bottom: 0.5rem;font-weight: 600;color: #555;}
+.morse-tool textarea {width: 100%;padding: 0.8rem;border: 1px solid #ddd;border-radius: 6px;resize: vertical;min-height: 120px;font-size: 1rem;line-height: 1.5;}
+.morse-tool .btn-group {display: flex;gap: 0.6rem;margin-bottom: 1.2rem;flex-wrap: wrap;}
+.morse-tool button {flex: 1;min-width: 120px;padding: 0.8rem;border: none;border-radius: 6px;background-color: #007bff;color: white;font-size: 1rem;cursor: pointer;transition: background-color 0.3s;}
+.morse-tool button:hover {background-color: #0056b3;}
+.morse-tool button.copy-btn {background-color: #28a745;}
+.morse-tool button.copy-btn:hover {background-color: #218838;}
+.morse-tool .result-group {margin-top: 1.2rem;}
+.morse-tool #result-text {background-color: #f8f9fa;}
+.morse-tool .table-container {margin-top: 2rem;overflow-x: auto;}
+.morse-tool table {width: 100%;border-collapse: collapse;margin-top: 1rem;}
+.morse-tool th, .morse-tool td {border: 1px solid #ddd;padding: 0.6rem;text-align: center;font-size: 0.9rem;}
+.morse-tool th {background-color: #999;}
+.morse-tool .tip {color: #666;font-size: 0.875rem;margin-top: 0.5rem;}
+.morse-tool .success-tip {color: #28a745;font-size: 0.875rem;margin-top: 0.5rem;display: none;}
+@media (max-width: 640px) {
+    .morse-tool .container {padding: 1rem;}
+    .morse-tool h1 {font-size: 1.5rem;}
+    .morse-tool .btn-group {flex-direction: column;}
+}
+</style>
+<div class="morse-tool">
+    <div class="container">
+        <div class="input-group">
+            <label for="morse-input">输入内容（文字/摩尔斯电码）：</label>
+            <textarea id="morse-input" placeholder="输入文字将转换为摩尔斯电码，输入电码（空格分隔字符，/ 分隔单词）将解码为文字"></textarea>
+        </div>
+        <div class="btn-group">
+            <button id="morse-encode">文字 → 摩尔斯电码</button>
+            <button id="morse-decode">摩尔斯电码 → 文字</button>
+            <button class="copy-btn" id="morse-copy">复制结果</button>
+        </div>
+        <div class="result-group">
+            <label for="morse-result">转换结果：</label>
+            <textarea id="morse-result" readonly placeholder="转换结果将显示在这里"></textarea>
+            <div class="success-tip" id="morse-success">复制成功！</div>
+        </div>
+        <div class="table-container">
+            <h3 style="text-align: center; margin-bottom: 0.8rem;">摩尔斯电码对照表</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>字符</th><th>电码</th><th>字符</th><th>电码</th><th>字符</th><th>电码</th><th>字符</th><th>电码</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>A</td><td>.-</td><td>B</td><td>-...</td><td>C</td><td>-.-.</td><td>D</td><td>-..</td></tr>
+                    <tr><td>E</td><td>.</td><td>F</td><td>..-.</td><td>G</td><td>--.</td><td>H</td><td>....</td></tr>
+                    <tr><td>I</td><td>..</td><td>J</td><td>.---</td><td>K</td><td>-.-</td><td>L</td><td>.-..</td></tr>
+                    <tr><td>M</td><td>--</td><td>N</td><td>-.</td><td>O</td><td>---</td><td>P</td><td>.--.</td></tr>
+                    <tr><td>Q</td><td>--.-</td><td>R</td><td>.-.</td><td>S</td><td>...</td><td>T</td><td>-</td></tr>
+                    <tr><td>U</td><td>..-</td><td>V</td><td>...-</td><td>W</td><td>.--</td><td>X</td><td>-..-</td></tr>
+                    <tr><td>Y</td><td>-.--</td><td>Z</td><td>--..</td><td>0</td><td>-----</td><td>1</td><td>.----</td></tr>
+                    <tr><td>2</td><td>..---</td><td>3</td><td>...--</td><td>4</td><td>....-</td><td>5</td><td>.....</td></tr>
+                    <tr><td>6</td><td>-....</td><td>7</td><td>--...</td><td>8</td><td>---..</td><td>9</td><td>----.</td></tr>
+                </tbody>
+            </table>
+            <div class="tip">注：输入字母/数字/常用符号可转换，无法识别的内容将显示为「?」；电码解码时请用空格分隔字符，/ 分隔单词</div>
+        </div>
+    </div>
+</div>
+<script>
+// 摩尔斯电码映射字典
+const morseMap = {
+    'A':'.-','B':'-...','C':'-.-.','D':'-..','E':'.','F':'..-.','G':'--.',
+    'H':'....','I':'..','J':'.---','K':'-.-','L':'.-..','M':'--','N':'-.',
+    'O':'---','P':'.--.','Q':'--.-','R':'.-.','S':'...','T':'-','U':'..-',
+    'V':'...-','W':'.--','X':'-..-','Y':'-.--','Z':'--..','0':'-----',
+    '1':'.----','2':'..---','3':'...--','4':'....-','5':'.....','6':'-....',
+    '7':'--...','8':'---..','9':'----.',' ':'/','.':'.-.-.-',',':'--..--',
+    '?':'..--..','!':'-.-.--','-':'-....-','_':'..--.-','@':'.--.-.'
+};
+
+// 生成解码字典
+const morseDecode = {};
+for (let [char, code] of Object.entries(morseMap)) {
+    morseDecode[code] = char;
+}
+morseDecode['/'] = ' ';
+
+// DOM 元素
+const input = document.getElementById('morse-input');
+const result = document.getElementById('morse-result');
+const encodeBtn = document.getElementById('morse-encode');
+const decodeBtn = document.getElementById('morse-decode');
+const copyBtn = document.getElementById('morse-copy');
+const successTip = document.getElementById('morse-success');
+
+// 编码函数
+function encodeMorse(text) {
+    if (!text) return '';
+    return text.toUpperCase().split('').map(char => {
+        return morseMap[char] || '?';
+    }).join(' ');
+}
+
+// 解码函数
+function decodeMorse(code) {
+    if (!code) return '';
+    return code.split(' ').map(seg => {
+        return morseDecode[seg] || '?';
+    }).join('');
+}
+
+// 事件绑定
+encodeBtn.addEventListener('click', () => {
+    result.value = encodeMorse(input.value.trim());
+});
+
+decodeBtn.addEventListener('click', () => {
+    result.value = decodeMorse(input.value.trim());
+});
+
+copyBtn.addEventListener('click', async () => {
+    if (!result.value) return;
+    try {
+        await navigator.clipboard.writeText(result.value);
+        successTip.style.display = 'block';
+        setTimeout(() => {
+            successTip.style.display = 'none';
+        }, 3000);
+    } catch (err) {
+        alert('复制失败，请手动复制！');
+        console.error(err);
+    }
+});
+
+// 防止Hugo渲染时JS执行异常
+document.addEventListener('DOMContentLoaded', function() {
+    // 重新绑定一次，确保元素加载完成
+    const encodeBtn = document.getElementById('morse-encode');
+    const decodeBtn = document.getElementById('morse-decode');
+    const copyBtn = document.getElementById('morse-copy');
+    
+    if (encodeBtn) encodeBtn.addEventListener('click', () => {
+        result.value = encodeMorse(input.value.trim());
+    });
+    
+    if (decodeBtn) decodeBtn.addEventListener('click', () => {
+        result.value = decodeMorse(input.value.trim());
+    });
+    
+    if (copyBtn) copyBtn.addEventListener('click', async () => {
+        if (!result.value) return;
+        try {
+            await navigator.clipboard.writeText(result.value);
+            successTip.style.display = 'block';
+            setTimeout(() => {
+                successTip.style.display = 'none';
+            }, 3000);
+        } catch (err) {
+            alert('复制失败，请手动复制！');
+        }
+    });
+});
+</script>
+<h2 id="摩尔斯电码转换工具介绍">摩尔斯电码转换工具介绍</h2>
+<p><a href="http://ooyang.cn/tool/morse">摩尔斯电码编码解码工具</a>，可以对英文、数字和常见符号进行摩尔斯编码，以及对已编码对字符进行解码（还原）。</p>
+<p>下面是摩尔斯编码和解码示例。</p>
+<h3 id="编码示例">编码示例</h3>
+<p>输入：cqcqcq this is bg5vge</p>
+<p>输出：-.-. &ndash;.- -.-. &ndash;.- -.-. &ndash;.- / - &hellip;. .. &hellip; / .. &hellip; / -&hellip; &ndash;. &hellip;.. &hellip;- &ndash;. .</p>
+<h3 id="解码示例">解码示例</h3>
+<p>输入：&mdash; &mdash; -.&ndash; .- -. &ndash;. .-.-.- -.-. -.</p>
+<p>输出：ooyang.cn</p>
+<pre tabindex="0"><code>摩尔斯电码不区分英文大小写，字符串 HELLO 和 hello 编码后对摩尔斯码都是一样的
+</code></pre><p><a href="http://ooyang.cn/tool/morse">摩尔斯电码</a>是由美国人摩尔斯在1837年被发明的，它的组成是由点（.）和划 dash（-）这两种符号所组成的。一点作为一个基本的信号单位，一划的长度就相当于是 3 点的时间长度；在一个字母或是数字之内，每个点、划之间的间隔就应该是两点的时间长度；字母（数字）与字母（数字）之间的间隔就是7点的时间长度。</p>
+<p><a href="http://ooyang.cn/tool/morse">摩尔斯电码</a>最早就是用一些表示数字的点和划来进行表示的。其中的数字对应单词，也就是需要查找一本代码表才可以得知每个词所对应的数字。用一个电键就能够敲击出点、划以及中间的停顿。</p>
+<p><a href="http://ooyang.cn/tool/morse">摩尔斯电码</a>在早期的无线电上作用是非常大的，它是每个无线电通讯者所须必知的。因为通讯技术的不断进步，随后各国就在 1999 年停止了对摩尔斯码的使用，可是由于它所占的频宽最少，同时又具有一种技术及艺术的特性，所以在实际的生活当中就有着广泛的应用。</p>
+<p><a href="http://ooyang.cn/tool/morse">摩尔斯电码</a>在海事通讯中被作为国际标准一直使用到 1999 年。1997 年当法国海军停止使用摩尔斯电码时，其发送的最后条消息就是：“所有人注意，这是我们在永远沉寂之前最后的一声呐喊！”</p>
+<h3 id="摩尔斯电码特殊符号">摩尔斯电码特殊符号</h3>
+<p>下面是一些有特殊意义的点划组合。它们由二个字母的摩尔斯电码连成一个使用，这样可以省去正常时把它们做为两个字母发送所必须的中间间隔时间。</p>
+<p>AR：·—·—·（停止，消息结束）</p>
+<p>AS：·—···（等待）</p>
+<p>K：—·—（邀请发射信号）（一般跟随AR，表示“该你了”）</p>
+<p>SK：···—·—（终止，联络结束）</p>
+<p>BT：—···—（分隔符）</p>
+<p>···—·（我将重新发送最后一个单词）</p>
+<p>·· ··（同样）</p>
+<p>········（错误）</p>
+<h2 id="短波摩尔斯通信常用符号简语及q简语合并对照表">短波摩尔斯通信常用符号、简语及Q简语合并对照表</h2>
+<table>
+  <thead>
+      <tr>
+          <th>字符/简语/Q简语</th>
+          <th>摩尔斯代码</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>CQ</strong></td>
+          <td>-.-. &ndash;.-</td>
+          <td>呼叫任意电台</td>
+      </tr>
+      <tr>
+          <td><strong>DE</strong></td>
+          <td>-.. .</td>
+          <td>来自（呼号前缀）</td>
+      </tr>
+      <tr>
+          <td><strong>K</strong></td>
+          <td>-.-</td>
+          <td>请回答</td>
+      </tr>
+      <tr>
+          <td><strong>R</strong></td>
+          <td>.-.</td>
+          <td>收到</td>
+      </tr>
+      <tr>
+          <td><strong>TNX</strong></td>
+          <td>- .- -. -..-</td>
+          <td>感谢</td>
+      </tr>
+      <tr>
+          <td><strong>73</strong></td>
+          <td>&ndash;&hellip; &hellip;&ndash;</td>
+          <td>致敬/问候</td>
+      </tr>
+      <tr>
+          <td><strong>ES</strong></td>
+          <td>. &hellip;</td>
+          <td>和</td>
+      </tr>
+      <tr>
+          <td><strong>QTH</strong></td>
+          <td>&ndash;.- - &hellip;.</td>
+          <td>地理位置</td>
+      </tr>
+      <tr>
+          <td><strong>RST</strong></td>
+          <td>.-. &hellip; -</td>
+          <td>信号报告（可读度、强度、音调）</td>
+      </tr>
+      <tr>
+          <td><strong>AGN</strong></td>
+          <td>.- &ndash;. -.</td>
+          <td>再一次</td>
+      </tr>
+      <tr>
+          <td><strong>QRA</strong></td>
+          <td>-.-.- .-. .-</td>
+          <td>你的电台名称是什么？</td>
+      </tr>
+      <tr>
+          <td><strong>QRB</strong></td>
+          <td>-.-.- .-. -&hellip;</td>
+          <td>你与&hellip;的距离和方位？</td>
+      </tr>
+      <tr>
+          <td><strong>QRM</strong></td>
+          <td>-.-.- .-. &ndash;</td>
+          <td>你受到干扰吗？</td>
+      </tr>
+      <tr>
+          <td><strong>QRN</strong></td>
+          <td>-.-.- .-. -.</td>
+          <td>你受到天电干扰吗？</td>
+      </tr>
+      <tr>
+          <td><strong>QRO</strong></td>
+          <td>-.-.- .-. &mdash;</td>
+          <td>要我增大发射功率吗？</td>
+      </tr>
+      <tr>
+          <td><strong>QRS</strong></td>
+          <td>-.-.- .-. &hellip;</td>
+          <td>请发慢些</td>
+      </tr>
+      <tr>
+          <td><strong>QRT</strong></td>
+          <td>-.-.- .-. -</td>
+          <td>要我停止发报吗？</td>
+      </tr>
+      <tr>
+          <td><strong>？</strong></td>
+          <td>..&ndash;..</td>
+          <td>疑问</td>
+      </tr>
+      <tr>
+          <td><strong>，</strong></td>
+          <td>&ndash;..&ndash;</td>
+          <td>逗号</td>
+      </tr>
+      <tr>
+          <td><strong>。</strong></td>
+          <td>.-.-.-</td>
+          <td>句号</td>
+      </tr>
+      <tr>
+          <td><strong>/</strong></td>
+          <td>-..-.</td>
+          <td>分隔</td>
+      </tr>
+      <tr>
+          <td><strong>-</strong></td>
+          <td>-&hellip;.-</td>
+          <td>连字符</td>
+      </tr>
+      <tr>
+          <td><strong>=</strong></td>
+          <td>-&hellip;-</td>
+          <td>等号</td>
+      </tr>
+      <tr>
+          <td><strong>AR</strong></td>
+          <td>.-.-.</td>
+          <td>消息结束</td>
+      </tr>
+      <tr>
+          <td><strong>SK</strong></td>
+          <td>&hellip;-.-</td>
+          <td>通联结束</td>
+      </tr>
+      <tr>
+          <td><strong>SOS</strong></td>
+          <td>&hellip;&mdash;&hellip;</td>
+          <td>求救信号</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>补充说明：</p>
+<ol>
+<li>表格顺序严格按照 <strong>第三条（高频简语）→ 第四条（Q简语）→ 第二条（标点与特殊符号）</strong> 排列；</li>
+<li>Q简语的摩尔斯代码为对应字母的摩尔斯码组合，例如<code>QRA</code>就是<code>Q</code>（&ndash;.-）+<code>R</code>（.-.）+<code>A</code>（.-）。</li>
+</ol></blockquote>
+</content>
+
+
+<p>  标签：
+  <a href="http://ooyang.cn/tags/tool/">#Tool</a>
+  
+  <a href="http://ooyang.cn/tags/radio/">#Radio</a>
+  </p>
+
+  </main>
+  <footer>
+<small><script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+Total visits:<span id="busuanzi_site_pv">load...</span> | 
+Page views:<span id="busuanzi_page_pv">load...</span><br>
+Copyright © 2025 ooyang.cn</small>
+
+</footer>
+
+</body>
+</html>

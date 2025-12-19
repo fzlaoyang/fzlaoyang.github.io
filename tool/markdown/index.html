@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="http://ooyang.cn/favicon.ico" />
+<title>在线免费Markdown编辑器 | 福州老杨</title>
+<meta name="title" content="在线免费Markdown编辑器" />
+<meta name="description" content="在线免费Markdown编辑器" />
+<meta name="keywords" content="Tool," />
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?2593792a8d16bc9ab393449c82b032f8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<link rel="stylesheet" type="text/css" href="/css/bearblog.css">
+
+</head>
+<body>
+  <header>    <div class="overlay"></div>
+	<a href="/" class="title" title="福州老杨"><h1>OOyang</h1></a>
+<nav><a href="/" title="首页">Home</a><a href="/a" target="_blank" title="Website网址导航">Navigation</a><a href="/posts" title="文章列表">Article</a><a href="/about" title="关于我们">About Us</a><a href="https://github.com/fzlaoyang/BBS/issues/1" target="_blank" title="联系我们">Contact</a><hr></nav>
+</header>
+  <main>
+
+<h2 style="text-align: center;">在线免费Markdown编辑器</h2>
+
+<content><p>Markdown 是一种轻量级标记语言，用简洁的纯文本符号实现排版，无需复杂操作即可快速写出结构清晰的内容。
+它支持标题、列表、粗体、链接等常用格式，语法易记（如#表标题、**表粗体），兼容几乎所有编辑器，且可轻松转为 HTML、PDF 等格式。
+因高效、易读、跨平台，它成为写作、笔记、文档编辑的主流工具，尤其受程序员、创作者青睐。</p>
+<div style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+    <div style="display: flex; gap: 8px; margin-bottom: 15px; flex-wrap: wrap;">
+        <button id="preview-btn" style="padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; background: #2d3748; color: #fff; font-size: 14px; transition: background 0.2s;">
+            实时预览
+        </button>
+        <button id="save-btn" style="padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; background: #4a5568; color: #fff; font-size: 14px; transition: background 0.2s;">
+            保存内容
+        </button>
+        <button id="clear-btn" style="padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; background: #718096; color: #fff; font-size: 14px; transition: background 0.2s;">
+            清空编辑区
+        </button>
+        <button id="export-btn" style="padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; background: #38b2ac; color: #fff; font-size: 14px; transition: background 0.2s;">
+            导出MD文件
+        </button>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; height: calc(100vh - 120px);">
+       <textarea id="md-editor" placeholder="在此输入Markdown内容，支持GFM语法..." style="width: 100%; height: 100%; padding: 15px; border: 1px solid #e2e8f0; border-radius: 6px; resize: none; font-family: 'Consolas', 'Monaco', monospace; font-size: 14px; line-height: 1.6; background: #ffffff;">
+# Markdown编辑器
+## 二级标题
+### 三级标题
+**粗体文本**  
+*斜体文本*  
+~~删除线文本~~  
+- 无序列表1
+- 无序列表2
+  - 子列表
+1. 有序列表1
+2. 有序列表2
+> 引用文本
+```bash
+# 代码块示例
+echo "Hello Markdown"
+```
+| 表头1 | 表头2 |
+|-------|-------|
+| 内容1 | 内容2 |
+[链接文本](https://example.com)  
+![图片占位](https://picsum.photos/200/100)
+        </textarea>
+        <div id="md-preview" style="width: 100%; height: 100%; padding: 15px; border: 1px solid #e2e8f0; border-radius: 6px; background: #ffffff; overflow-y: auto; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;"></div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+marked.setOptions({
+    gfm: true,
+    breaks: true,
+    mangle: false,
+    headerIds: false
+});
+const editor = document.getElementById('md-editor');
+const preview = document.getElementById('md-preview');
+const previewBtn = document.getElementById('preview-btn');
+const saveBtn = document.getElementById('save-btn');
+const clearBtn = document.getElementById('clear-btn');
+const exportBtn = document.getElementById('export-btn');
+function renderMarkdown() {
+    const mdContent = editor.value;
+    const htmlContent = marked.parse(mdContent);
+    preview.innerHTML = htmlContent;
+    document.querySelectorAll('pre').forEach(block => {
+        block.style.cssText = 'background: #f7fafc; padding: 12px; border-radius: 4px; overflow-x: auto; margin: 8px 0;';
+    });
+    document.querySelectorAll('code').forEach(code => {
+        code.style.cssText = 'background: #f7fafc; padding: 2px 6px; border-radius: 3px; font-family: Consolas, Monaco, monospace;';
+    });
+    document.querySelectorAll('table').forEach(table => {
+        table.style.cssText = 'width: 100%; border-collapse: collapse; margin: 12px 0;';
+        table.querySelectorAll('th, td').forEach(cell => {
+            cell.style.cssText = 'border: 1px solid #e2e8f0; padding: 8px 12px; text-align: left;';
+        });
+        table.querySelectorAll('th').forEach(th => {
+            th.style.background = '#f7fafc';
+        });
+    });
+    document.querySelectorAll('blockquote').forEach(blockquote => {
+        blockquote.style.cssText = 'border-left: 4px solid #e2e8f0; padding: 0 16px; margin: 12px 0; color: #4a5568;';
+    });
+}
+renderMarkdown();
+previewBtn.addEventListener('click', renderMarkdown);
+editor.addEventListener('input', renderMarkdown);
+saveBtn.addEventListener('click', () => {
+    localStorage.setItem('md-editor-content', editor.value);
+    alert('内容已保存到本地！');
+});
+clearBtn.addEventListener('click', () => {
+    if (confirm('确定清空编辑区？')) {
+        editor.value = '';
+        renderMarkdown();
+    }
+});
+exportBtn.addEventListener('click', () => {
+    const content = editor.value;
+    const blob = new Blob([content], { type: 'text/markdown; charset=utf-8' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `markdown_${new Date().getTime()}.md`;
+    a.click();
+    URL.revokeObjectURL(a.href);
+});
+window.addEventListener('load', () => {
+    const savedContent = localStorage.getItem('md-editor-content');
+    if (savedContent) {
+        editor.value = savedContent;
+        renderMarkdown();
+    }
+});
+</script>
+</content>
+
+
+<p>  标签：
+  <a href="http://ooyang.cn/tags/tool/">#Tool</a>
+  </p>
+
+  </main>
+  <footer>
+<small><script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+Total visits:<span id="busuanzi_site_pv">load...</span> | 
+Page views:<span id="busuanzi_page_pv">load...</span><br>
+Copyright © 2025 ooyang.cn</small>
+
+</footer>
+
+</body>
+</html>

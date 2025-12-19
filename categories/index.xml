@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Github on 福州老杨</title>
+    <title>Radio on 福州老杨</title>
     <link>http://ooyang.cn/categories/</link>
-    <description>Recent content in Github on 福州老杨</description>
+    <description>Recent content in Radio on 福州老杨</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
     <copyright>Copyright © 2022-2025, BG5VGE.</copyright>
-    <lastBuildDate>Mon, 08 Dec 2025 10:20:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 28 Sep 2025 11:54:38 +0800</lastBuildDate>
     <atom:link href="http://ooyang.cn/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>GitHub Pages 域名绑定官方 IP 的踩坑与现状：能访问却藏隐患</title>
-      <link>http://ooyang.cn/2025/githubq1/</link>
-      <pubDate>Mon, 08 Dec 2025 10:20:00 +0800</pubDate>
-      <guid>http://ooyang.cn/2025/githubq1/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;在使用 GitHub Pages 搭建个人博客、静态网站的过程中，不少开发者会遇到一个共性问题：直接通过 GitHub 提供的默认二级域名&lt;a href=&#34;https://fzlaoyang.github.io&#34;&gt;fzlaoyang.github.io&lt;/a&gt;或绑定自己域名&lt;a href=&#34;http://ooyang.cn&#34;&gt;ooyang.cn&lt;/a&gt;时官方提供的ip&lt;code&gt;(185.199.108.153 ,185.199.109.153,185.199.110.153 ,185.199.111.153 &lt;/code&gt;时访问偶尔卡顿且经常打不开网页，而手动将自定义域名绑定到 GitHub 官方前几年公布的公开 IP（192.30.252.154 和 192.30.252.153）后，网站访问稳定性明显提升，但随之而来的两个 “小麻烦” 却让人纠结 ——GitHub 域名设置页面持续提示 “绑定了旧的 IP 地址”，且安全证书（HTTPS）无法正常生效，不过好在核心的网站访问功能并未受影响。&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;h3 id=&#34;一初衷为解决访问不畅选择绑定固定-ip&#34;&gt;一、初衷：为解决访问不畅，选择绑定固定 IP&lt;/h3&gt;&#xA;&lt;p&gt;　　GitHub Pages 作为&lt;strong&gt;免费且稳定的静态网站托管服务&lt;/strong&gt;，深受开发者青睐，但由于网络跨区域访问的复杂性，部分地区用户会频繁遇到网站加载缓慢、超时甚至无法访问的问题。排查原因时发现，默认情况下，自定义域名通过 DNS 解析到 GitHub Pages 的服务器集群，而 DNS 解析可能存在路由跳转过多、节点拥堵等情况，导致访问体验不佳。&#xA;查阅 GitHub 早期官方文档时发现，其曾公开过 GitHub Pages 的核心服务器 IP：192.30.252.153 和 192.30.252.154（这两个 IP 实际对应 github.com 及 GitHub Pages 的核心节点）。于是尝试在域名服务商的 DNS 控制台中，将自定义域名的 A 记录直接指向这两个固定 IP，替代默认的 DNS 解析方式。&#xA;修改完成后，效果立竿见影：之前频繁卡顿、超时的问题大幅缓解，无论在国内不同网络环境（移动、联通、电信）还是境外网络中，网站都能快速加载、稳定打开，核心访问需求得到了满足。对于追求 “能正常访问” 为首要目标的用户来说，这个修改似乎是 “治标” 的有效方案。&lt;/p&gt;&#xA;&lt;h3 id=&#34;二后遗症两处异常提示却不影响核心访问&#34;&gt;二、后遗症：两处异常提示，却不影响核心访问&lt;/h3&gt;&#xA;&lt;p&gt;　　然而，绑定固定 IP 后，两个明显的异常提示随之出现，成为了 “美中不足” 的隐患：&lt;/p&gt;&#xA;&lt;h4 id=&#34;1github-域名设置页面的-旧-ip-警告&#34;&gt;1.GitHub 域名设置页面的 “旧 IP 警告”&lt;/h4&gt;&#xA;&lt;p&gt;　　登录GitHub仓库的「Settings → Pages → Custom domain」页面时，会看到明确的警告提示，大意是 “检测到你的域名绑定了旧的 GitHub IP 地址，建议使用 DNS 解析到 GitHub Pages 的官方域名（而非直接绑定 IP），以确保服务稳定性”。&#xA;这一提示的核心原因是，GitHub官方早已更新了 GitHub Pages 的服务架构：当前推荐的解析方式是将自定义域名通过 CNAME 记录指向 xxx.github.io（个人 / 组织仓库），或通过A记录指向GitHub动态维护的 IP 池（而非固定的 192.30.252.153/154）。这两个 IP 实际是 GitHub 早期的服务器节点，虽未完全停用，但已不属于官方推荐的解析目标，因此被标记为 “旧 IP”。&lt;/p&gt;</description>
+      <title>中国业余电台常用频率(短波)</title>
+      <link>http://ooyang.cn/2025/radio13/</link>
+      <pubDate>Sun, 28 Sep 2025 11:54:38 +0800</pubDate>
+      <guid>http://ooyang.cn/2025/radio13/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;80m 波段:3.840MHz 3.843MHz 3.850MHz 3.855MHz&lt;/p&gt;&#xA;&lt;p&gt;40m 波段:7.030MHz(CW) 7.050MHz 7.O53MHz 7.055MHz 7.060MHz 7.068MHz&lt;/p&gt;&#xA;&lt;p&gt;20m 波段:14.180MHz 14.225MHz 14.270MHz 14.330MHz&lt;/p&gt;&#xA;&lt;p&gt;15m 波段:21.400MHz&lt;/p&gt;&#xA;&lt;p&gt;10m波段:29.600MHz(FM) 14.180MHz是&amp;quot;B NET&amp;quot;工作频率.每天8:00开始.经常有老&lt;/p&gt;&#xA;&lt;p&gt;业余家出现 14.330MHz 是&amp;quot;CRSA NET&amp;quot;的工作频率.每周二 10:00 开始. 国内短波电台热闹的几个频点和守听！&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;h3 id=&#34;一国内比较热闹的短波频点有&#34;&gt;一、国内比较热闹的短波频点有：&lt;/h3&gt;&#xA;&lt;h4 id=&#34;17050mhz-模式lsb-单边带&#34;&gt;1、7.050MHZ 模式：LSB 单边带&lt;/h4&gt;&#xA;&lt;p&gt;主要是早上和晚上很热闹，传播好的时候，比本地的中继台信号还要好，国内HAM 默认的公用呼叫频率，大家常在 &lt;code&gt;7.050&lt;/code&gt; 呼叫到对方后，都喜欢转到 7.055、7.060、7.065、7.070、7.080 做通联 QSO。&lt;/p&gt;&#xA;&lt;h4 id=&#34;214270mhz-模式usb-单边带&#34;&gt;2、14.270MHZ 模式：USB 单边带&lt;/h4&gt;&#xA;&lt;p&gt;主要是白天很热闹，传播好的时候，比本地的中继台信号还要好，国内 HAM 默认的公用呼叫频率，大家常在 &lt;code&gt;14.270&lt;/code&gt; 呼叫到对方后，都喜欢转到 14.270、14.275、14.280、14.265 做通联 QSO。&lt;/p&gt;&#xA;&lt;h4 id=&#34;314180mhz-模式usb-单边带&#34;&gt;3、14.180MHZ 模式：USB 单边带&lt;/h4&gt;&#xA;&lt;p&gt;主要是早上 9 点前热闹，传播好的时候，比本地的中继台信号还要好，国内 1级 BA 大哥和 2 级 BD 大哥 HAM 默认的公用呼叫频率，大家可以在早上收听他们的通联，可以学到更多的知识。&lt;/p&gt;&#xA;&lt;h4 id=&#34;414330mhz-模式usb-单边带&#34;&gt;4、14.330MHZ 模式：USB 单边带&lt;/h4&gt;&#xA;&lt;p&gt;中国无线电运动协会台网专用频点，每周二 10 点有 BY1PK 主持，发布总部的通知和点名，大家可以收听哦。&lt;/p&gt;</description>
     </item>
-  </channel>
-</rss>
-��了。实测下来，不管是读取设备原有频率参数，还是设置新的信道、组呼参数都很顺畅，和当年在 XP 系统上操作一样稳定。​&lt;/p&gt;&#xA;&lt;p&gt;这里也把亲测能用的资源分享给同好们：​&lt;/p&gt;&#xA;&lt;p&gt;核心软件：GP88S 汉化版（版本 R02.01.03，支持 64 位系统）​&lt;/p&gt;&#xA;&lt;p&gt;配套驱动：推荐 CH340 芯片的 USB 转串口驱动（比 PL2303 更稳定，新手也能轻松安装）​&lt;/p&gt;&#xA;&lt;p&gt;从当年抱着旧电脑装 XP 写频，到现在 64 位系统一键操作，不得不说这波适配太懂火腿们的需求了。有了这个新方案，GP88S 这台经典手台估计还能再陪我们征战好几年&lt;/p&gt;&#xA;&lt;h3 id=&#34;适用机型&#34;&gt;适用机型&lt;/h3&gt;&#xA;&lt;p&gt;摩托罗拉GP338&lt;/p&gt;&#xA;&lt;p&gt;摩托罗拉GP88S&lt;/p&gt;&#xA;&lt;h3 id=&#34;适用环境&#34;&gt;适用环境&lt;/h3&gt;&#xA;&lt;p&gt;win10  64位系统&lt;/p&gt;&#xA;&lt;p&gt;win7 64位系统&lt;/p&gt;&#xA;&lt;h3 id=&#34;使用说明&#34;&gt;使用说明&lt;/h3&gt;&#xA;&lt;p&gt;1.安装好写频软件之后，运行写频软件。注意，第一次运行写频软件将会提示你选择COM口。选择空闲的COM口即可。&lt;/p&gt;&#xA;&lt;p&gt;2.将摩托罗拉对讲机的写频器接上7-12V的电源，COM插头与原先电脑选择的COM口连接，对讲机口与需要读频或写频的对讲机连接，打开对讲机电源。&lt;/p&gt;&#xA;&lt;p&gt;3.如图一，点击Read Device&amp;hellip;.，开始读取对讲机内的频点。&lt;/p&gt;</description>
+    <item>
+      <title>摩托罗拉对讲机GP338 GP88s win10写频软件下载</title>
+      <link>http://ooyang.cn/2025/motorolagpsoft/</link>
+      <pubDate>Sun, 28 Sep 2025 11:54:38 +0800</pubDate>
+      <guid>http://ooyang.cn/2025/motorolagpsoft/</guid>
+      <description>&lt;h3 id=&#34;摩托罗拉-gp88s-终于适配-64-位系统写频不用再折腾虚拟机了&#34;&gt;摩托罗拉 GP88S 终于适配 64 位系统！写频不用再折腾虚拟机了&lt;/h3&gt;&#xA;&lt;p&gt;作为把玩摩托罗拉 GP88S 多年的老火腿，以前每次给这台经典手台写频都得皱眉头 —— 这台在安保、工程领域超耐用的对讲机，原配写频软件居然只认 32 位 Windows 系统。​&lt;/p&gt;&#xA;&lt;p&gt;记得前几年用 Win10 64 位系统时，每次写频都得先装 VMware 虚拟机，再折腾 XP 32 位系统镜像，光是配置 USB 转串口驱动就得试好几次，PL2303 驱动版本不对还会认不出设备，折腾大半天才能调一次频率。后来看到火腿社区里有人说能打 64 位串口补丁解决，但试了好几个版本要么不兼容，要么读取设备时直接报错，最后还是只能乖乖用虚拟机。​&#xA;不过最近终于熬出头了！现在已经有适配 64 位系统的 GP88S 写频软件版本，不仅能直接在 Win7、Win10 64 位系统上运行，还出了汉化版，界面菜单大部分都改成了中文，再也不用对着英文界面猜功能了。实测下来，不管是读取设备原有频率参数，还是设置新的信道、组呼参数都很顺畅，和当年在 XP 系统上操作一样稳定。​&lt;/p&gt;&#xA;&lt;p&gt;这里也把亲测能用的资源分享给同好们：​&lt;/p&gt;&#xA;&lt;p&gt;核心软件：GP88S 汉化版（版本 R02.01.03，支持 64 位系统）​&lt;/p&gt;&#xA;&lt;p&gt;配套驱动：推荐 CH340 芯片的 USB 转串口驱动（比 PL2303 更稳定，新手也能轻松安装）​&lt;/p&gt;&#xA;&lt;p&gt;从当年抱着旧电脑装 XP 写频，到现在 64 位系统一键操作，不得不说这波适配太懂火腿们的需求了。有了这个新方案，GP88S 这台经典手台估计还能再陪我们征战好几年&lt;/p&gt;&#xA;&lt;h3 id=&#34;适用机型&#34;&gt;适用机型&lt;/h3&gt;&#xA;&lt;p&gt;摩托罗拉GP338&lt;/p&gt;&#xA;&lt;p&gt;摩托罗拉GP88S&lt;/p&gt;&#xA;&lt;h3 id=&#34;适用环境&#34;&gt;适用环境&lt;/h3&gt;&#xA;&lt;p&gt;win10  64位系统&lt;/p&gt;&#xA;&lt;p&gt;win7 64位系统&lt;/p&gt;&#xA;&lt;h3 id=&#34;使用说明&#34;&gt;使用说明&lt;/h3&gt;&#xA;&lt;p&gt;1.安装好写频软件之后，运行写频软件。注意，第一次运行写频软件将会提示你选择COM口。选择空闲的COM口即可。&lt;/p&gt;&#xA;&lt;p&gt;2.将摩托罗拉对讲机的写频器接上7-12V的电源，COM插头与原先电脑选择的COM口连接，对讲机口与需要读频或写频的对讲机连接，打开对讲机电源。&lt;/p&gt;&#xA;&lt;p&gt;3.如图一，点击Read Device&amp;hellip;.，开始读取对讲机内的频点。&lt;/p&gt;</description>
     </item>
     <item>
       <title>公网转模拟对讲机方案全解析及优缺点分析</title>
