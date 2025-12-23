@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="http://ooyang.cn/favicon.ico" />
+<title>银行卡号识别与银行行号查询系统 | 福州老杨</title>
+<meta name="title" content="银行卡号识别与银行行号查询系统" />
+<meta name="description" content="银行卡号识别与银行行号查询" />
+<meta name="keywords" content="Tool," />
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?2593792a8d16bc9ab393449c82b032f8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<link rel="stylesheet" type="text/css" href="/css/bearblog.css">
+
+</head>
+<body>
+  <header>    <div class="overlay"></div>
+	<a href="/" class="title" title="福州老杨"><h1>OOyang</h1></a>
+<nav><a href="/" title="首页">Home</a><a href="/a" target="_blank" title="Website网址导航">Navigation</a><a href="/posts" title="文章列表">Article</a><a href="/about" title="关于我们">About Us</a><a href="https://github.com/fzlaoyang/BBS/issues/1" target="_blank" title="联系我们">Contact</a><hr></nav>
+</header>
+  <main>
+
+<h2 style="text-align: center;">银行卡号识别与银行行号查询系统</h2>
+
+<content><script>
+    tailwind.config = {theme: {extend: {colors: {primary: '#165DFF',secondary: '#4080FF',neutral: '#F5F7FA',success: '#00B42A',warning: '#FF7D00',danger: '#F53F3F'},fontFamily: {sans: ['Inter', 'system-ui', 'sans-serif'],},}}}
+</script>
+<style type="text/tailwindcss">
+    @layer utilities {
+        .content-auto { content-visibility: auto; }
+        .card-shadow { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); }
+        .input-focus { @apply focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none; }
+        .transition-all-300 { @apply transition-all duration-300 ease-in-out; }
+    }
+</style>
+<div class="w-[720px] mx-auto px-4 py-8 bg-gray-50 min-h-[600px]">
+        <div class="bg-white rounded-xl card-shadow p-6 md:p-8 mb-8">
+                <div class="overflow-x-auto">
+            <table class="w-full border-collapse">
+                <thead>
+                    <tr class="border-b-2 border-gray-200">
+                        <th class="py-4 px-4 text-left text-gray-700 font-semibold w-1/3">银行卡号前6位</th>
+                        <th class="py-4 px-4 text-left text-gray-700 font-semibold w-1/3">所属银行</th>
+                        <th class="py-4 px-4 text-left text-gray-700 font-semibold w-1/3">网点行号</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b border-gray-100">
+                        <td class="py-4 px-4">
+                            <input 
+                                type="text" 
+                                id="cardBin" 
+                                maxlength="6"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus transition-all-300"
+                                placeholder="请输入前6位数字"
+                            >
+                        </td>
+                        <td class="py-4 px-4">
+                            <div id="bankName" class="min-h-[2.5rem] flex items-center">
+                                <span class="text-gray-400 italic">等待输入...</span>
+                            </div>
+                        </td>
+                        <td class="py-4 px-4">
+                            <div id="bankCode" class="min-h-[2.5rem] flex items-center">
+                                <span class="text-gray-400 italic">等待识别...</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="statusMessage" class="mt-4 hidden p-3 rounded-lg flex items-center"></div>
+        <div class="mt-8">
+           <br> <h4 class="text-gray-700 font-semibold mb-4">常用银行快捷查询</h4>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+                <button class="bank-btn px-3 py-2 bg-neutral rounded-lg hover:bg-primary/10 transition-all-300 text-sm" data-bin="622202">工商银行</button>
+                <button class="bank-btn px-3 py-2 bg-neutral rounded-lg hover:bg-primary/10 transition-all-300 text-sm" data-bin="622848">农业银行</button>
+                <button class="bank-btn px-3 py-2 bg-neutral rounded-lg hover:bg-primary/10 transition-all-300 text-sm" data-bin="622666">中国银行</button>
+                <button class="bank-btn px-3 py-2 bg-neutral rounded-lg hover:bg-primary/10 transition-all-300 text-sm" data-bin="620021">交通银行</button>
+                <button class="bank-btn px-3 py-2 bg-neutral rounded-lg hover:bg-primary/10 transition-all-300 text-sm" data-bin="622690">中信银行</button>
+                <button class="bank-btn px-3 py-2 bg-neutral rounded-lg hover:bg-primary/10 transition-all-300 text-sm" data-bin="622660">光大银行</button>
+                <button class="bank-btn px-3 py-2 bg-neutral rounded-lg hover:bg-primary/10 transition-all-300 text-sm" data-bin="621222">华夏银行</button>
+                <button class="bank-btn px-3 py-2 bg-neutral rounded-lg hover:bg-primary/10 transition-all-300 text-sm" data-bin="622615">民生银行</button>
+                <button class="bank-btn px-3 py-2 bg-neutral rounded-lg hover:bg-primary/10 transition-all-300 text-sm" data-bin="622555">广发银行</button>
+                <button class="bank-btn px-3 py-2 bg-neutral rounded-lg hover:bg-primary/10 transition-all-300 text-sm" data-bin="622588">招商银行</button>
+                <button class="bank-btn px-3 py-2 bg-neutral rounded-lg hover:bg-primary/10 transition-all-300 text-sm" data-bin="622599">兴业银行</button>
+                <button class="bank-btn px-3 py-2 bg-neutral rounded-lg hover:bg-primary/10 transition-all-300 text-sm" data-bin="622521">浦发银行</button>
+            </div>
+        </div>
+    </div>
+<script src="/js/bank.js"></script>
+</div>
+</content>
+
+
+<p>  标签：
+  <a href="http://ooyang.cn/tags/tool/">#Tool</a>
+  </p>
+
+  </main>
+  <footer>
+<small><script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+Total visits:<span id="busuanzi_site_pv">load...</span> | 
+Page views:<span id="busuanzi_page_pv">load...</span><br>
+Copyright © 2025 ooyang.cn</small>
+
+</footer>
+
+</body>
+</html>
