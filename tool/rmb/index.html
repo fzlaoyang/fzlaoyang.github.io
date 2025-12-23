@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="http://ooyang.cn/favicon.ico" />
+<title>免费在线人民币大小写转换工具 | 福州老杨</title>
+<meta name="title" content="免费在线人民币大小写转换工具" />
+<meta name="description" content="专业的人民币金额数字转中文大写工具，遵循金融票据书写规范" />
+<meta name="keywords" content="Tool," />
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?2593792a8d16bc9ab393449c82b032f8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<link rel="stylesheet" type="text/css" href="/css/bearblog.css">
+
+</head>
+<body>
+  <header>    <div class="overlay"></div>
+	<a href="/" class="title" title="福州老杨"><h1>OOyang</h1></a>
+<nav><a href="/" title="首页">Home</a><a href="/a" target="_blank" title="Website网址导航">Navigation</a><a href="/posts" title="文章列表">Article</a><a href="/about" title="关于我们">About Us</a><a href="https://github.com/fzlaoyang/BBS/issues/1" target="_blank" title="联系我们">Contact</a><hr></nav>
+</header>
+  <main>
+
+<h2 style="text-align: center;">免费在线人民币大小写转换工具</h2>
+
+<content><link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<style>
+* {margin: 0;padding: 0;box-sizing: border-box;font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;}
+body {line-height: 1.6;}
+.container {max-width: 800px;margin: 0 auto;padding: 20px;}
+.title-wrap {text-align: center;margin: 40px 0;}
+<p>.desc {color: #666;font-size: 16px;}
+.card {background: #fff;border-radius: 12px;box-shadow: 0 2px 15px rgba(0,0,0,0.08);padding: 30px;margin-bottom: 30px;transition: all 0.3s ease;}
+.card:hover {transform: translateY(-5px);box-shadow: 0 10px 25px rgba(22,93,255,0.1);}
+.form-group {margin-bottom: 25px;}
+.label {display: block;color: #333;font-weight: 500;margin-bottom: 8px;font-size: 15px;}
+.input-wrap {position: relative;}
+.yen-icon {position: absolute;left: 12px;top: 50%;transform: translateY(-50%);color: #999;font-size: 16px;}
+.amount-input {width: 100%;padding: 12px 15px 12px 35px;border: 1px solid #ddd;border-radius: 8px;font-size: 16px;outline: none;transition: all 0.3s;box-shadow: 0 2px 8px rgba(0,0,0,0.05);}
+.amount-input:focus {border-color: #165DFF;box-shadow: 0 0 0 3px rgba(22,93,255,0.1);}
+.error-msg {margin-top: 8px;color: #f5222d;font-size: 13px;display: none;}
+.result-area {width: 100%;padding: 12px 15px;border: 1px solid #ddd;border-radius: 8px;font-size: 16px;outline: none;resize: none;height: 120px;background: #f9f9f9;}
+.result-area:focus {border-color: #165DFF;box-shadow: 0 0 0 3px rgba(22,93,255,0.1);}
+.copy-btn {position: absolute;right: 10px;bottom: 10px;padding: 6px 12px;background: rgba(22,93,255,0.1);color: #165DFF;border: none;border-radius: 6px;font-size: 13px;cursor: pointer;transition: all 0.3s;}
+.copy-btn:hover {background: rgba(22,93,255,0.2);}
+.btn-group {display: flex;gap: 15px;margin-top: 10px;}
+.convert-btn {flex: 1;padding: 12px;text-align: center;background: #165DFF;color: #fff;border: none;border-radius: 8px;font-size: 16px;cursor: pointer;transition: all 0.3s;display: flex;align-items: center;justify-content: center;gap: 8px;}
+.convert-btn:hover {background: #0e4bdb;}
+.reset-btn {flex: 1;padding: 12px;text-align: center;background: #e5e6eb;color: #333;border: none;border-radius: 8px;font-size: 16px;cursor: pointer;transition: all 0.3s;}
+.reset-btn:hover {background: #d0d1d6;}
+.instructions {background: #e8f4ff;border-radius: 8px;padding: 20px;margin-top: 30px;}
+.inst-title {color: #165DFF;font-size: 18px;font-weight: 600;margin-bottom: 15px;display: flex;align-items: center;}
+.inst-title i {margin-right: 8px;}
+.inst-list {list-style: disc inside;color: #666;line-height: 1.8;}
+.inst-list li {margin-bottom: 8px;}
+</style></p>
+<div class="container">
+<div class="title-wrap">
+<h1 class="title">人民币大小写转换</h1>
+<p class="desc">遵循金融票据规范，适用于财务凭证、合同单据等场景</p>
+</div>
+<div class="card">
+<div class="form-group">
+<label class="label" for="rmbAmount">请输入人民币金额</label>
+<div class="input-wrap">
+<span class="yen-icon">¥</span>
+<input type="text" id="rmbAmount" class="amount-input" placeholder="例如：123456.78" autocomplete="off">
+</div>
+<p id="errorMsg" class="error-msg">请输入有效的金额数字</p>
+</div>
+<div class="form-group">
+<label class="label" for="rmbResult">人民币大写结果</label>
+<div class="input-wrap" style="position: relative;">
+<textarea id="rmbResult" class="result-area" readonly placeholder="转换结果将显示在这里..."></textarea>
+<button id="copyResult" class="copy-btn" title="复制结果">
+<i class="fa fa-copy mr-1"></i>复制
+</button>
+</div>
+</div>
+<div class="btn-group">
+<button id="convertBtn" class="convert-btn">
+<i class="fa fa-exchange"></i>立即转换
+</button>
+<button id="resetBtn" class="reset-btn">重置</button>
+</div>
+</div>
+<div class="instructions">
+<h3 class="inst-title"><i class="fa fa-info-circle"></i>使用说明</h3>
+<ul class="inst-list">
+<li>支持输入整数和小数，小数部分最多两位（角、分）</li>
+<li>金额范围：0.01 至 999999999999.99</li>
+<li>自动处理零值、整元、整角等特殊情况，符合金融书写规范</li>
+<li>转换结果可直接复制用于正式财务文档</li>
+</ul>
+</div>
+</div>
+<script>
+function rmbNumberToChinese(money) {
+const reg = /^(0|[1-9]\d*)(\.\d{1,2})?$/;
+if (!reg.test(money)) return null;
+const cnNums = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'];
+const cnIntRadice = ['', '拾', '佰', '仟'];
+const cnIntUnits = ['', '万', '亿', '兆'];
+const cnDecUnits = ['角', '分'];
+const cnInteger = '整';
+const cnIntLast = '元';
+let num = parseFloat(money);
+let integerNum = Math.floor(num);
+let decimalNum = Math.round((num - integerNum) * 100);
+let strInt = integerNum.toString();
+let cnStr = '';
+if (integerNum > 0) {
+let zeroCount = 0;
+const intLen = strInt.length;
+for (let i = 0; i < intLen; i++) {
+const n = strInt.substr(i, 1);
+const p = intLen - i - 1;
+const q = Math.floor(p / 4);
+const m = p % 4;
+if (n === '0') {
+zeroCount++;
+} else {
+if (zeroCount > 0) cnStr += cnNums[0];
+zeroCount = 0;
+cnStr += cnNums[parseInt(n)] + cnIntRadice[m];
+}
+if (m === 0 && zeroCount < 4) cnStr += cnIntUnits[q];
+}
+cnStr += cnIntLast;
+}
+if (decimalNum > 0) {
+const jiao = Math.floor(decimalNum / 10);
+const fen = decimalNum % 10;
+if (jiao > 0) cnStr += cnNums[jiao] + cnDecUnits[0];
+if (jiao === 0 && integerNum > 0) cnStr += cnNums[0];
+if (fen > 0) cnStr += cnNums[fen] + cnDecUnits[1];
+} else {
+cnStr += cnInteger;
+}
+if (integerNum === 0 && decimalNum === 0) {
+cnStr = cnNums[0] + cnIntLast + cnInteger;
+}
+return `人民币${cnStr}`;
+}
+const amountInput = document.getElementById('rmbAmount');
+const resultOutput = document.getElementById('rmbResult');
+const convertBtn = document.getElementById('convertBtn');
+const resetBtn = document.getElementById('resetBtn');
+const copyBtn = document.getElementById('copyResult');
+const errorMsg = document.getElementById('errorMsg');
+convertBtn.addEventListener('click', () => {
+const amount = amountInput.value.trim();
+errorMsg.style.display = 'none';
+if (!amount) {
+errorMsg.textContent = '请输入金额数字';
+errorMsg.style.display = 'block';
+resultOutput.value = '';
+return;
+}
+const result = rmbNumberToChinese(amount);
+if (result) {
+resultOutput.value = result;
+} else {
+errorMsg.textContent = '请输入有效的金额数字（最多两位小数）';
+errorMsg.style.display = 'block';
+resultOutput.value = '';
+}
+});
+resetBtn.addEventListener('click', () => {
+amountInput.value = '';
+resultOutput.value = '';
+errorMsg.style.display = 'none';
+amountInput.focus();
+});
+copyBtn.addEventListener('click', async () => {
+const text = resultOutput.value;
+if (!text) return;
+try {
+await navigator.clipboard.writeText(text);
+copyBtn.innerHTML = '<i class="fa fa-check mr-1"></i>已复制';
+setTimeout(() => {
+copyBtn.innerHTML = '<i class="fa fa-copy mr-1"></i>复制';
+}, 2000);
+} catch (err) {
+alert('复制失败，请手动复制');
+}
+});
+amountInput.addEventListener('keydown', (e) => {
+if (e.key === 'Enter') convertBtn.click();
+});
+amountInput.addEventListener('input', () => {
+amountInput.value = amountInput.value.replace(/[^0-9.]/g, '');
+const dotIndex = amountInput.value.indexOf('.');
+if (dotIndex !== -1) {
+amountInput.value = amountInput.value.substr(0, dotIndex + 1) + amountInput.value.substr(dotIndex + 1).replace(/\./g, '');
+if (amountInput.value.length > dotIndex + 3) {
+amountInput.value = amountInput.value.substr(0, dotIndex + 3);
+}
+}
+if (amountInput.value.length > 15) {
+amountInput.value = amountInput.value.substr(0, 15);
+}
+});
+window.addEventListener('load', () => amountInput.focus());
+</script></content>
+
+
+<p>  标签：
+  <a href="http://ooyang.cn/tags/tool/">#Tool</a>
+  </p>
+
+  </main>
+  <footer>
+<small><script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+Total visits:<span id="busuanzi_site_pv">load...</span> | 
+Page views:<span id="busuanzi_page_pv">load...</span><br>
+Copyright © 2025 ooyang.cn</small>
+
+</footer>
+
+</body>
+</html>
