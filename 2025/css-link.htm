@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="http://ooyang.cn/favicon.ico" />
+<title>CSS超链接样式 | 福州老杨</title>
+<meta name="title" content="CSS超链接样式" />
+<meta name="description" content="个人整理了几份常用的超链接（&lt;a&gt;标签）样式，涵盖基础状态、装饰特效、按钮化、动画等类型，附完整代码与预览说明，可直接复制使用。
+
+一、核心概念：超链接的5种状态（CSS伪类）
+
+  
+      
+          伪类
+          含义
+          优先级顺序
+      
+  
+  
+      
+          :link
+          未访问的链接
+          1
+      
+      
+          :visited
+          已访问的链接
+          2
+      
+      
+          :hover
+          鼠标悬停时
+          3
+      
+      
+          :focus
+          键盘聚焦时（无障碍）
+          3（与hover同级，建议同效果）
+      
+      
+          :active
+          点击瞬间
+          4
+      
+  
+
+二、常用超链接样式合集（含代码&#43;预览）
+以下样式均包含完整HTML&#43;CSS，复制到HTML文件即可在浏览器预览。
+1. 基础默认样式（浏览器原生）
+1&lt;a href=&#34;/&#34;&gt;基础默认链接&lt;/a&gt;
+2
+3预览：未访问蓝色带下划线，已访问紫色，悬停无额外效果，点击红色。
+基础默认链接
+
+2. 去下划线&#43;文字色自定义
+ 1&lt;style&gt;
+ 2  .basic-link {
+ 3    text-decoration: none; /* 去下划线 */
+ 4    color: #2563eb; /* 主色 */
+ 5    transition: color 0.2s; /* 过渡动画 */
+ 6  }
+ 7  .basic-link:visited { color: #7c3aed; } /* 已访问 */
+ 8  .basic-link:hover, .basic-link:focus { color: #1d4ed8; } /* 悬停/聚焦 */
+ 9  .basic-link:active { color: #1e40af; } /* 激活 */
+10&lt;/style&gt;
+11&lt;a href=&#34;#&#34; class=&#34;basic-link&#34;&gt;去下划线自定义色链接&lt;/a&gt;
+12
+13/* 预览：无下划线，未访问蓝、已访问紫、悬停深蓝、点击暗蓝，颜色切换平滑。 */
+
+去下划线自定义色链接
+3. 下划线动画（悬停显示/变色/位移）
+ 1&lt;style&gt;
+ 2  .underline-animate {
+ 3    text-decoration: none;
+ 4    color: #1f2937;
+ 5    position: relative;
+ 6  }
+ 7  .underline-animate::after {
+ 8    content: &#39;&#39;;
+ 9    position: absolute;
+10    width: 0;
+11    height: 2px;
+12    bottom: -2px;
+13    left: 0;
+14    background-color: #3b82f6;
+15    transition: width 0.3s;
+16  }
+17  .underline-animate:hover::after,
+18  .underline-animate:focus::after {
+19    width: 100%;
+20  }
+21&lt;/style&gt;
+22&lt;a href=&#34;#&#34; class=&#34;underline-animate&#34;&gt;下划线展开动画链接&lt;/a&gt;
+23预览：默认无下划线，悬停时底部横线从左到右渐显，文字黑色，下划线蓝色。
+
+下划线展开动画链接（悬停显示/变色/位移）
+4. 按钮式链接（带背景/圆角/内边距）
+ 1&lt;style&gt;
+ 2  .btn-link {
+ 3    text-decoration: none;
+ 4    color: white;
+ 5    background-color: #22c55e;
+ 6    padding: 8px 16px;
+ 7    border-radius: 6px;
+ 8    display: inline-block;
+ 9    transition: background-color 0.2s, transform 0.1s;
+10  }
+11  .btn-link:hover, .btn-link:focus {
+12    background-color: #16a34a;
+13    transform: translateY(-1px); /* 轻微上浮 */
+14  }
+15  .btn-link:active {
+16    background-color: #15803d;
+17    transform: translateY(0);
+18  }
+19&lt;/style&gt;
+20&lt;a href=&#34;#&#34; class=&#34;btn-link&#34;&gt;按钮式链接&lt;/a&gt;
+21
+22预览：绿色圆角按钮，悬停加深绿色并上浮1px，点击恢复原位且颜色更深。
+
+按钮式链接
+5. 文字高亮（背景色高亮拉幕）
+ 1&lt;style&gt;
+ 2  .highlight-link {
+ 3    text-decoration: none;
+ 4    color: #dc2626;
+ 5    background: linear-gradient(to bottom, #fee2e2 0%, #fee2e2 100%);
+ 6    background-position: 0 100%;
+ 7    background-repeat: no-repeat;
+ 8    background-size: 100% 20%;
+ 9    transition: background-size 0.2s;
+10  }
+11  .highlight-link:hover, .highlight-link:focus {
+12    background-size: 100% 80%;
+13  }
+14&lt;/style&gt;
+15&lt;a href=&#34;#&#34; class=&#34;highlight-link&#34;&gt;文字背景高亮链接&lt;/a&gt;
+16
+17预览：红色文字，默认底部浅红高亮条，悬停时高亮条扩大至文字大部分区域。
+
+文字背景高亮链接向上拉幕
+6. 图标链接（搭配Font Awesome）
+ 1&lt;link rel=&#34;stylesheet&#34; href=&#34;https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css&#34;&gt;
+ 2&lt;style&gt;
+ 3  .icon-link {
+ 4    text-decoration: none;
+ 5    color: #374151;
+ 6    display: inline-flex;
+ 7    align-items: center;
+ 8    gap: 6px;
+ 9    transition: color 0.2s;
+10  }
+11  .icon-link:hover, .icon-link:focus { color: #0ea5e9; }
+12&lt;/style&gt;
+13&lt;a href=&#34;#&#34; class=&#34;icon-link&#34;&gt;&lt;i class=&#34;fa-solid fa-arrow-right&#34;&gt;&lt;/i&gt; 带图标链接&lt;/a&gt;
+14
+15**预览**：左侧带箭头图标，文字灰色，悬停变蓝色，图标与文字间距6px。
+
+
+  带图标链接
+7. 边框式链接（无背景&#43;边框）
+ 1&lt;style&gt;
+ 2  .border-link {
+ 3    text-decoration: none;
+ 4    color: #6366f1;
+ 5    border: 1px solid #6366f1;
+ 6    padding: 6px 12px;
+ 7    border-radius: 4px;
+ 8    transition: all 0.2s;
+ 9  }
+10  .border-link:hover, .border-link:focus {
+11    color: white;
+12    background-color: #6366f1;
+13  }
+14&lt;/style&gt;
+15&lt;a href=&#34;#&#34; class=&#34;border-link&#34;&gt;边框式链接&lt;/a&gt;
+16
+17预览：紫色边框、紫色文字，悬停时背景变紫色、文字变白，过渡平滑。
+
+边框式链接
+8. 禁用状态链接
+ 1&lt;style&gt;
+ 2  .disabled-link {
+ 3    text-decoration: none;
+ 4    color: #9ca3af;
+ 5    cursor: not-allowed; /* 禁止指针 */
+ 6    pointer-events: none; /* 禁止点击 */
+ 7  }
+ 8&lt;/style&gt;
+ 9&lt;a href=&#34;#&#34; class=&#34;disabled-link&#34;&gt;禁用状态链接&lt;/a&gt;
+10
+11预览：灰色文字，鼠标移上显示禁止图标，无法点击跳转。
+
+禁用状态链接
+9.折叠下划线链接
+ 1&lt;style&gt;
+ 2  .fold-underline-link {
+ 3    text-decoration: none;
+ 4    color: #111827;
+ 5    font-size: 17px;
+ 6    position: relative;
+ 7  }
+ 8  .fold-underline-link::before,
+ 9  .fold-underline-link::after {
+10    content: &#39;&#39;;
+11    position: absolute;
+12    bottom: -2px;
+13    width: 0;
+14    height: 2px;
+15    background-color: #f97316;
+16    transition: width 0.3s ease;
+17  }
+18  .fold-underline-link::before {
+19    left: 50%;
+20  }
+21  .fold-underline-link::after {
+22    right: 50%;
+23  }
+24  .fold-underline-link:hover::before,
+25  .fold-underline-link:focus::before,
+26  .fold-underline-link:hover::after,
+27  .fold-underline-link:focus::after {
+28    width: 50%;
+29  }
+30&lt;/style&gt;
+31&lt;a href=&#34;#&#34; class=&#34;fold-underline-link&#34;&gt;折叠下划线链接&lt;/a&gt;
+默认无下划线，悬停时底部从中间向左右展开橙色下划线，两段下划线合拢成完整线条。" />
+<meta name="keywords" content="css," />
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?2593792a8d16bc9ab393449c82b032f8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<link rel="stylesheet" type="text/css" href="/css/bearblog.css">
+
+</head>
+<body>
+  <header>    <div class="overlay"></div>
+	<a href="/" class="title" title="福州老杨"><h1>OOyang</h1></a>
+<nav><a href="/" title="首页">Home</a><a href="/a" target="_blank" title="Website网址导航">Navigation</a><a href="/posts" title="文章列表">Article</a><a href="/about" title="关于我们">About Us</a><a href="https://github.com/fzlaoyang/BBS/issues/1" target="_blank" title="联系我们">Contact</a><hr></nav>
+</header>
+  <main>
+
+<h2 style="text-align: center;">CSS超链接样式</h2>
+
+<content><p>个人整理了几份常用的超链接（<code>&lt;a&gt;</code>标签）样式，涵盖基础状态、装饰特效、按钮化、动画等类型，附完整代码与预览说明，可直接复制使用。</p>
+<hr>
+<h3 id="一核心概念超链接的5种状态css伪类">一、核心概念：超链接的5种状态（CSS伪类）</h3>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">伪类</th>
+          <th style="text-align: left">含义</th>
+          <th style="text-align: left">优先级顺序</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>:link</code></td>
+          <td style="text-align: left">未访问的链接</td>
+          <td style="text-align: left">1</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>:visited</code></td>
+          <td style="text-align: left">已访问的链接</td>
+          <td style="text-align: left">2</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>:hover</code></td>
+          <td style="text-align: left">鼠标悬停时</td>
+          <td style="text-align: left">3</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>:focus</code></td>
+          <td style="text-align: left">键盘聚焦时（无障碍）</td>
+          <td style="text-align: left">3（与hover同级，建议同效果）</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>:active</code></td>
+          <td style="text-align: left">点击瞬间</td>
+          <td style="text-align: left">4</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="二常用超链接样式合集含代码预览">二、常用超链接样式合集（含代码+预览）</h3>
+<p>以下样式均包含完整HTML+CSS，复制到HTML文件即可在浏览器预览。</p>
+<h4 id="1-基础默认样式浏览器原生">1. 基础默认样式（浏览器原生）</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>&lt;<span style="color:#062873;font-weight:bold">a</span> <span style="color:#4070a0">href</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;/&#34;</span>&gt;基础默认链接&lt;/<span style="color:#062873;font-weight:bold">a</span>&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>预览：未访问蓝色带下划线，已访问紫色，悬停无额外效果，点击红色。
+</span></span></code></pre></div><h1 id="基础默认链接"><a href="/2025/css-link.htm">基础默认链接</a></h1>
+<hr>
+<h4 id="2-去下划线文字色自定义">2. 去下划线+文字色自定义</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>&lt;<span style="color:#062873;font-weight:bold">style</span>&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>  .<span style="color:#0e84b5;font-weight:bold">basic-link</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#007020;font-weight:bold">text-decoration</span>: <span style="color:#007020;font-weight:bold">none</span>; <span style="color:#60a0b0;font-style:italic">/* 去下划线 */</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    <span style="color:#007020;font-weight:bold">color</span>: <span style="color:#40a070">#2563eb</span>; <span style="color:#60a0b0;font-style:italic">/* 主色 */</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    <span style="color:#007020;font-weight:bold">transition</span>: <span style="color:#007020;font-weight:bold">color</span> <span style="color:#40a070">0.2</span><span style="color:#902000">s</span>; <span style="color:#60a0b0;font-style:italic">/* 过渡动画 */</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>  .<span style="color:#0e84b5;font-weight:bold">basic-link</span>:<span style="color:#555;font-weight:bold">visited</span> { <span style="color:#007020;font-weight:bold">color</span>: <span style="color:#40a070">#7c3aed</span>; } <span style="color:#60a0b0;font-style:italic">/* 已访问 */</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>  .<span style="color:#0e84b5;font-weight:bold">basic-link</span>:<span style="color:#555;font-weight:bold">hover</span><span style="color:#666">,</span> .<span style="color:#0e84b5;font-weight:bold">basic-link</span>:<span style="color:#555;font-weight:bold">focus</span> { <span style="color:#007020;font-weight:bold">color</span>: <span style="color:#40a070">#1d4ed8</span>; } <span style="color:#60a0b0;font-style:italic">/* 悬停/聚焦 */</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>  .<span style="color:#0e84b5;font-weight:bold">basic-link</span>:<span style="color:#555;font-weight:bold">active</span> { <span style="color:#007020;font-weight:bold">color</span>: <span style="color:#40a070">#1e40af</span>; } <span style="color:#60a0b0;font-style:italic">/* 激活 */</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>&lt;/<span style="color:#062873;font-weight:bold">style</span>&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>&lt;<span style="color:#062873;font-weight:bold">a</span> <span style="color:#4070a0">href</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;#&#34;</span> <span style="color:#4070a0">class</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;basic-link&#34;</span>&gt;去下划线自定义色链接&lt;/<span style="color:#062873;font-weight:bold">a</span>&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>/* 预览：无下划线，未访问蓝、已访问紫、悬停深蓝、点击暗蓝，颜色切换平滑。 */
+</span></span></code></pre></div><style>.basic-link {text-decoration: none;color: #2563eb;transition: color 0.2s;}
+  .basic-link:visited { color: #7c3aed; }.basic-link:hover, .basic-link:focus { color: #1d4ed8; }
+  .basic-link:active { color: #1e40af; }</style>
+<h1 id="去下划线自定义色链接"><a href="/2025/css-link.htm" class="basic-link">去下划线自定义色链接</a></h1>
+<h4 id="3-下划线动画悬停显示变色位移">3. 下划线动画（悬停显示/变色/位移）</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>&lt;<span style="color:#062873;font-weight:bold">style</span>&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>  .<span style="color:#0e84b5;font-weight:bold">underline-animate</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#007020;font-weight:bold">text-decoration</span>: <span style="color:#007020;font-weight:bold">none</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    <span style="color:#007020;font-weight:bold">color</span>: <span style="color:#40a070">#1f2937</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    <span style="color:#007020;font-weight:bold">position</span>: <span style="color:#007020;font-weight:bold">relative</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>  .<span style="color:#0e84b5;font-weight:bold">underline-animate</span>::<span style="color:#555;font-weight:bold">after</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    <span style="color:#007020;font-weight:bold">content</span>: <span style="color:#4070a0">&#39;&#39;</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    <span style="color:#007020;font-weight:bold">position</span>: <span style="color:#007020;font-weight:bold">absolute</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>    <span style="color:#007020;font-weight:bold">width</span>: <span style="color:#40a070">0</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    <span style="color:#007020;font-weight:bold">height</span>: <span style="color:#40a070">2</span><span style="color:#902000">px</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>    <span style="color:#007020;font-weight:bold">bottom</span>: <span style="color:#40a070">-2</span><span style="color:#902000">px</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>    <span style="color:#007020;font-weight:bold">left</span>: <span style="color:#40a070">0</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>    <span style="color:#007020;font-weight:bold">background-color</span>: <span style="color:#40a070">#3b82f6</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>    <span style="color:#007020;font-weight:bold">transition</span>: <span style="color:#007020;font-weight:bold">width</span> <span style="color:#40a070">0.3</span><span style="color:#902000">s</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>  .<span style="color:#0e84b5;font-weight:bold">underline-animate</span>:<span style="color:#555;font-weight:bold">hover</span>::<span style="color:#555;font-weight:bold">after</span><span style="color:#666">,</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>  .<span style="color:#0e84b5;font-weight:bold">underline-animate</span>:<span style="color:#555;font-weight:bold">focus</span>::<span style="color:#555;font-weight:bold">after</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>    <span style="color:#007020;font-weight:bold">width</span>: <span style="color:#40a070">100</span><span style="color:#902000">%</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>&lt;/<span style="color:#062873;font-weight:bold">style</span>&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>&lt;<span style="color:#062873;font-weight:bold">a</span> <span style="color:#4070a0">href</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;#&#34;</span> <span style="color:#4070a0">class</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;underline-animate&#34;</span>&gt;下划线展开动画链接&lt;/<span style="color:#062873;font-weight:bold">a</span>&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>预览：默认无下划线，悬停时底部横线从左到右渐显，文字黑色，下划线蓝色。
+</span></span></code></pre></div><style>.underline-animate {text-decoration: none;color: #1f2937;position: relative;}  .underline-animate::after {content: '';position: absolute;width: 0;height: 2px;bottom: -2px;    left: 0;background-color: #3b82f6;transition: width 0.3s;} .underline-animate:hover::after,  .underline-animate:focus::after {width: 100%;}</style>
+<h1 id="下划线展开动画链接悬停显示变色位移"><a href="/2025/css-link.htm" class="underline-animate">下划线展开动画链接（悬停显示/变色/位移）</a></h1>
+<h4 id="4-按钮式链接带背景圆角内边距">4. 按钮式链接（带背景/圆角/内边距）</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>&lt;<span style="color:#062873;font-weight:bold">style</span>&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>  .<span style="color:#0e84b5;font-weight:bold">btn-link</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#007020;font-weight:bold">text-decoration</span>: <span style="color:#007020;font-weight:bold">none</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    <span style="color:#007020;font-weight:bold">color</span>: <span style="color:#007020;font-weight:bold">white</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    <span style="color:#007020;font-weight:bold">background-color</span>: <span style="color:#40a070">#22c55e</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    <span style="color:#007020;font-weight:bold">padding</span>: <span style="color:#40a070">8</span><span style="color:#902000">px</span> <span style="color:#40a070">16</span><span style="color:#902000">px</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    <span style="color:#007020;font-weight:bold">border-radius</span>: <span style="color:#40a070">6</span><span style="color:#902000">px</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    <span style="color:#007020;font-weight:bold">display</span>: <span style="color:#007020;font-weight:bold">inline-block</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    <span style="color:#007020;font-weight:bold">transition</span>: <span style="color:#007020;font-weight:bold">background-color</span> <span style="color:#40a070">0.2</span><span style="color:#902000">s</span>, <span style="color:#007020;font-weight:bold">transform</span> <span style="color:#40a070">0.1</span><span style="color:#902000">s</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>  .<span style="color:#0e84b5;font-weight:bold">btn-link</span>:<span style="color:#555;font-weight:bold">hover</span><span style="color:#666">,</span> .<span style="color:#0e84b5;font-weight:bold">btn-link</span>:<span style="color:#555;font-weight:bold">focus</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>    <span style="color:#007020;font-weight:bold">background-color</span>: <span style="color:#40a070">#16a34a</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>    <span style="color:#007020;font-weight:bold">transform</span>: <span style="color:#007020">translateY</span>(<span style="color:#40a070">-1</span><span style="color:#902000">px</span>); <span style="color:#60a0b0;font-style:italic">/* 轻微上浮 */</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>  .<span style="color:#0e84b5;font-weight:bold">btn-link</span>:<span style="color:#555;font-weight:bold">active</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>    <span style="color:#007020;font-weight:bold">background-color</span>: <span style="color:#40a070">#15803d</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>    <span style="color:#007020;font-weight:bold">transform</span>: <span style="color:#007020">translateY</span>(<span style="color:#40a070">0</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>&lt;/<span style="color:#062873;font-weight:bold">style</span>&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>&lt;<span style="color:#062873;font-weight:bold">a</span> <span style="color:#4070a0">href</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;#&#34;</span> <span style="color:#4070a0">class</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;btn-link&#34;</span>&gt;按钮式链接&lt;/<span style="color:#062873;font-weight:bold">a</span>&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>预览：绿色圆角按钮，悬停加深绿色并上浮1px，点击恢复原位且颜色更深。
+</span></span></code></pre></div><style>.btn-link {text-decoration: none;color: white;background-color: #22c55e;padding: 8px 16px;
+    border-radius: 6px;display: inline-block;transition: background-color 0.2s, transform 0.1s;}.btn-link:hover, .btn-link:focus {background-color: #16a34a;transform: translateY(-1px);}
+  .btn-link:active {background-color: #15803d;transform: translateY(0);}</style>
+<h1 id="按钮式链接"><a href="/2025/css-link.htm" class="btn-link">按钮式链接</a></h1>
+<h4 id="5-文字高亮背景色高亮拉幕">5. 文字高亮（背景色高亮拉幕）</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>&lt;<span style="color:#062873;font-weight:bold">style</span>&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>  .<span style="color:#0e84b5;font-weight:bold">highlight-link</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#007020;font-weight:bold">text-decoration</span>: <span style="color:#007020;font-weight:bold">none</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    <span style="color:#007020;font-weight:bold">color</span>: <span style="color:#40a070">#dc2626</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    <span style="color:#007020;font-weight:bold">background</span>: <span style="color:#007020">linear-gradient</span>(<span style="color:#007020;font-weight:bold">to</span> <span style="color:#007020;font-weight:bold">bottom</span>, <span style="color:#40a070">#fee2e2</span> <span style="color:#40a070">0</span><span style="color:#902000">%</span>, <span style="color:#40a070">#fee2e2</span> <span style="color:#40a070">100</span><span style="color:#902000">%</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    <span style="color:#007020;font-weight:bold">background-position</span>: <span style="color:#40a070">0</span> <span style="color:#40a070">100</span><span style="color:#902000">%</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    <span style="color:#007020;font-weight:bold">background-repeat</span>: <span style="color:#007020;font-weight:bold">no-repeat</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    <span style="color:#007020;font-weight:bold">background-size</span>: <span style="color:#40a070">100</span><span style="color:#902000">%</span> <span style="color:#40a070">20</span><span style="color:#902000">%</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    <span style="color:#007020;font-weight:bold">transition</span>: <span style="color:#007020;font-weight:bold">background-size</span> <span style="color:#40a070">0.2</span><span style="color:#902000">s</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>  .<span style="color:#0e84b5;font-weight:bold">highlight-link</span>:<span style="color:#555;font-weight:bold">hover</span><span style="color:#666">,</span> .<span style="color:#0e84b5;font-weight:bold">highlight-link</span>:<span style="color:#555;font-weight:bold">focus</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>    <span style="color:#007020;font-weight:bold">background-size</span>: <span style="color:#40a070">100</span><span style="color:#902000">%</span> <span style="color:#40a070">80</span><span style="color:#902000">%</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>&lt;/<span style="color:#062873;font-weight:bold">style</span>&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>&lt;<span style="color:#062873;font-weight:bold">a</span> <span style="color:#4070a0">href</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;#&#34;</span> <span style="color:#4070a0">class</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;highlight-link&#34;</span>&gt;文字背景高亮链接&lt;/<span style="color:#062873;font-weight:bold">a</span>&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>预览：红色文字，默认底部浅红高亮条，悬停时高亮条扩大至文字大部分区域。
+</span></span></code></pre></div><style>
+  .highlight-link {text-decoration: none;color: #dc2626;background: linear-gradient(to bottom, #fee2e2 0%, #fee2e2 100%);background-position: 0 100%;background-repeat: no-repeat;background-size: 100% 20%;transition: background-size 0.2s;}.highlight-link:hover, .highlight-link:focus {background-size: 100% 80%;}</style>
+<h1 id="文字背景高亮链接向上拉幕"><a href="/2025/css-link.htm" class="highlight-link">文字背景高亮链接向上拉幕</a></h1>
+<h4 id="6-图标链接搭配font-awesome">6. 图标链接（搭配Font Awesome）</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>&lt;<span style="color:#062873;font-weight:bold">link</span> <span style="color:#4070a0">rel</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;stylesheet&#34;</span> <span style="color:#4070a0">href</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css&#34;</span>&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>&lt;<span style="color:#062873;font-weight:bold">style</span>&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>  .<span style="color:#0e84b5;font-weight:bold">icon-link</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    <span style="color:#007020;font-weight:bold">text-decoration</span>: <span style="color:#007020;font-weight:bold">none</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    <span style="color:#007020;font-weight:bold">color</span>: <span style="color:#40a070">#374151</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    <span style="color:#007020;font-weight:bold">display</span>: <span style="color:#007020;font-weight:bold">inline-flex</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    <span style="color:#007020;font-weight:bold">align-items</span>: <span style="color:#007020;font-weight:bold">center</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    <span style="color:#007020;font-weight:bold">gap</span>: <span style="color:#40a070">6</span><span style="color:#902000">px</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    <span style="color:#007020;font-weight:bold">transition</span>: <span style="color:#007020;font-weight:bold">color</span> <span style="color:#40a070">0.2</span><span style="color:#902000">s</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>  .<span style="color:#0e84b5;font-weight:bold">icon-link</span>:<span style="color:#555;font-weight:bold">hover</span><span style="color:#666">,</span> .<span style="color:#0e84b5;font-weight:bold">icon-link</span>:<span style="color:#555;font-weight:bold">focus</span> { <span style="color:#007020;font-weight:bold">color</span>: <span style="color:#40a070">#0ea5e9</span>; }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>&lt;/<span style="color:#062873;font-weight:bold">style</span>&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>&lt;<span style="color:#062873;font-weight:bold">a</span> <span style="color:#4070a0">href</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;#&#34;</span> <span style="color:#4070a0">class</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;icon-link&#34;</span>&gt;&lt;<span style="color:#062873;font-weight:bold">i</span> <span style="color:#4070a0">class</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;fa-solid fa-arrow-right&#34;</span>&gt;&lt;/<span style="color:#062873;font-weight:bold">i</span>&gt; 带图标链接&lt;/<span style="color:#062873;font-weight:bold">a</span>&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>**预览**：左侧带箭头图标，文字灰色，悬停变蓝色，图标与文字间距6px。
+</span></span></code></pre></div><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  .icon-link {
+    text-decoration: none;
+	font-size: 40px;
+    color: #374151;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+  }
+  .icon-link:hover, .icon-link:focus { color: #0ea5e9; }
+</style>
+ <a href="/2025/css-link.htm" class="icon-link"><i class="fa-solid fa-arrow-right"></i> 带图标链接</a>
+<h4 id="7-边框式链接无背景边框">7. 边框式链接（无背景+边框）</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>&lt;<span style="color:#062873;font-weight:bold">style</span>&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>  .<span style="color:#0e84b5;font-weight:bold">border-link</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#007020;font-weight:bold">text-decoration</span>: <span style="color:#007020;font-weight:bold">none</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    <span style="color:#007020;font-weight:bold">color</span>: <span style="color:#40a070">#6366f1</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    <span style="color:#007020;font-weight:bold">border</span>: <span style="color:#40a070">1</span><span style="color:#902000">px</span> <span style="color:#007020;font-weight:bold">solid</span> <span style="color:#40a070">#6366f1</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    <span style="color:#007020;font-weight:bold">padding</span>: <span style="color:#40a070">6</span><span style="color:#902000">px</span> <span style="color:#40a070">12</span><span style="color:#902000">px</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    <span style="color:#007020;font-weight:bold">border-radius</span>: <span style="color:#40a070">4</span><span style="color:#902000">px</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    <span style="color:#007020;font-weight:bold">transition</span>: <span style="color:#007020;font-weight:bold">all</span> <span style="color:#40a070">0.2</span><span style="color:#902000">s</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>  .<span style="color:#0e84b5;font-weight:bold">border-link</span>:<span style="color:#555;font-weight:bold">hover</span><span style="color:#666">,</span> .<span style="color:#0e84b5;font-weight:bold">border-link</span>:<span style="color:#555;font-weight:bold">focus</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    <span style="color:#007020;font-weight:bold">color</span>: <span style="color:#007020;font-weight:bold">white</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>    <span style="color:#007020;font-weight:bold">background-color</span>: <span style="color:#40a070">#6366f1</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>&lt;/<span style="color:#062873;font-weight:bold">style</span>&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>&lt;<span style="color:#062873;font-weight:bold">a</span> <span style="color:#4070a0">href</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;#&#34;</span> <span style="color:#4070a0">class</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;border-link&#34;</span>&gt;边框式链接&lt;/<span style="color:#062873;font-weight:bold">a</span>&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>预览：紫色边框、紫色文字，悬停时背景变紫色、文字变白，过渡平滑。
+</span></span></code></pre></div><style>.border-link {text-decoration: none;color: #6366f1;border: 1px solid #6366f1;padding: 6px 12px;border-radius: 4px;transition: all 0.2s;}
+.border-link:hover, .border-link:focus {color: white;background-color: #6366f1;}</style>
+<h1 id="边框式链接"><a href="/2025/css-link.htm" class="border-link">边框式链接</a></h1>
+<h4 id="8-禁用状态链接">8. 禁用状态链接</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>&lt;<span style="color:#062873;font-weight:bold">style</span>&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>  .<span style="color:#0e84b5;font-weight:bold">disabled-link</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#007020;font-weight:bold">text-decoration</span>: <span style="color:#007020;font-weight:bold">none</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    <span style="color:#007020;font-weight:bold">color</span>: <span style="color:#40a070">#9ca3af</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    <span style="color:#007020;font-weight:bold">cursor</span>: <span style="color:#007020;font-weight:bold">not-allowed</span>; <span style="color:#60a0b0;font-style:italic">/* 禁止指针 */</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    pointer-events: <span style="color:#007020;font-weight:bold">none</span>; <span style="color:#60a0b0;font-style:italic">/* 禁止点击 */</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>&lt;/<span style="color:#062873;font-weight:bold">style</span>&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>&lt;<span style="color:#062873;font-weight:bold">a</span> <span style="color:#4070a0">href</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;#&#34;</span> <span style="color:#4070a0">class</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;disabled-link&#34;</span>&gt;禁用状态链接&lt;/<span style="color:#062873;font-weight:bold">a</span>&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>预览：灰色文字，鼠标移上显示禁止图标，无法点击跳转。
+</span></span></code></pre></div><style>.disabled-link {text-decoration: none;color: #9ca3af;
+    cursor: not-allowed;pointer-events: none;}</style>
+<h1 id="禁用状态链接"><a href="/2025/css-link.htm" class="disabled-link">禁用状态链接</a></h1>
+<h4 id="9折叠下划线链接">9.折叠下划线链接</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>&lt;<span style="color:#062873;font-weight:bold">style</span>&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>  .<span style="color:#0e84b5;font-weight:bold">fold-underline-link</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#007020;font-weight:bold">text-decoration</span>: <span style="color:#007020;font-weight:bold">none</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    <span style="color:#007020;font-weight:bold">color</span>: <span style="color:#40a070">#111827</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    <span style="color:#007020;font-weight:bold">font-size</span>: <span style="color:#40a070">17</span><span style="color:#902000">px</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    <span style="color:#007020;font-weight:bold">position</span>: <span style="color:#007020;font-weight:bold">relative</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>  .<span style="color:#0e84b5;font-weight:bold">fold-underline-link</span>::<span style="color:#555;font-weight:bold">before</span><span style="color:#666">,</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>  .<span style="color:#0e84b5;font-weight:bold">fold-underline-link</span>::<span style="color:#555;font-weight:bold">after</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>    <span style="color:#007020;font-weight:bold">content</span>: <span style="color:#4070a0">&#39;&#39;</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    <span style="color:#007020;font-weight:bold">position</span>: <span style="color:#007020;font-weight:bold">absolute</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>    <span style="color:#007020;font-weight:bold">bottom</span>: <span style="color:#40a070">-2</span><span style="color:#902000">px</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>    <span style="color:#007020;font-weight:bold">width</span>: <span style="color:#40a070">0</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>    <span style="color:#007020;font-weight:bold">height</span>: <span style="color:#40a070">2</span><span style="color:#902000">px</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>    <span style="color:#007020;font-weight:bold">background-color</span>: <span style="color:#40a070">#f97316</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>    <span style="color:#007020;font-weight:bold">transition</span>: <span style="color:#007020;font-weight:bold">width</span> <span style="color:#40a070">0.3</span><span style="color:#902000">s</span> <span style="color:#007020;font-weight:bold">ease</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>  .<span style="color:#0e84b5;font-weight:bold">fold-underline-link</span>::<span style="color:#555;font-weight:bold">before</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>    <span style="color:#007020;font-weight:bold">left</span>: <span style="color:#40a070">50</span><span style="color:#902000">%</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>  .<span style="color:#0e84b5;font-weight:bold">fold-underline-link</span>::<span style="color:#555;font-weight:bold">after</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>    <span style="color:#007020;font-weight:bold">right</span>: <span style="color:#40a070">50</span><span style="color:#902000">%</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>  .<span style="color:#0e84b5;font-weight:bold">fold-underline-link</span>:<span style="color:#555;font-weight:bold">hover</span>::<span style="color:#555;font-weight:bold">before</span><span style="color:#666">,</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>  .<span style="color:#0e84b5;font-weight:bold">fold-underline-link</span>:<span style="color:#555;font-weight:bold">focus</span>::<span style="color:#555;font-weight:bold">before</span><span style="color:#666">,</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>  .<span style="color:#0e84b5;font-weight:bold">fold-underline-link</span>:<span style="color:#555;font-weight:bold">hover</span>::<span style="color:#555;font-weight:bold">after</span><span style="color:#666">,</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span>  .<span style="color:#0e84b5;font-weight:bold">fold-underline-link</span>:<span style="color:#555;font-weight:bold">focus</span>::<span style="color:#555;font-weight:bold">after</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span>    <span style="color:#007020;font-weight:bold">width</span>: <span style="color:#40a070">50</span><span style="color:#902000">%</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span>&lt;/<span style="color:#062873;font-weight:bold">style</span>&gt;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span>&lt;<span style="color:#062873;font-weight:bold">a</span> <span style="color:#4070a0">href</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;#&#34;</span> <span style="color:#4070a0">class</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;fold-underline-link&#34;</span>&gt;折叠下划线链接&lt;/<span style="color:#062873;font-weight:bold">a</span>&gt;
+</span></span></code></pre></div><p>默认无下划线，悬停时底部从中间向左右展开橙色下划线，两段下划线合拢成完整线条。</p>
+<style>.fold-underline-link {text-decoration: none;color: #111827;position: relative;}
+  .fold-underline-link::before,
+  .fold-underline-link::after {content: '';position: absolute;bottom: -2px;width: 0;height: 2px;background-color: #f97316;transition: width 0.3s ease;}
+  .fold-underline-link::before {left: 50%;}
+  .fold-underline-link::after {right: 50%;}
+  .fold-underline-link:hover::before,
+  .fold-underline-link:focus::before,
+  .fold-underline-link:hover::after,
+  .fold-underline-link:focus::after {width: 50%;}</style>
+<h1 id="折叠下划线链接"><a href="/2025/css-link.htm" class="fold-underline-link">折叠下划线链接</a></h1>
+<hr>
+<h3 id="三预览与使用说明">三、预览与使用说明</h3>
+<ol>
+<li>复制对应样式的完整HTML代码，粘贴到空白<code>.html</code>文件中。</li>
+<li>用浏览器打开该文件，即可实时预览效果。</li>
+<li>可通过修改CSS中的颜色值（如<code>#2563eb</code>）、尺寸（<code>padding</code>）、过渡时间（<code>transition</code>）等参数自定义样式。</li>
+</ol>
+<hr>
+<h3 id="四最佳实践">四、最佳实践</h3>
+<ol>
+<li>始终为<code>:focus</code>设置样式，保障键盘导航用户的无障碍体验。</li>
+<li>使用<code>transition</code>添加平滑过渡，避免样式突变。</li>
+<li>按钮式链接建议添加<code>display: inline-block</code>以支持<code>padding</code>与<code>border-radius</code>。</li>
+</ol>
+</content>
+
+
+<p>  标签：
+  <a href="http://ooyang.cn/tags/css/">#Css</a>
+  </p>
+
+  </main>
+  <footer>
+<small><script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+Total visits:<span id="busuanzi_site_pv">load...</span> | 
+Page views:<span id="busuanzi_page_pv">load...</span><br>
+Copyright © 2025 ooyang.cn</small>
+
+</footer>
+
+</body>
+</html>
