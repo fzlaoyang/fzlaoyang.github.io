@@ -29,7 +29,174 @@ var _hmt = _hmt || [];
 
 <h2 style="text-align: center;">免费在线人民币大小写转换工具</h2>
 
-<content><div style="width:700px;margin:0 auto;font-family:Arial,sans-serif;"><div style="text-align:center;font-size:24px;font-weight:bold;margin:20px 0;" id="calendar-title"></div><div style="display:flex;justify-content:center;align-items:center;margin-bottom:10px;gap:15px;"><button onclick="goToday()" style="padding:5px 15px;cursor:pointer;">今天</button><select id="year-select" style="padding:5px;margin-right:5px;"></select><select id="month-select" style="padding:5px;"></select></div><table border="1" cellpadding="5" cellspacing="0" style="width:100%;text-align:center;"><thead><tr><th>日</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th></tr></thead><tbody id="calendar-body"></tbody></table></div><script>document.addEventListener('DOMContentLoaded',function(){var now=new Date();var currentYear=!isNaN(now.getFullYear())?now.getFullYear():new Date().getFullYear();var currentMonth=!isNaN(now.getMonth())?now.getMonth():new Date().getMonth();var lunarInfo=[0x04bd8,0x04ae0,0x0a570,0x054d5,0x0d260,0x0d950,0x16554,0x056a0,0x09ad0,0x055d2,0x04ae0,0x0a5b6,0x0a4d0,0x0d250,0x1d255,0x0b540,0x0d6a0,0x0ada2,0x095b0,0x14977,0x04970,0x0a4b0,0x0b4b5,0x06a50,0x06d40,0x1ab54,0x02b60,0x09570,0x052f2,0x04970,0x06566,0x0d4a0,0x0ea50,0x06e95,0x05ad0,0x02b60,0x186e3,0x092e0,0x1c8d7,0x0c950,0x0d4a0,0x1d8a6,0x0b550,0x056a0,0x1a5b4,0x025d0,0x092d0,0x0d2b2,0x0a950,0x0b557,0x06ca0,0x0b550,0x15355,0x04da0,0x0a5b0,0x14573,0x052b0,0x0a9a8,0x0e950,0x06aa0,0x0aea6,0x0ab50,0x04b60,0x0aae4,0x0a570,0x05260,0x0f263,0x0d950,0x05b57,0x056a0,0x096d0,0x04dd5,0x04ad0,0x0a4d0,0x0d4d4,0x0d250,0x0d558,0x0b540,0x0b5a0,0x195a6,0x095b0,0x049b0,0x0a974,0x0a4b0,0x0b27a,0x06a50,0x06d40,0x0af46,0x0ab60,0x09570,0x04af5,0x04970,0x064b0,0x074a3,0x0ea50,0x06b58,0x055c0,0x0ab60,0x096d5,0x092e0,0x0c960,0x0d954,0x0d4a0,0x0da50,0x07552,0x056a0,0x0abb7,0x025d0,0x092d0,0x0cab5,0x0a950,0x0b4a0,0x0baa4,0x0ad50,0x055d9,0x04ba0,0x0a5b0,0x15176,0x052b0,0x0a930,0x07954,0x06aa0,0x0ad50,0x05b52,0x04b60,0x0a6e6,0x0a4e0,0x0d260,0x0ea65,0x0d530,0x05aa0,0x076a3,0x096d0,0x04bd7,0x04ad0,0x0a4d0,0x1d0b6,0x0d250,0x0d520,0x0dd45,0x0b5a0,0x056d0,0x055b2,0x049b0,0x0a577,0x0a4b0,0x0aa50,0x1b255,0x06d20,0x0ada0];var solarMonth=[31,28,31,30,31,30,31,31,30,31,30,31];var lunarMonths=['正月','二月','三月','四月','五月','六月','七月','八月','九月','十月','冬月','腊月'];var nStr2=['初','十','廿','卅'];var festival=["0101 元旦","0214 情人节","0308 妇女节","0312 植树节","0401 愚人节","0501 劳动节","0504 青年节","0601 儿童节","0701 建党节","0801 建军节","0910 教师节","1001 国庆节","1225 圣诞节"];var jieqi=["0106 小寒","0120 大寒","0204 立春","0218 雨水","0305 惊蛰","0320 春分","0404 清明","0420 谷雨","0505 立夏","0521 小满","0605 芒种","0621 夏至","0707 小暑","0723 大暑","0807 立秋","0823 处暑","0907 白露","0923 秋分","1008 寒露","1023 霜降","1107 立冬","1122 小雪","1207 大雪","1221 冬至"];function isLeapYear(y){return(y%4===0&&y%100!==0)||(y%400===0);}function getSolarDays(y,m){return m===1?(isLeapYear(y)?29:28):solarMonth[m];}function getLunarYearDays(y){var sum=354;for(var i=0x8000;i>0x8;i>>=1){sum+=(lunarInfo[y-1900]&i)?1:0;}return sum+leapDays(y);}function leapDays(y){return leapMonth(y)?(lunarInfo[y-1900]&0x10000?30:29):0;}function leapMonth(y){return lunarInfo[y-1900]&0xf;}function getLunarMonthDays(y,m){return(lunarInfo[y-1900]&(0x10000>>m))?30:29;}function solar2lunar(solarYear,solarMonth,solarDay){var lunarYear,lunarMonth,lunarDay,isLeap=false;var i,leap=0,temp=0;var baseDate=new Date(1900,0,31);var targetDate=new Date(solarYear,solarMonth,solarDay);var offset=Math.floor((targetDate-baseDate)/86400000);for(i=1900;i<2100&&offset>0;i++){temp=getLunarYearDays(i);offset-=temp;}if(offset<0){offset+=temp;i--;}lunarYear=i;leap=leapMonth(lunarYear);for(i=1;i<13&&offset>0;i++){if(leap>0&&i===leap+1&&!isLeap){i--;isLeap=true;temp=leapDays(lunarYear);}else{temp=getLunarMonthDays(lunarYear,i);}if(isLeap&&i===leap+1)isLeap=false;offset-=temp;}if(offset<0){offset+=temp;i--;}lunarMonth=i;lunarDay=offset+1;isLeap=(leap===lunarMonth);return{year:lunarYear,month:lunarMonth,day:lunarDay,isLeap:isLeap};}function getLunarDayStr(day){if(day===10)return'初十';if(day===20)return'二十';if(day===30)return'三十';return nStr2[Math.floor(day/10)]+(day%10===0?'十':['一','二','三','四','五','六','七','八','九'][day%10-1]);}function getLunarMonthStr(month,isLeap){return isLeap?'闰'+lunarMonths[month-1]:lunarMonths[month-1];}function getFestStr(m,d){var md=(m<10?'0'+m:m)+(d<10?'0'+d:d);var s='';for(var i=0;i<festival.length;i++){if(festival[i].substring(0,4)===md)s=festival[i].substring(5);}for(var i=0;i<jieqi.length;i++){if(jieqi[i].substring(0,4)===md)s=jieqi[i].substring(5);}return s;}function drawCalendar(y,m){var titleEl=document.getElementById('calendar-title');if(titleEl)titleEl.innerText=y+'年'+(m+1)+'月';var body=document.getElementById('calendar-body');if(!body)return;body.innerHTML='';var firstDay=new Date(y,m,1).getDay();var days=getSolarDays(y,m);var rows=Math.ceil((firstDay+days)/7);var cell=0;for(var i=0;i<rows;i++){var tr=document.createElement('tr');for(var j=0;j<7;j++){var td=document.createElement('td');if(i===0&&j<firstDay){td.innerHTML='';}else if(cell>=days){td.innerHTML='';}else{var d=cell+1;var lunar=solar2lunar(y,m,d);var lunarDay=getLunarDayStr(lunar.day);var lunarMonth=getLunarMonthStr(lunar.month,lunar.isLeap);var fest=getFestStr(m+1,d);td.innerHTML=d+'<br/>'+lunarMonth+' '+lunarDay+'<br/>'+fest;if(new Date(y,m,d).toDateString()===now.toDateString()){td.style.backgroundColor='#ffffcc';}cell++;}tr.appendChild(td);}body.appendChild(tr);}function goToday(){var today=new Date();currentYear=today.getFullYear();currentMonth=today.getMonth();updateSelectors();drawCalendar(currentYear,currentMonth);}function initSelectors(){var yearSel=document.getElementById('year-select');var monthSel=document.getElementById('month-select');if(!yearSel||!monthSel)return;yearSel.innerHTML='';monthSel.innerHTML='';for(var y=1900;y<=2100;y++){var opt=document.createElement('option');opt.value=y;opt.text=y;yearSel.appendChild(opt);}for(var m=0;m<12;m++){var opt=document.createElement('option');opt.value=m;opt.text=m+1;monthSel.appendChild(opt);}updateSelectors();}function updateSelectors(){var yearSel=document.getElementById('year-select');var monthSel=document.getElementById('month-select');if(yearSel)yearSel.value=currentYear;if(monthSel)monthSel.value=currentMonth;}document.getElementById('year-select').addEventListener('change',function(){currentYear=parseInt(this.value)||new Date().getFullYear();drawCalendar(currentYear,currentMonth);});document.getElementById('month-select').addEventListener('change',function(){currentMonth=parseInt(this.value)||new Date().getMonth();drawCalendar(currentYear,currentMonth);});initSelectors();drawCalendar(currentYear,currentMonth);});</script></content>
+<content><style>
+* {box-sizing: border-box;margin: 0;padding: 0;}
+
+.converter-box {margin: 0 auto;width: 100%;background-color: #fff;padding: 30px;border-radius: 10px;box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);}
+h1 {color: #333;margin-bottom: 25px;font-size: 22px;}
+.input-group {margin-bottom: 20px;}
+label {display: block;margin-bottom: 8px;color: #666;font-size: 14px;}input, textarea {width: 100%;padding: 12px 15px;border: 1px solid #ddd;border-radius: 6px;font-size: 16px;outline: none;}
+input:focus, textarea:focus {border-color: #409eff;}textarea {min-height: 100px;resize: none;}button {width: 100%;padding: 12px;background-color: #409eff;
+color: #fff;border: none;border-radius: 6px;font-size: 16px;cursor: pointer;transition: background-color 0.3s;}
+button:hover {background-color: #337ecc;}
+.tip {margin-top: 15px;font-size: 12px;color: #999;text-align: center;
+}</style>
+<div class="converter-box">
+<div class="input-group">
+<label for="number-input">请输入小写金额（支持小数点后两位）</label>
+<input type="text" id="number-input" placeholder="例如：12345.67">
+</div>
+<div class="input-group">
+<label for="chinese-output">大写金额结果</label>
+<textarea id="chinese-output" readonly placeholder="转换后的大写金额将显示在这里"></textarea>
+</div>
+<button id="convert-btn">点击转换(回车)</button>
+<p class="tip">提示：仅支持正数，最大支持到万亿级别</p>
+</div>
+<script>
+function numberToChinese(money) {
+const reg = /^(0|[1-9]\d*)(\.\d{1,2})?$/;
+if (!reg.test(money)) {
+return "输入格式错误，请输入正确的小写金额（最多两位小数）";
+}
+const digitChinese = ["零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"];
+const unit = ["", "拾", "佰", "仟", "万", "拾", "佰", "仟", "亿", "拾", "佰", "仟", "万"];
+const decimalUnit = ["角", "分"];
+let [integerPart, decimalPart] = money.split(".");
+decimalPart = decimalPart || "";
+let result = "";
+if (integerPart !== "0") {
+for (let i = 0; i < integerPart.length; i++) {
+const digit = integerPart[i];
+const pos = integerPart.length - 1 - i;
+if (digit !== "0") {
+result += digitChinese[digit] + unit[pos];
+} else {
+if (i < integerPart.length - 1 && integerPart[i + 1] !== "0") {
+result += digitChinese[digit];
+}
+}
+}
+result += "元";
+} else {
+result = "零元";
+}
+if (decimalPart.length >= 1) {
+const jiao = decimalPart[0];
+if (jiao !== "0") {
+result += digitChinese[jiao] + decimalUnit[0];
+} else if (integerPart !== "0" && decimalPart[1] !== "0") {
+result += digitChinese[jiao];
+}
+}
+if (decimalPart.length >= 2) {
+const fen = decimalPart[1];
+if (fen !== "0") {
+result += digitChinese[fen] + decimalUnit[1];
+}
+}
+if (decimalPart === "") {
+result += "整";
+}
+return result;
+}
+const inputEle = document.getElementById("number-input");
+const outputEle = document.getElementById("chinese-output");
+const btnEle = document.getElementById("convert-btn");
+btnEle.addEventListener("click", function() {
+const inputValue = inputEle.value.trim();
+if (!inputValue) {
+outputEle.value = "请输入小写金额";
+return;
+}
+const chineseResult = numberToChinese(inputValue);
+outputEle.value = chineseResult;
+});
+inputEle.addEventListener("keydown", function(e) {
+if (e.key === "Enter") {
+btnEle.click();
+}
+});
+</script>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">币种</th>
+          <th style="text-align: left">缩写</th>
+          <th style="text-align: left">货币符号</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">人民币</td>
+          <td style="text-align: left">RMB(CNY)</td>
+          <td style="text-align: left">¥</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">美元</td>
+          <td style="text-align: left">USD</td>
+          <td style="text-align: left">$</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">欧元</td>
+          <td style="text-align: left">EUR</td>
+          <td style="text-align: left">€</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">英镑</td>
+          <td style="text-align: left">GBP</td>
+          <td style="text-align: left">￡</td>
+      </tr>
+  </tbody>
+</table>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">币种</th>
+          <th style="text-align: left">缩写</th>
+          <th style="text-align: left">币种</th>
+          <th style="text-align: left">缩写</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">0</td>
+          <td style="text-align: left">零</td>
+          <td style="text-align: left">5</td>
+          <td style="text-align: left">伍</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">1</td>
+          <td style="text-align: left">壹</td>
+          <td style="text-align: left">6</td>
+          <td style="text-align: left">陆</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">2</td>
+          <td style="text-align: left">贰</td>
+          <td style="text-align: left">7</td>
+          <td style="text-align: left">柒</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">3</td>
+          <td style="text-align: left">叁</td>
+          <td style="text-align: left">8</td>
+          <td style="text-align: left">捌</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">4</td>
+          <td style="text-align: left">肆</td>
+          <td style="text-align: left">9</td>
+          <td style="text-align: left">玖</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="人民币大写-使用说明">人民币大写-使用说明：</h3>
+<ul>
+<li>1、正确的大写金额数字为：壹、贰、叁、肆、伍、陆、柒、捌、玖、拾、佰、仟、万、亿、元、角、分、零、整(正)等。</li>
+<li>2、中文大写金额数字前应加上“人民币”字样，大写金额数字紧接“人民币”字样，不可留有空白。例如：人民币贰拾万陆仟元零柒角伍分。</li>
+</ul>
+</content>
 
 
 <p>  标签：
