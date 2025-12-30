@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="http://ooyang.cn/favicon.ico" />
+<title>计算器 | 福州老杨</title>
+<meta name="title" content="计算器" />
+<meta name="description" content="在线网页计算器" />
+<meta name="keywords" content="Tool," />
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?2593792a8d16bc9ab393449c82b032f8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<link rel="stylesheet" type="text/css" href="/css/bearblog.css">
+
+</head>
+<body>
+  <header>    <div class="overlay"></div>
+	<a href="/" class="title" title="福州老杨"><h1>OOyang</h1></a>
+<nav><a href="/" title="首页">Home</a><a href="/a" target="_blank" title="Website网址导航">Navigation</a><a href="/posts" title="文章列表">Article</a><a href="/about" title="关于我们">About Us</a><a href="https://github.com/fzlaoyang/BBS/issues/1" target="_blank" title="联系我们">Contact</a><hr></nav>
+</header>
+  <main>
+
+<h2 style="text-align: center;">计算器</h2>
+
+<content><style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Arial",sans-serif;}
+.calculator{margin: auto;width:360px;background-color:#2c3e50;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.3);padding:24px;}
+.display{width:100%;height:100px;background-color:#ecf0f1;border-radius:8px;margin-bottom:20px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-end;overflow:hidden;}
+.display-history{font-size:16px;color:#7f8c8d;height:24px;}
+.display-current{font-size:32px;font-weight:bold;color:#2c3e50;}
+.buttons{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+button{width:100%;height:60px;border:none;border-radius:8px;font-size:20px;cursor:pointer;transition:all 0.2s ease;}
+button:hover{opacity:0.9;transform:translateY(-2px);}
+.btn-clear{background-color:#e74c3c;color:white;grid-column:span 2;}
+.btn-delete{background-color:#f39c12;color:white;}
+.btn-operator{background-color:#3498db;color:white;}
+.btn-equal{background-color:#2ecc71;color:white;grid-column:span 2;}
+.btn-number,.btn-dot{background-color:#bdc3c7;color:#2c3e50;}
+</style>
+<div class="calculator">
+<div class="display">
+<div class="display-history" id="historyDisplay"></div>
+<div class="display-current" id="currentDisplay">0</div>
+</div>
+<div class="buttons">
+<button class="btn-clear" data-key="C">AC</button>
+<button class="btn-delete" data-key="Backspace">←</button>
+<button class="btn-operator" data-key="/">÷</button>
+<button class="btn-number" data-key="7">7</button>
+<button class="btn-number" data-key="8">8</button>
+<button class="btn-number" data-key="9">9</button>
+<button class="btn-operator" data-key="*">×</button>
+<button class="btn-number" data-key="4">4</button>
+<button class="btn-number" data-key="5">5</button>
+<button class="btn-number" data-key="6">6</button>
+<button class="btn-operator" data-key="-">-</button>
+<button class="btn-number" data-key="1">1</button>
+<button class="btn-number" data-key="2">2</button>
+<button class="btn-number" data-key="3">3</button>
+<button class="btn-operator" data-key="+">+</button>
+<button class="btn-number" data-key="0">0</button>
+<button class="btn-dot" data-key=".">.</button>
+<button class="btn-equal" data-key="Enter">=</button>
+</div>
+</div>
+<script>
+const currentDisplay=document.getElementById('currentDisplay');
+const historyDisplay=document.getElementById('historyDisplay');
+const buttons=document.querySelectorAll('button');
+let currentValue='0';
+let historyValue='';
+let operator='';
+let resetCurrent=false;
+function initCalculator(){buttons.forEach(btn=>{btn.addEventListener('click',()=>handleButtonClick(btn.dataset.key));});window.addEventListener('keydown',handleKeyboardInput);}
+function handleButtonClick(key){processInput(key);}
+function handleKeyboardInput(e){e.preventDefault();const key=e.key;const validKeys=['0','1','2','3','4','5','6','7','8','9','+','-','*','/','.', 'Enter', 'Backspace', 'C'];if(validKeys.includes(key)){processInput(key);}}
+function processInput(key){switch(true){case /[0-9]/.test(key):handleNumber(key);break;case key==='.':handleDot();break;case ['+','-','*','/'].includes(key):handleOperator(key);break;case key==='Enter':handleEqual();break;case key==='C':handleClear();break;case key==='Backspace':handleBackspace();break;}updateDisplay();}
+function handleNumber(num){if(currentValue==='0'||resetCurrent){currentValue=num;resetCurrent=false;}else{currentValue+=num;}}
+function handleDot(){if(!currentValue.includes('.')){if(resetCurrent){currentValue='0.';resetCurrent=false;}else{currentValue+='.';}}}
+function handleOperator(op){if(operator&&!resetCurrent){handleEqual();}historyValue=currentValue;operator=op;resetCurrent=true;historyDisplay.textContent=`${historyValue} ${getDisplayOperator(op)}`;}
+function handleEqual(){if(!operator||resetCurrent)return;const num1=parseFloat(historyValue);const num2=parseFloat(currentValue);let result=0;if(operator==='/'&&num2===0){currentValue='错误';historyValue='';operator='';resetCurrent=true;return;}switch(operator){case '+':result=num1+num2;break;case '-':result=num1-num2;break;case '*':result=num1*num2;break;case '/':result=num1/num2;break;}result=parseFloat(result.toFixed(10));result=result%1===0?parseInt(result):result;historyValue=`${historyValue} ${getDisplayOperator(operator)} ${currentValue}`;currentValue=result.toString();operator='';resetCurrent=true;}
+function handleClear(){currentValue='0';historyValue='';operator='';resetCurrent=false;}
+function handleBackspace(){if(currentValue==='错误'){currentValue='0';return;}if(currentValue.length===1||resetCurrent){currentValue='0';resetCurrent=false;}else{currentValue=currentValue.slice(0,-1);}}
+function getDisplayOperator(op){switch(op){case '*':return '×';case '/':return '÷';default:return op;}}
+function updateDisplay(){currentDisplay.textContent=currentValue;if(historyValue&&operator){historyDisplay.textContent=`${historyValue} ${getDisplayOperator(operator)}`;}else if(historyValue&&!operator){historyDisplay.textContent=`${historyValue} =`;}else{historyDisplay.textContent='';}}
+initCalculator();
+</script>
+</content>
+
+
+<p>  标签：
+  <a href="http://ooyang.cn/tags/tool/">#Tool</a>
+  </p>
+
+  </main>
+  <footer>
+<small><script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+Total visits:<span id="busuanzi_site_pv">load...</span> | 
+Page views:<span id="busuanzi_page_pv">load...</span><br>
+Copyright © 2025 ooyang.cn</small>
+
+</footer>
+
+</body>
+</html>
