@@ -132,32 +132,23 @@
         }
 
         // 步骤3：加载FC ROM文件（核心：需替换为你的合法ROM路径）
-        async function loadGameRom() {
-            try {
-                // ！！！关键：替换为你的 .nes 格式ROM文件路径（本地文件需通过HTTP服务器运行，不可直接双击打开）
-                const romUrl = "/game/contra1.nes"; // 示例："./contra1.nes"
-
-                // 1. 发送请求获取ROM二进制数据
-                const response = await fetch(romUrl);
-                if (!response.ok) {
-                    throw new Error("ROM文件加载失败，请检查路径是否正确");
-                }
-
-                // 2. 将响应转换为Uint8Array（JSNES要求的ROM数据格式）
-                romData = new Uint8Array(await response.arrayBuffer());
-
-                // 3. 加载ROM到模拟器中
-                nes.loadROM(romData);
-
-                // 4. 启动模拟器运行循环
-                runNES();
-
-                alert("游戏加载成功，开始畅玩吧！");
-            } catch (error) {
-                console.error("游戏加载异常：", error);
-                alert("游戏加载失败：" + error.message);
-            }
+ async function loadGameRom() {
+    try {
+        const romUrl = "https://ooyang.cn/game/contra1.nes";
+        const response = await fetch(romUrl);
+        // 打印请求状态（关键）
+        console.log("ROM请求状态码：", response.status);
+        console.log("ROM请求状态文本：", response.statusText);
+        
+        if (!response.ok) {
+            throw new Error(`ROM文件加载失败，状态码：${response.status}，原因：${response.statusText}`);
         }
+        // 后续代码不变...
+    } catch (error) {
+        console.error("游戏加载异常：", error);
+        alert("游戏加载失败：" + error.message + "（请打开控制台查看详细信息）");
+    }
+}
 
         // 步骤4：启动模拟器运行循环，保持游戏持续渲染
         function runNES() {
