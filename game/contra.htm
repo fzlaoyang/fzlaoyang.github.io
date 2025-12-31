@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简易FC游戏模拟器 - 魂斗罗（核心复刻）</title>
+    <style>
+        /* 简化样式，保证核心布局清晰 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        #nes-canvas {
+            border: 3px solid #333;
+            background-color: #000;
+            /* 缩放Canvas，让画面更清晰 */
+            image-rendering: pixelated;
+            width: 512px;
+            height: 482px;
+            margin-bottom: 20px;
+        }
+        .control-tips {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        .control-tips h3 {
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .control-tips ul {
+            list-style: none;
+            color: #333;
+            line-height: 1.6;
+        }
+        .btn-start {
+            padding: 10px 30px;
+            background-color: #2c85ff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn-start:hover {
+            background-color: #1a73e8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>简易FC游戏模拟器</h1>
+        <!-- 游戏画面渲染核心：Canvas -->
+        <canvas id="nes-canvas" width="256" height="241"></canvas>
+        
+        <!-- 开始游戏按钮 -->
+        <button class="btn-start" id="start-game">加载游戏</button>
+        
+        <!-- 按键说明 -->
+        <div class="control-tips">
+            <h3>按键控制说明</h3>
+            <ul>
+                <li>移动：W（上）、A（左）、S（下）、D（右）</li>
+                <li>游戏操作：J（B键/射击）、K（A键/跳跃）</li>
+                <li>游戏控制：Enter（开始）、Shift（选择）</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 1. 引入JSNES核心模拟器（CDN版本，无需本地下载） -->
+    <script src="https://cdn.jsdelivr.net/npm/jsnes@1.1.0/dist/jsnes.min.js"></script>
+    <script>
+        // 全局变量定义
+        let nes; // JSNES模拟器实例
+        let canvas; // Canvas元素对象
+        let ctx; // Canvas 2D上下文
+        let romData = null; // ROM文件二进制数据
+
+        // 步骤1：页面加载完成后，初始化基础资源
+        window.onload = function() {
+            // 获取Canvas元素和2D上下文
+            canvas = document.getElementById('nes-canvas');
+            ctx = canvas.getContext('2d');
+
+            // 绑定开始游戏按钮点击事件
+            document.getElementById('start-game').addEventListener('click', loadGameRom);
+
+            // 提前初始化模拟器（配置基础参数）
+            initNES();
+        };
+
+        // 步骤2：初始化JSNES模拟器，配置渲染、音频、按键映射
+        function initNES() {
+            // 创建JSNES模拟器实例
+            nes = new JSNES.NES({
+                // 核心：帧渲染回调（模拟器每生成一帧画面，就调用此方法绘制到Canvas）
+                onFrame: function(frameBuffer) {
+                    // 创建ImageData对象，存储帧像素数据（256x241 对应FC画面分辨率）
+                    const imageData = ctx.createImageData(256, 241);
+                    // 将模拟器输出的帧缓冲区数据复制到ImageData中
+                    imageData.data.set(frameBuffer);
+                    // 将ImageData绘制到Canvas画布上
+                    ctx.putImageData(imageData, 0, 0);
+                },
+                // 音频回调（简化：禁用音频，避免跨域/资源问题，如需启用可补充配置）
+                onAudioSample: function(left, right) {},
+                // 帧率配置（对应FC主机帧率，保持游戏运行速度正常）
+                frameRate: 60
+            });
+
+            // 绑定键盘事件（按键按下/抬起，映射到FC手柄）
+            bindKeyboardEvents();
+        }
+
+        // 步骤3：加载FC ROM文件（核心：需替换为你的合法ROM路径）
+        async function loadGameRom() {
+            try {
+                // ！！！关键：替换为你的 .nes 格式ROM文件路径（本地文件需通过HTTP服务器运行，不可直接双击打开）
+                const romUrl = "/game/contra1.nes"; // 示例："./contra1.nes"
+
+                // 1. 发送请求获取ROM二进制数据
+                const response = await fetch(romUrl);
+                if (!response.ok) {
+                    throw new Error("ROM文件加载失败，请检查路径是否正确");
+                }
+
+                // 2. 将响应转换为Uint8Array（JSNES要求的ROM数据格式）
+                romData = new Uint8Array(await response.arrayBuffer());
+
+                // 3. 加载ROM到模拟器中
+                nes.loadROM(romData);
+
+                // 4. 启动模拟器运行循环
+                runNES();
+
+                alert("游戏加载成功，开始畅玩吧！");
+            } catch (error) {
+                console.error("游戏加载异常：", error);
+                alert("游戏加载失败：" + error.message);
+            }
+        }
+
+        // 步骤4：启动模拟器运行循环，保持游戏持续渲染
+        function runNES() {
+            // 使用requestAnimationFrame实现平滑循环（适配浏览器刷新率）
+            function frameLoop() {
+                // 模拟器运行一帧（处理CPU指令、生成画面数据）
+                nes.frame();
+                // 递归调用，保持循环运行
+                requestAnimationFrame(frameLoop);
+            }
+
+            // 启动循环
+            frameLoop();
+        }
+
+        // 步骤5：绑定键盘事件，实现“浏览器键盘”到“FC手柄”的映射
+        function bindKeyboardEvents() {
+            // 按键按下事件
+            document.addEventListener('keydown', function(e) {
+                switch (e.key.toLowerCase()) {
+                    // 移动按键映射
+                    case 'w': nes.buttonDown(0, JSNES.Controller.BUTTON.UP); break;
+                    case 'a': nes.buttonDown(0, JSNES.Controller.BUTTON.LEFT); break;
+                    case 's': nes.buttonDown(0, JSNES.Controller.BUTTON.DOWN); break;
+                    case 'd': nes.buttonDown(0, JSNES.Controller.BUTTON.RIGHT); break;
+                    // 操作按键映射
+                    case 'j': nes.buttonDown(0, JSNES.Controller.BUTTON.B); break;
+                    case 'k': nes.buttonDown(0, JSNES.Controller.BUTTON.A); break;
+                    // 控制按键映射
+                    case 'shift': nes.buttonDown(0, JSNES.Controller.BUTTON.SELECT); break;
+                    case 'enter': nes.buttonDown(0, JSNES.Controller.BUTTON.START); break;
+                }
+            });
+
+            // 按键抬起事件（避免按键持续触发）
+            document.addEventListener('keyup', function(e) {
+                switch (e.key.toLowerCase()) {
+                    // 移动按键映射
+                    case 'w': nes.buttonUp(0, JSNES.Controller.BUTTON.UP); break;
+                    case 'a': nes.buttonUp(0, JSNES.Controller.BUTTON.LEFT); break;
+                    case 's': nes.buttonUp(0, JSNES.Controller.BUTTON.DOWN); break;
+                    case 'd': nes.buttonUp(0, JSNES.Controller.BUTTON.RIGHT); break;
+                    // 操作按键映射
+                    case 'j': nes.buttonUp(0, JSNES.Controller.BUTTON.B); break;
+                    case 'k': nes.buttonUp(0, JSNES.Controller.BUTTON.A); break;
+                    // 控制按键映射
+                    case 'shift': nes.buttonUp(0, JSNES.Controller.BUTTON.SELECT); break;
+                    case 'enter': nes.buttonUp(0, JSNES.Controller.BUTTON.START); break;
+                }
+            });
+        }
+    </script>
+</body>
+</html>

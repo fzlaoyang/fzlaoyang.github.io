@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="http://localhost:1313/favicon.ico" />
+<title>俄罗斯方块 | 福州老杨</title>
+<meta name="title" content="俄罗斯方块" />
+<meta name="description" content="在线玩俄罗斯方块！俄罗斯方块, Tetromino, 清除行, 方块旋转, 掉落方块, 游戏网格, 等级进展, 高分, 堆叠策略," />
+<meta name="keywords" content="Game," />
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?2593792a8d16bc9ab393449c82b032f8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<link rel="stylesheet" type="text/css" href="/css/bearblog.css">
+
+</head>
+<body>
+  <header>    <div class="overlay"></div>
+	<a href="/" class="title" title="福州老杨"><h1>OOyang</h1></a>
+<nav><a href="/" title="首页">Home</a><a href="/a" target="_blank" title="Website网址导航">Navigation</a><a href="/posts" title="文章列表">Article</a><a href="/about" title="关于我们">About Us</a><a href="https://github.com/fzlaoyang/BBS/issues/1" target="_blank" title="联系我们">Contact</a><hr></nav>
+</header>
+  <main>
+
+<h2 style="text-align: center;">俄罗斯方块</h2>
+
+<content><style>
+* {margin: 0;padding: 0;box-sizing: border-box;}
+.game-container {display: flex;gap: 30px;align-items: flex-start;background-color: #f8f9fa;padding: 25px;border-radius: 12px;box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);}
+        #game-board {border: 2px solid #2c3e50;background-color: #f0f0f0;border-radius: 4px;}
+        .game-info {display: flex;flex-direction: column;gap: 20px;}
+        .info-card {border: 2px solid #2c3e50;padding: 18px;border-radius: 10px;background-color: #ffffff;min-width: 180px;box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);}
+        .info-card h3 {margin-bottom: 12px;color: #3498db;text-align: center;font-weight: 600;}
+        .info-card p {margin: 8px 0;display: flex;justify-content: space-between;font-size: 15px;}
+        .info-card span {color: #2c3e50;font-weight: 500;}
+        .control-tips {font-size: 14px;color: #666666;margin-top: 10px;line-height: 1.8;}
+        .btn-group {display: flex;gap: 10px;justify-content: center;margin-top: 15px;}
+        button {padding: 9px 18px;border: none;border-radius: 6px;background-color: #3498db;color: #ffffff;font-weight: bold;cursor: pointer;transition: all 0.3s;font-size: 14px;}
+        button:hover {background-color: #2980b9;transform: translateY(-2px);}
+        button:disabled {background-color: #bdc3c7;cursor: not-allowed;transform: none;}
+    </style>
+<div class="game-container">
+        <canvas id="game-board" width="300" height="600"></canvas>
+        <div class="game-info">
+            <div class="info-card">
+                <h3>游戏数据</h3>
+                <p>得分: <span id="score">0</span></p>
+                <p>等级: <span id="level">1</span></p>
+                <p>已消除行数: <span id="lines">0</span></p>
+            </div>
+            <div class="info-card">
+                <h3>操作说明</h3>
+                <div class="control-tips">
+                    <p>← 左移 | → 右移</p>
+                    <p>↓ 加速下落 | ↑ 旋转</p>
+                    <p>空格 直接落地</p>
+                </div>
+                <div class="btn-group">
+                    <button id="start-btn">开始游戏</button>
+                    <button id="pause-btn" disabled>暂停游戏</button>
+                </div>
+            </div>
+        </div>
+    <script>
+        const canvas = document.getElementById('game-board');
+        const ctx = canvas.getContext('2d');
+        const scoreElement = document.getElementById('score');
+        const levelElement = document.getElementById('level');
+        const linesElement = document.getElementById('lines');
+        const startBtn = document.getElementById('start-btn');
+        const pauseBtn = document.getElementById('pause-btn');
+        const BLOCK_SIZE = 30;
+        const COLS = canvas.width / BLOCK_SIZE;
+        const ROWS = canvas.height / BLOCK_SIZE;
+        const TETROMINOS = {
+            I: {shape: [[0,0,0,0],[1,1,1,1],[0,0,0,0],[0,0,0,0]],color: '#00ffff'},
+            J: {shape: [[1,0,0],[1,1,1],[0,0,0]],color: '#0000ff'},
+            L: {shape: [[0,0,1],[1,1,1],[0,0,0]],color: '#ffa500'},
+            O: {shape: [[1,1],[1,1]],color: '#ffff00'},
+            S: {shape: [[0,1,1],[1,1,0],[0,0,0]],color: '#00ff00'},
+            T: {shape: [[0,1,0],[1,1,1],[0,0,0]],color: '#800080'},
+            Z: {shape: [[1,1,0],[0,1,1],[0,0,0]],color: '#ff0000'}
+        };
+        let board = [];
+        let currentTetromino = null;
+        let currentX = 0;
+        let currentY = 0;
+        let score = 0;
+        let level = 1;
+        let linesCleared = 0;
+        let dropInterval = 1000;
+        let dropTimer = null;
+        let isGameRunning = false;
+        let isGamePaused = false;
+        function initBoard() {
+            board = [];
+            for (let y = 0; y < ROWS; y++) {
+                board[y] = [];
+                for (let x = 0; x < COLS; x++) {
+                    board[y][x] = 0;
+                }
+            }
+        }
+        function generateRandomTetromino() {
+            const tetrominoKeys = Object.keys(TETROMINOS);
+            const randomKey = tetrominoKeys[Math.floor(Math.random() * tetrominoKeys.length)];
+            const tetromino = TETROMINOS[randomKey];
+            return {shape: JSON.parse(JSON.stringify(tetromino.shape)),color: tetromino.color};
+        }
+        function spawnTetromino() {
+            currentTetromino = generateRandomTetromino();
+            currentX = Math.floor(COLS / 2) - Math.floor(currentTetromino.shape[0].length / 2);
+            currentY = 0;
+            if (checkCollision(currentTetromino.shape, currentX, currentY)) {
+                gameOver();
+            }
+        }
+        function checkCollision(shape, posX, posY) {
+            for (let y = 0; y < shape.length; y++) {
+                for (let x = 0; x < shape[y].length; x++) {
+                    if (shape[y][x] !== 0) {
+                        const newX = posX + x;
+                        const newY = posY + y;
+                        if (newX < 0 || newX >= COLS || newY >= ROWS || (newY >= 0 && board[newY][newX] !== 0)) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+        function drawBlock(x, y, color) {
+            ctx.fillStyle = color;
+            ctx.fillRect(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE - 1, BLOCK_SIZE - 1);
+            ctx.strokeStyle = '#333333';
+            ctx.strokeRect(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE - 1, BLOCK_SIZE - 1);
+        }
+        function drawBoard() {
+            for (let y = 0; y < ROWS; y++) {
+                for (let x = 0; x < COLS; x++) {
+                    if (board[y][x] !== 0) {
+                        drawBlock(x, y, board[y][x]);
+                    }
+                }
+            }
+        }
+        function drawCurrentTetromino() {
+            const shape = currentTetromino.shape;
+            const color = currentTetromino.color;
+            for (let y = 0; y < shape.length; y++) {
+                for (let x = 0; x < shape[y].length; x++) {
+                    if (shape[y][x] !== 0) {
+                        drawBlock(currentX + x, currentY + y, color);
+                    }
+                }
+            }
+        }
+        function rotateTetromino() {
+            if (!currentTetromino || isGamePaused) return;
+            const originalShape = JSON.parse(JSON.stringify(currentTetromino.shape));
+            const rotatedShape = [];
+            const shapeSize = originalShape.length;
+            for (let x = 0; x < shapeSize; x++) {
+                rotatedShape[x] = [];
+                for (let y = 0; y < shapeSize; y++) {
+                    rotatedShape[x][y] = originalShape[shapeSize - 1 - y][x];
+                }
+            }
+            if (!checkCollision(rotatedShape, currentX, currentY)) {
+                currentTetromino.shape = rotatedShape;
+            }
+        }
+        function lockTetromino() {
+            const shape = currentTetromino.shape;
+            const color = currentTetromino.color;
+            for (let y = 0; y < shape.length; y++) {
+                for (let x = 0; x < shape[y].length; x++) {
+                    if (shape[y][x] !== 0) {
+                        const boardX = currentX + x;
+                        const boardY = currentY + y;
+                        if (boardY >= 0) {
+                            board[boardY][boardX] = color;
+                        }
+                    }
+                }
+            }
+            clearLines();
+            spawnTetromino();
+        }
+        function clearLines() {
+            let linesToClear = 0;
+            for (let y = ROWS - 1; y >= 0; y--) {
+                if (board[y].every(cell => cell !== 0)) {
+                    linesToClear++;
+                    board.splice(y, 1);
+                    board.unshift(Array(COLS).fill(0));
+                    y++;
+                }
+            }
+            if (linesToClear > 0) {
+                linesCleared += linesToClear;
+                linesElement.textContent = linesCleared;
+                const lineScores = [0, 100, 300, 500, 800];
+                score += lineScores[linesToClear] * level;
+                scoreElement.textContent = score;
+                const newLevel = Math.floor(linesCleared / 10) + 1;
+                if (newLevel !== level) {
+                    level = newLevel;
+                    levelElement.textContent = level;
+                    dropInterval = Math.max(200, 1000 - (level - 1) * 80);
+                    if (isGameRunning && !isGamePaused) {
+                        clearInterval(dropTimer);
+                        startDropTimer();
+                    }
+                }
+            }
+        }
+        function moveDown() {
+            if (!isGameRunning || isGamePaused) return;
+            currentY++;
+            if (checkCollision(currentTetromino.shape, currentX, currentY)) {
+                currentY--;
+                lockTetromino();
+            }
+        }
+        function startDropTimer() {
+            dropTimer = setInterval(() => {
+                moveDown();
+                drawGame();
+            }, dropInterval);
+        }
+        function drawGame() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawBoard();
+            drawCurrentTetromino();
+        }
+        function startGame() {
+            score = 0;
+            level = 1;
+            linesCleared = 0;
+            dropInterval = 1000;
+            isGameRunning = true;
+            isGamePaused = false;
+            scoreElement.textContent = score;
+            levelElement.textContent = level;
+            linesElement.textContent = linesCleared;
+            initBoard();
+            spawnTetromino();
+            startDropTimer();
+            startBtn.disabled = true;
+            pauseBtn.disabled = false;
+            drawGame();
+        }
+        function togglePause() {
+            if (!isGameRunning) return;
+            isGamePaused = !isGamePaused;
+            pauseBtn.textContent = isGamePaused ? '恢复游戏' : '暂停游戏';
+            if (isGamePaused) {
+                clearInterval(dropTimer);
+            } else {
+                startDropTimer();
+            }
+        }
+        function gameOver() {
+            isGameRunning = false;
+            clearInterval(dropTimer);
+            alert(`游戏结束！\n最终得分：${score}\n最终等级：${level}\n消除行数：${linesCleared}`);
+            startBtn.disabled = false;
+            pauseBtn.disabled = true;
+            pauseBtn.textContent = '暂停游戏';
+        }
+        document.addEventListener('keydown', (e) => {
+            if (!isGameRunning || isGamePaused) return;
+            // 核心修改：阻止游戏控制键的默认浏览器行为（避免页面滚动）
+            const controlKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', ' '];
+            if (controlKeys.includes(e.key)) {
+                e.preventDefault(); // 禁止事件的默认行为（页面滚动、空格翻页等）
+            }
+            switch (e.key) {
+                case 'ArrowLeft':
+                    const newXLeft = currentX - 1;
+                    if (!checkCollision(currentTetromino.shape, newXLeft, currentY)) {
+                        currentX = newXLeft;
+                    }
+                    break;
+                case 'ArrowRight':
+                    const newXRight = currentX + 1;
+                    if (!checkCollision(currentTetromino.shape, newXRight, currentY)) {
+                        currentX = newXRight;
+                    }
+                    break;
+                case 'ArrowDown':
+                    moveDown();
+                    break;
+                case 'ArrowUp':
+                    rotateTetromino();
+                    break;
+                case ' ':
+                    while (!checkCollision(currentTetromino.shape, currentX, currentY + 1)) {
+                        currentY++;
+                    }
+                    lockTetromino();
+                    break;
+                default:
+                    break;
+            }
+            drawGame();
+        });
+        startBtn.addEventListener('click', startGame);
+        pauseBtn.addEventListener('click', togglePause);
+        initBoard();
+        drawGame();
+    </script></content>
+
+
+<p> 
+  <a href="http://localhost:1313/tags/game/">#Game</a>
+  </p>
+
+  </main>
+  <footer>
+<small><script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+Total visits:<span id="busuanzi_site_pv">load...</span> | 
+Page views:<span id="busuanzi_page_pv">load...</span><br>
+Copyright © 2025 ooyang.cn</small>
+
+</footer>
+
+</body>
+</html>

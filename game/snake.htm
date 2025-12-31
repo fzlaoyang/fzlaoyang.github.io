@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="shortcut icon" href="http://ooyang.cn/favicon.ico" />
+<link rel="shortcut icon" href="http://localhost:1313/favicon.ico" />
 <title>经典贪吃蛇网页游戏 | 福州老杨</title>
 <meta name="title" content="经典贪吃蛇网页游戏" />
 <meta name="description" content="贪吃蛇,snake,经典贪吃蛇，方向操控、得分挑战、难度递增，尽享休闲乐趣。" />
@@ -156,21 +156,35 @@ h1 { color: #2c3e50; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); }
         function restartGame() {
             initGame();
         }
+        // 改进后的键盘事件处理函数：阻止方向键默认行为
         document.addEventListener('keydown', (e) => {
+            // 先判断是否是方向键，仅对方向键阻止默认行为
+            const isArrowKey = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key);
             switch (e.key) {
-                case 'ArrowUp': if (direction !== 'down') nextDirection = 'up'; break;
-                case 'ArrowDown': if (direction !== 'up') nextDirection = 'down'; break;
-                case 'ArrowLeft': if (direction !== 'right') nextDirection = 'left'; break;
-                case 'ArrowRight': if (direction !== 'left') nextDirection = 'right'; break;
+                case 'ArrowUp': 
+                    if (direction !== 'down') nextDirection = 'up'; 
+                    break;
+                case 'ArrowDown': 
+                    if (direction !== 'up') nextDirection = 'down'; 
+                    break;
+                case 'ArrowLeft': 
+                    if (direction !== 'right') nextDirection = 'left'; 
+                    break;
+                case 'ArrowRight': 
+                    if (direction !== 'left') nextDirection = 'right'; 
+                    break;
+            }
+            // 关键：阻止方向键的默认浏览器行为（页面滚动）
+            if (isArrowKey) {
+                e.preventDefault();
             }
         });
         window.onload = initGame;
-    </script>
-</content>
+    </script></content>
 
 
 <p> 
-  <a href="http://ooyang.cn/tags/game/">#Game</a>
+  <a href="http://localhost:1313/tags/game/">#Game</a>
   </p>
 
   </main>

@@ -2,18 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Game on 福州老杨</title>
-    <link>http://ooyang.cn/tags/game/</link>
+    <link>http://localhost:1313/tags/game/</link>
     <description>Recent content in Game on 福州老杨</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
     <copyright>Copyright © 2022-2025, BG5VGE.</copyright>
     <lastBuildDate>Mon, 29 Dec 2025 11:00:00 +0800</lastBuildDate>
-    <atom:link href="http://ooyang.cn/tags/game/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/game/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>俄罗斯方块</title>
+      <link>http://localhost:1313/game/tetris.htm</link>
+      <pubDate>Mon, 29 Dec 2025 11:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/game/tetris.htm</guid>
+      <description>&lt;style&gt;&#xD;&#xA;* {margin: 0;padding: 0;box-sizing: border-box;}&#xD;&#xA;.game-container {display: flex;gap: 30px;align-items: flex-start;background-color: #f8f9fa;padding: 25px;border-radius: 12px;box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);}&#xD;&#xA;        #game-board {border: 2px solid #2c3e50;background-color: #f0f0f0;border-radius: 4px;}&#xD;&#xA;        .game-info {display: flex;flex-direction: column;gap: 20px;}&#xD;&#xA;        .info-card {border: 2px solid #2c3e50;padding: 18px;border-radius: 10px;background-color: #ffffff;min-width: 180px;box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);}&#xD;&#xA;        .info-card h3 {margin-bottom: 12px;color: #3498db;text-align: center;font-weight: 600;}&#xD;&#xA;        .info-card p {margin: 8px 0;display: flex;justify-content: space-between;font-size: 15px;}&#xD;&#xA;        .info-card span {color: #2c3e50;font-weight: 500;}&#xD;&#xA;        .control-tips {font-size: 14px;color: #666666;margin-top: 10px;line-height: 1.8;}&#xD;&#xA;        .btn-group {display: flex;gap: 10px;justify-content: center;margin-top: 15px;}&#xD;&#xA;        button {padding: 9px 18px;border: none;border-radius: 6px;background-color: #3498db;color: #ffffff;font-weight: bold;cursor: pointer;transition: all 0.3s;font-size: 14px;}&#xD;&#xA;        button:hover {background-color: #2980b9;transform: translateY(-2px);}&#xD;&#xA;        button:disabled {background-color: #bdc3c7;cursor: not-allowed;transform: none;}&#xD;&#xA;    &lt;/style&gt;&#xD;&#xA;&lt;div class=&#34;game-container&#34;&gt;&#xD;&#xA;        &lt;canvas id=&#34;game-board&#34; width=&#34;300&#34; height=&#34;600&#34;&gt;&lt;/canvas&gt;&#xD;&#xA;        &lt;div class=&#34;game-info&#34;&gt;&#xD;&#xA;            &lt;div class=&#34;info-card&#34;&gt;&#xD;&#xA;                &lt;h3&gt;游戏数据&lt;/h3&gt;&#xD;&#xA;                &lt;p&gt;得分: &lt;span id=&#34;score&#34;&gt;0&lt;/span&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>经典贪吃蛇网页游戏</title>
-      <link>http://ooyang.cn/game/snake.htm</link>
+      <link>http://localhost:1313/game/snake.htm</link>
       <pubDate>Mon, 29 Dec 2025 11:00:00 +0800</pubDate>
-      <guid>http://ooyang.cn/game/snake.htm</guid>
+      <guid>http://localhost:1313/game/snake.htm</guid>
       <description>&lt;style&gt;&#xD;&#xA;h1 { color: #2c3e50; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); }&#xD;&#xA;.game-container { position: relative;&#xD;&#xA;  display: flex;&#xD;&#xA;  flex-direction: column;&#xD;&#xA;  align-items: center;&#xD;&#xA;  justify-content: center;&#xD;&#xA;  gap: 20px;&#xD;&#xA;  margin: 20px 0; /* 可选，调整上下间距 */ }&#xD;&#xA;#gameCanvas { border: 5px solid #34495e; border-radius: 8px; background-color: #ecf0f1; }&#xD;&#xA;.game-info { display: flex; justify-content: space-between; width: 400px; font-size: 18px; font-weight: bold; color: #2c3e50; margin-top: 10px; }&#xD;&#xA;.game-tips { color: #7f8c8d; font-size: 14px; text-align: center; }&#xD;&#xA;.game-over-modal { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0, 0, 0, 0.8); color: white; padding: 30px 50px; border-radius: 10px; text-align: center; display: none; z-index: 10; }&#xD;&#xA;.game-over-modal h2 { margin-bottom: 20px; color: #e74c3c; }&#xD;&#xA;.game-over-modal p { margin-bottom: 25px; font-size: 16px; }&#xD;&#xA;.restart-btn { padding: 10px 25px; background-color: #2ecc71; border: none; border-radius: 5px; color: white; font-size: 16px; cursor: pointer; transition: background-color 0.3s; }&#xD;&#xA;.restart-btn:hover { background-color: #27ae60; }&#xD;&#xA;&lt;/style&gt;&#xD;&#xA;&lt;div class=&#34;game-container&#34;&gt;&lt;canvas id=&#34;gameCanvas&#34; width=&#34;400&#34; height=&#34;400&#34;&gt;&lt;/canvas&gt;&#xD;&#xA;        &lt;div class=&#34;game-over-modal&#34; id=&#34;gameOverModal&#34;&gt;&#xD;&#xA;            &lt;h2&gt;游戏结束！&lt;/h2&gt;&#xD;&#xA;            &lt;p&gt;你的最终得分：&lt;span id=&#34;finalScore&#34;&gt;0&lt;/span&gt;&lt;/p&gt;</description>
     </item>
   </channel>
