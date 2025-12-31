@@ -10,6 +10,13 @@
     <lastBuildDate>Mon, 29 Dec 2025 11:00:00 +0800</lastBuildDate>
     <atom:link href="http://ooyang.cn/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>经典贪吃蛇网页游戏</title>
+      <link>http://ooyang.cn/game/snake.htm</link>
+      <pubDate>Mon, 29 Dec 2025 11:00:00 +0800</pubDate>
+      <guid>http://ooyang.cn/game/snake.htm</guid>
+      <description>&lt;style&gt;&#xD;&#xA;h1 { color: #2c3e50; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); }&#xD;&#xA;.game-container { position: relative;&#xD;&#xA;  display: flex;&#xD;&#xA;  flex-direction: column;&#xD;&#xA;  align-items: center;&#xD;&#xA;  justify-content: center;&#xD;&#xA;  gap: 20px;&#xD;&#xA;  margin: 20px 0; /* 可选，调整上下间距 */ }&#xD;&#xA;#gameCanvas { border: 5px solid #34495e; border-radius: 8px; background-color: #ecf0f1; }&#xD;&#xA;.game-info { display: flex; justify-content: space-between; width: 400px; font-size: 18px; font-weight: bold; color: #2c3e50; margin-top: 10px; }&#xD;&#xA;.game-tips { color: #7f8c8d; font-size: 14px; text-align: center; }&#xD;&#xA;.game-over-modal { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0, 0, 0, 0.8); color: white; padding: 30px 50px; border-radius: 10px; text-align: center; display: none; z-index: 10; }&#xD;&#xA;.game-over-modal h2 { margin-bottom: 20px; color: #e74c3c; }&#xD;&#xA;.game-over-modal p { margin-bottom: 25px; font-size: 16px; }&#xD;&#xA;.restart-btn { padding: 10px 25px; background-color: #2ecc71; border: none; border-radius: 5px; color: white; font-size: 16px; cursor: pointer; transition: background-color 0.3s; }&#xD;&#xA;.restart-btn:hover { background-color: #27ae60; }&#xD;&#xA;&lt;/style&gt;&#xD;&#xA;&lt;div class=&#34;game-container&#34;&gt;&lt;canvas id=&#34;gameCanvas&#34; width=&#34;400&#34; height=&#34;400&#34;&gt;&lt;/canvas&gt;&#xD;&#xA;        &lt;div class=&#34;game-over-modal&#34; id=&#34;gameOverModal&#34;&gt;&#xD;&#xA;            &lt;h2&gt;游戏结束！&lt;/h2&gt;&#xD;&#xA;            &lt;p&gt;你的最终得分：&lt;span id=&#34;finalScore&#34;&gt;0&lt;/span&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>计算器</title>
       <link>http://ooyang.cn/tool/jsq/</link>
       <pubDate>Mon, 29 Dec 2025 11:00:00 +0800</pubDate>
