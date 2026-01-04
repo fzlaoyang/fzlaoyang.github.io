@@ -1,205 +1,1428 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>简易FC游戏模拟器 - 魂斗罗（核心复刻）</title>
-    <style>
-        /* 简化样式，保证核心布局清晰 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Microsoft YaHei", sans-serif;
-        }
-        body {
-            background-color: #f5f5f5;
-            padding: 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-        }
-        #nes-canvas {
-            border: 3px solid #333;
-            background-color: #000;
-            /* 缩放Canvas，让画面更清晰 */
-            image-rendering: pixelated;
-            width: 512px;
-            height: 482px;
-            margin-bottom: 20px;
-        }
-        .control-tips {
-            background-color: #fff;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            text-align: left;
-            margin-bottom: 20px;
-        }
-        .control-tips h3 {
-            color: #666;
-            margin-bottom: 10px;
-        }
-        .control-tips ul {
-            list-style: none;
-            color: #333;
-            line-height: 1.6;
-        }
-        .btn-start {
-            padding: 10px 30px;
-            background-color: #2c85ff;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .btn-start:hover {
-            background-color: #1a73e8;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <title>jsNES — 存档携带游戏 + 个性化设置 + 远程ROM链接（音频链重建 / 分帧预热 / 双人）</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    :root {
+      --gap: 10px;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      margin: 16px;
+    }
+
+    .bar {
+      display: flex;
+      gap: var(--gap);
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    label.btn,
+    button,
+    a.btn {
+      padding: 6px 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #f7f7f7;
+      cursor: pointer;
+      text-decoration: none;
+      color: #111;
+    }
+
+    .btn-toggle.on {
+      background: #e9f7ff;
+      border-color: #9ad4ff;
+    }
+
+    .status {
+      color: #555
+    }
+
+    .err {
+      color: #b00020
+    }
+
+    #stage {
+      margin-top: 12px;
+      display: grid;
+      place-items: center;
+      outline: none;
+      position: relative;
+    }
+
+    canvas {
+      image-rendering: pixelated;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .08);
+      background: #000;
+    }
+
+    .group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    select,
+    input[type="range"] {
+      padding: 2px 4px;
+    }
+
+    .crt::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, .15) 0, rgba(0, 0, 0, .15) 1px, transparent 2px, transparent 3px);
+      mix-blend-mode: multiply;
+      border-radius: 10px;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .4);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    .modal {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, .2);
+      padding: 16px;
+      max-width: 720px;
+      width: calc(100% - 32px);
+    }
+
+    .modal h3 {
+      margin: 0 0 8px
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px dashed #eee;
+      padding: 6px 8px;
+      border-radius: 8px;
+    }
+
+    .kbd {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      background: #f3f3f3;
+      border-radius: 6px;
+      padding: 3px 6px;
+      border: 1px solid #e5e5e5;
+    }
+
+    .tip {
+      color: #666;
+      font-size: 12px;
+    }
+
+    .modal .footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .drop-hint {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(30, 144, 255, .12);
+      border: 3px dashed #1e90ff;
+      color: #1e90ff;
+      font-weight: 600;
+      font-size: 20px;
+      z-index: 998;
+    }
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>简易FC游戏模拟器</h1>
-        <!-- 游戏画面渲染核心：Canvas -->
-        <canvas id="nes-canvas" width="256" height="241"></canvas>
-        
-        <!-- 开始游戏按钮 -->
-        <button class="btn-start" id="start-game">加载游戏</button>
-        
-        <!-- 按键说明 -->
-        <div class="control-tips">
-            <h3>按键控制说明</h3>
-            <ul>
-                <li>移动：W（上）、A（左）、S（下）、D（右）</li>
-                <li>游戏操作：J（B键/射击）、K（A键/跳跃）</li>
-                <li>游戏控制：Enter（开始）、Shift（选择）</li>
-            </ul>
-        </div>
+  <div class="bar">
+    <label class="btn">选择ROM<input id="rom" type="file" accept=".nes" hidden></label>
+    <!-- 新增：示例远程 ROM 链接 -->
+    <a href="#" class="btn" id="demoRom" data-rom-url="https://assets.codepen.io/5782383/tank.nes" data-rom-name="tank.nes">加载示例ROM1</a>
+    <a href="#" class="btn" id="demoRom" data-rom-url="https://assets.codepen.io/5782383/1943.nes" data-rom-name="tank.nes">加载示例ROM2</a>
+
+    <button id="toggle" disabled>开始</button>
+    <button id="reset" disabled>复位</button>
+
+    <div class="group">
+      <button id="mute" class="btn-toggle">🔈 静音</button>
+      <label>音量 <input id="vol" type="range" min="0" max="100" value="100"></label>
+      <button id="screenshot">📷 截图</button>
     </div>
 
-    <!-- 1. 引入JSNES核心模拟器（CDN版本，无需本地下载） -->
-    <script src="https://cdn.jsdelivr.net/npm/jsnes@1.1.0/dist/jsnes.min.js"></script>
-    <script>
-        // 全局变量定义
-        let nes; // JSNES模拟器实例
-        let canvas; // Canvas元素对象
-        let ctx; // Canvas 2D上下文
-        let romData = null; // ROM文件二进制数据
+    <div class="group">
+      <label>显示倍数
+        <select id="scale">
+          <option value="1">1×</option>
+          <option value="2" selected>2×</option>
+          <option value="3">3×</option>
+          <option value="4">4×</option>
+        </select>
+      </label>
+      <button id="fit">自适应</button>
+      <button id="fs">⛶ 全屏</button>
+      <button id="crt" class="btn-toggle">📺 CRT</button>
+    </div>
 
-        // 步骤1：页面加载完成后，初始化基础资源
-        window.onload = function() {
-            // 获取Canvas元素和2D上下文
-            canvas = document.getElementById('nes-canvas');
-            ctx = canvas.getContext('2d');
+    <div class="group">
+      <label>速度
+        <select id="speed">
+          <option value="0.5">0.5×</option>
+          <option value="1" selected>1×</option>
+          <option value="2">2×</option>
+          <option value="3">3×</option>
+          <option value="4">4×</option>
+        </select>
+      </label>
+      <span class="tip">按住 <span class="kbd">Tab</span> 临时快进（×2 当前速度，最高 ×6）</span>
+    </div>
 
-            // 绑定开始游戏按钮点击事件
-            document.getElementById('start-game').addEventListener('click', loadGameRom);
+    <div class="group">
+      <button id="swap" class="btn-toggle on">🎨 色彩修正</button>
+      <button id="cfgKeysP1">⌨️ P1 键盘映射</button>
+      <button id="cfgKeysP2">⌨️ P2 键盘映射</button>
+      <button id="cfgPadP1">🎮 P1 手柄映射</button>
+      <button id="cfgPadP2">🎮 P2 手柄映射</button>
+    </div>
 
-            // 提前初始化模拟器（配置基础参数）
-            initNES();
+    <div class="group">
+      <label>存档槽<select id="slot">
+          <option value="0">#1</option>
+          <option value="1">#2</option>
+          <option value="2">#3</option>
+        </select></label>
+      <button id="saveState">💾 保存</button>
+      <button id="loadState">📂 读取</button>
+      <button id="clearState">🗑️ 清除</button>
+      <button id="exportState">⬇️ 导出</button>
+      <label class="btn">导入<input id="importState" type="file" accept=".json,.state.json,application/json" hidden></label>
+    </div>
+
+    <div class="group">
+      <button id="recStart">⏺ 开始录制</button>
+      <button id="recStop" disabled>⏹ 停止录制</button>
+      <a id="recDownload" style="display:none" download="recording.webm">⬇️ 下载视频</a>
+    </div>
+
+    <span class="status" id="romName">未加载</span>
+    <span class="status" id="fps">FPS: --</span>
+    <span class="err" id="err"></span>
+  </div>
+
+  <div id="stage" tabindex="0"><canvas id="screen" width="256" height="240"></canvas></div>
+
+  <!-- 键盘映射 -->
+  <div id="modalKeys" class="modal-backdrop">
+    <div class="modal">
+      <h3 id="keysTitle">键盘映射</h3>
+      <div class="grid" id="keyGrid"></div>
+      <div class="tip">点击某项后按你想绑定的键；映射保存到浏览器（各玩家独立）。</div>
+      <div class="footer">
+        <button id="restoreKeyDefault">恢复默认</button>
+        <button id="closeKeys">关闭</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 手柄映射 -->
+  <div id="modalPad" class="modal-backdrop">
+    <div class="modal">
+      <h3 id="padTitle">手柄映射</h3>
+      <div class="tip">连接手柄后点“捕捉”并按下手柄按钮/方向；P1=手柄0，P2=手柄1。</div>
+      <div id="padGrid"></div>
+      <div class="footer">
+        <button id="restorePadDefault">恢复默认</button>
+        <button id="closePad">关闭</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="dropHint" class="drop-hint">拖放 .nes 或 .state.json 到此</div>
+
+  <script src="https://unpkg.com/jsnes/dist/jsnes.min.js"></script>
+  <script>
+    (function() {
+      // ------- DOM -------
+      const stage = document.getElementById('stage');
+      const canvas = document.getElementById('screen'),
+        ctx = canvas.getContext('2d');
+      const romNameEl = document.getElementById('romName'),
+        fpsEl = document.getElementById('fps'),
+        errEl = document.getElementById('err');
+      const romInput = document.getElementById('rom');
+      const btnStart = document.getElementById('toggle'),
+        btnReset = document.getElementById('reset');
+      const btnMute = document.getElementById('mute'),
+        volEl = document.getElementById('vol');
+      const scaleSel = document.getElementById('scale'),
+        fitBtn = document.getElementById('fit'),
+        fsBtn = document.getElementById('fs');
+      const btnSwap = document.getElementById('swap'),
+        btnCrt = document.getElementById('crt'),
+        btnShot = document.getElementById('screenshot');
+      const speedSel = document.getElementById('speed');
+      const slotSel = document.getElementById('slot'),
+        saveBtn = document.getElementById('saveState'),
+        loadBtn = document.getElementById('loadState'),
+        clearBtn = document.getElementById('clearState');
+      const exportBtn = document.getElementById('exportState'),
+        importInp = document.getElementById('importState');
+      const recStartBtn = document.getElementById('recStart'),
+        recStopBtn = document.getElementById('recStop'),
+        recDL = document.getElementById('recDownload');
+      const modalKeys = document.getElementById('modalKeys'),
+        keyGrid = document.getElementById('keyGrid'),
+        keysTitle = document.getElementById('keysTitle'),
+        restoreKeyDefault = document.getElementById('restoreKeyDefault'),
+        closeKeys = document.getElementById('closeKeys');
+      const modalPad = document.getElementById('modalPad'),
+        padGrid = document.getElementById('padGrid'),
+        padTitle = document.getElementById('padTitle'),
+        restorePadDefault = document.getElementById('restorePadDefault'),
+        closePad = document.getElementById('closePad');
+      const dropHint = document.getElementById('dropHint');
+      // ------- NES & 状态 -------
+      let nes = null,
+        running = false,
+        rafId = null;
+      let pausedByVisibility = false,
+        warmResumedOnce = false;
+      const imageData = new ImageData(new Uint8ClampedArray(256 * 240 * 4), 256, 240);
+      let swapRB = true;
+      const AC = window.AudioContext || window.webkitAudioContext;
+      let audioCtx = null,
+        proc = null,
+        qL = [],
+        qR = [],
+        muted = false,
+        volume = 1.0;
+      const SAMPLES = 512; // 旧设备可改回 1024
+      let mediaDest = null,
+        mediaStream = null,
+        recorder = null,
+        recChunks = [];
+      let lastRomU8 = null,
+        lastRomStr = null; // 当前游戏的两种存储形式
+      let frames = 0,
+        lastTS = performance.now(),
+        speed = 1,
+        turboHeld = false,
+        lastMult = 1,
+        frameAcc = 0;
+      // 分帧预热 & 队列限流
+      let warming = false;
+      const MAX_QUEUE = 16384;
+      const WARMUP_TOTAL = 48;
+      // ------- 输入映射 -------
+      const C = window.jsnes.Controller;
+      const NES_BUTTONS = [
+        ['UP', C.BUTTON_UP],
+        ['DOWN', C.BUTTON_DOWN],
+        ['LEFT', C.BUTTON_LEFT],
+        ['RIGHT', C.BUTTON_RIGHT],
+        ['A', C.BUTTON_A],
+        ['B', C.BUTTON_B],
+        ['SELECT', C.BUTTON_SELECT],
+        ['START', C.BUTTON_START]
+      ];
+      const defaultKeyMapP1 = {
+        UP: 'ArrowUp',
+        DOWN: 'ArrowDown',
+        LEFT: 'ArrowLeft',
+        RIGHT: 'ArrowRight',
+        A: 'KeyZ',
+        B: 'KeyX',
+        SELECT: 'ShiftLeft',
+        START: 'Enter'
+      };
+      const defaultKeyMapP2 = {
+        UP: 'KeyW',
+        DOWN: 'KeyS',
+        LEFT: 'KeyA',
+        RIGHT: 'KeyD',
+        A: 'KeyK',
+        B: 'KeyJ',
+        SELECT: 'ShiftRight',
+        START: 'Backspace'
+      };
+      let keyMapP1 = loadJSON('jsnes_keymap_p1', defaultKeyMapP1);
+      let keyMapP2 = loadJSON('jsnes_keymap_p2', defaultKeyMapP2);
+      let pressedP1 = new Set(),
+        pressedP2 = new Set();
+      const defaultPadMap = {
+        AXIS_H: 0,
+        AXIS_V: 1,
+        AXIS_THRESH: 0.4,
+        BTN_A: 0,
+        BTN_B: 1,
+        ALT_A: 2,
+        ALT_B: 3,
+        BTN_SELECT: 8,
+        BTN_START: 9,
+        DPAD_UP: 12,
+        DPAD_DOWN: 13,
+        DPAD_LEFT: 14,
+        DPAD_RIGHT: 15
+      };
+      let padMapP1 = loadJSON('jsnes_padmap_p1', defaultPadMap);
+      let padMapP2 = loadJSON('jsnes_padmap_p2', defaultPadMap);
+      let padPrevP1 = stateObj(false),
+        padPrevP2 = stateObj(false);
+      const STATE_PREFIX = 'jsnes_state_slot_';
+
+      function stateObj(v) {
+        return {
+          UP: v,
+          DOWN: v,
+          LEFT: v,
+          RIGHT: v,
+          A: v,
+          B: v,
+          SELECT: v,
+          START: v
         };
+      }
 
-        // 步骤2：初始化JSNES模拟器，配置渲染、音频、按键映射
-        function initNES() {
-            // 创建JSNES模拟器实例
-            nes = new JSNES.NES({
-                // 核心：帧渲染回调（模拟器每生成一帧画面，就调用此方法绘制到Canvas）
-                onFrame: function(frameBuffer) {
-                    // 创建ImageData对象，存储帧像素数据（256x241 对应FC画面分辨率）
-                    const imageData = ctx.createImageData(256, 241);
-                    // 将模拟器输出的帧缓冲区数据复制到ImageData中
-                    imageData.data.set(frameBuffer);
-                    // 将ImageData绘制到Canvas画布上
-                    ctx.putImageData(imageData, 0, 0);
-                },
-                // 音频回调（简化：禁用音频，避免跨域/资源问题，如需启用可补充配置）
-                onAudioSample: function(left, right) {},
-                // 帧率配置（对应FC主机帧率，保持游戏运行速度正常）
-                frameRate: 60
-            });
+      function isNon1x() {
+        return turboHeld || speed !== 1;
+      }
 
-            // 绑定键盘事件（按键按下/抬起，映射到FC手柄）
-            bindKeyboardEvents();
+      function clearAudioQueue() {
+        qL.length = 0;
+        qR.length = 0;
+      }
+
+      function toast(msg) {
+        errEl.textContent = msg;
+        setTimeout(() => {
+          if (errEl.textContent === msg) errEl.textContent = '';
+        }, 2000);
+      }
+
+      function loadJSON(k, def) {
+        try {
+          const v = localStorage.getItem(k);
+          return v ? JSON.parse(v) : def;
+        } catch {
+          return def;
         }
+      }
 
-        // 步骤3：加载FC ROM文件（核心：需替换为你的合法ROM路径）
- async function loadGameRom() {
-    try {
-        const romUrl = "https://ooyang.cn/game/Contra.nes";
-        const response = await fetch(romUrl);
-        // 打印请求状态（关键）
-        console.log("ROM请求状态码：", response.status);
-        console.log("ROM请求状态文本：", response.statusText);
-        
-        if (!response.ok) {
-            throw new Error(`ROM文件加载失败，状态码：${response.status}，原因：${response.statusText}`);
+      function saveJSON(k, obj) {
+        try {
+          localStorage.setItem(k, JSON.stringify(obj));
+        } catch {}
+      }
+      // ------- 分帧预热 -------
+      function warmUpFrames(total = WARMUP_TOTAL, perTick = 8, done) {
+        let left = total;
+
+        function tick() {
+          const n = Math.min(perTick, left);
+          try {
+            for (let i = 0; i < n; i++) nes.frame();
+          } catch (e) {
+            console.warn('warmup error:', e);
+            left = 0;
+          }
+          left -= n;
+          if (left > 0) requestAnimationFrame(tick);
+          else if (typeof done === 'function') done();
         }
-        // 后续代码不变...
-    } catch (error) {
-        console.error("游戏加载异常：", error);
-        alert("游戏加载失败：" + error.message + "（请打开控制台查看详细信息）");
-    }
-}
-
-        // 步骤4：启动模拟器运行循环，保持游戏持续渲染
-        function runNES() {
-            // 使用requestAnimationFrame实现平滑循环（适配浏览器刷新率）
-            function frameLoop() {
-                // 模拟器运行一帧（处理CPU指令、生成画面数据）
-                nes.frame();
-                // 递归调用，保持循环运行
-                requestAnimationFrame(frameLoop);
+        requestAnimationFrame(tick);
+      }
+      // ------- 重建音频链 -------
+      function rebuildAudioGraph() {
+        try {
+          proc && proc.disconnect();
+        } catch {}
+        if (!mediaDest) {
+          mediaDest = audioCtx.createMediaStreamDestination();
+        }
+        proc = audioCtx.createScriptProcessor(SAMPLES, 0, 2);
+        proc.onaudioprocess = (e) => {
+          const L = e.outputBuffer.getChannelData(0);
+          const R = e.outputBuffer.getChannelData(1);
+          const g = muted ? 0 : volume;
+          for (let i = 0; i < L.length; i++) {
+            const sl = qL.length ? qL.shift() : 0;
+            const sr = qR.length ? qR.shift() : 0;
+            L[i] = sl * g;
+            R[i] = sr * g;
+          }
+        };
+        proc.connect(audioCtx.destination);
+        proc.connect(mediaDest);
+        for (let i = 0; i < 2048; i++) {
+          qL.push(0);
+          qR.push(0);
+        }
+      }
+      // ------- 读取存档后的恢复 -------
+      function afterStateRestore() {
+        const wasRunning = running;
+        if (wasRunning) {
+          running = false;
+          if (rafId) cancelAnimationFrame(rafId);
+          rafId = null;
+        }
+        turboHeld = false;
+        speed = 1;
+        speedSel.value = '1';
+        if (muted) {
+          muted = false;
+          btnMute.classList.remove('on');
+          btnMute.textContent = '🔈 静音';
+        }
+        clearAudioQueue();
+        try {
+          const p = audioCtx?.resume?.();
+          if (p && typeof p.then === 'function') {
+            p.then(() => rebuildAudioGraph());
+          } else {
+            rebuildAudioGraph();
+          }
+        } catch {
+          rebuildAudioGraph();
+        }
+        warming = true;
+        frames = 0;
+        lastTS = performance.now();
+        frameAcc = 0;
+        warmUpFrames(WARMUP_TOTAL, 8, () => {
+          clearAudioQueue();
+          warming = false;
+          if (wasRunning) {
+            running = true;
+            rafId = requestAnimationFrame(loop);
+            btnStart.textContent = '暂停';
+            btnReset.disabled = false;
+          }
+        });
+      }
+      // ------- 初始化 -------
+      function init() {
+        nes = new window.jsnes.NES({
+          onFrame(buf) {
+            const d = imageData.data;
+            let j = 0;
+            for (let i = 0; i < 256 * 240; i++) {
+              const px = buf[i] >>> 0;
+              if (swapRB) {
+                d[j++] = px & 255;
+                d[j++] = (px >> 8) & 255;
+                d[j++] = (px >> 16) & 255;
+              } else {
+                d[j++] = (px >> 16) & 255;
+                d[j++] = (px >> 8) & 255;
+                d[j++] = px & 255;
+              }
+              d[j++] = 255;
             }
-
-            // 启动循环
-            frameLoop();
+            ctx.putImageData(imageData, 0, 0);
+            frames++;
+            const now = performance.now();
+            if (now - lastTS >= 1000) {
+              fpsEl.textContent = `FPS: ${(frames*1000/(now-lastTS)).toFixed(1)}${lastMult!==1?` ×${lastMult.toFixed(2)}`:''}`;
+              frames = 0;
+              lastTS = now;
+            }
+          },
+          onAudioSample(l, r) {
+            if (warming || isNon1x()) return;
+            qL.push(l);
+            qR.push(r);
+            if (qL.length > MAX_QUEUE) {
+              const drop = qL.length - MAX_QUEUE;
+              qL.splice(0, drop);
+              qR.splice(0, drop);
+            }
+          }
+        });
+        audioCtx = new AC();
+        mediaDest = audioCtx.createMediaStreamDestination();
+        rebuildAudioGraph();
+        audioCtx.onstatechange = () => {
+          if (audioCtx.state === 'running') rebuildAudioGraph();
+        };
+        applyScale(2);
+      }
+      // ------- 主循环 -------
+      function loop() {
+        try {
+          const base = Number(speed) || 1,
+            eff = Math.min(6, turboHeld ? base * 2 : base);
+          lastMult = eff;
+          frameAcc += eff;
+          while (frameAcc >= 1) {
+            nes.frame();
+            frameAcc--;
+          }
+          pollGamepad(0, padMapP1, padPrevP1, 1);
+          pollGamepad(1, padMapP2, padPrevP2, 2);
+        } catch (e) {
+          pause();
+          errEl.textContent = nes.crashMessage || e;
+          return;
         }
+        rafId = requestAnimationFrame(loop);
+      }
 
-        // 步骤5：绑定键盘事件，实现“浏览器键盘”到“FC手柄”的映射
-        function bindKeyboardEvents() {
-            // 按键按下事件
-            document.addEventListener('keydown', function(e) {
-                switch (e.key.toLowerCase()) {
-                    // 移动按键映射
-                    case 'w': nes.buttonDown(0, JSNES.Controller.BUTTON.UP); break;
-                    case 'a': nes.buttonDown(0, JSNES.Controller.BUTTON.LEFT); break;
-                    case 's': nes.buttonDown(0, JSNES.Controller.BUTTON.DOWN); break;
-                    case 'd': nes.buttonDown(0, JSNES.Controller.BUTTON.RIGHT); break;
-                    // 操作按键映射
-                    case 'j': nes.buttonDown(0, JSNES.Controller.BUTTON.B); break;
-                    case 'k': nes.buttonDown(0, JSNES.Controller.BUTTON.A); break;
-                    // 控制按键映射
-                    case 'shift': nes.buttonDown(0, JSNES.Controller.BUTTON.SELECT); break;
-                    case 'enter': nes.buttonDown(0, JSNES.Controller.BUTTON.START); break;
-                }
-            });
+      function start() {
+        if (running) return;
+        running = true;
+        errEl.textContent = '';
+        audioCtx?.resume?.();
+        frames = 0;
+        lastTS = performance.now();
+        frameAcc = 0;
+        rafId = requestAnimationFrame(loop);
+        btnStart.textContent = '暂停';
+        btnReset.disabled = false;
+      }
 
-            // 按键抬起事件（避免按键持续触发）
-            document.addEventListener('keyup', function(e) {
-                switch (e.key.toLowerCase()) {
-                    // 移动按键映射
-                    case 'w': nes.buttonUp(0, JSNES.Controller.BUTTON.UP); break;
-                    case 'a': nes.buttonUp(0, JSNES.Controller.BUTTON.LEFT); break;
-                    case 's': nes.buttonUp(0, JSNES.Controller.BUTTON.DOWN); break;
-                    case 'd': nes.buttonUp(0, JSNES.Controller.BUTTON.RIGHT); break;
-                    // 操作按键映射
-                    case 'j': nes.buttonUp(0, JSNES.Controller.BUTTON.B); break;
-                    case 'k': nes.buttonUp(0, JSNES.Controller.BUTTON.A); break;
-                    // 控制按键映射
-                    case 'shift': nes.buttonUp(0, JSNES.Controller.BUTTON.SELECT); break;
-                    case 'enter': nes.buttonUp(0, JSNES.Controller.BUTTON.START); break;
-                }
-            });
+      function pause() {
+        if (!running) return;
+        running = false;
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = null;
+        btnStart.textContent = '开始';
+        clearAudioQueue();
+        releaseAll(1, pressedP1);
+        releaseAll(2, pressedP2);
+      }
+
+      function reset() {
+        if (!nes) return;
+        const was = running;
+        if (was) pause();
+        clearAudioQueue();
+        try {
+          if (lastRomU8) nes.loadROM(lastRomU8);
+          else if (lastRomStr) nes.loadROM(lastRomStr);
+        } catch (e) {
+          errEl.textContent = 'Reset失败:' + e;
+          return;
         }
-    </script>
+        if (was) start();
+        else {
+          btnReset.disabled = true;
+          btnStart.disabled = false;
+          btnStart.textContent = '开始';
+        }
+      }
+      // ------- ROM（本地文件） -------
+      function loadRomFromFile(file) {
+        const r = new FileReader();
+        r.onload = ev => {
+          const u8 = new Uint8Array(ev.target.result);
+          if (!(u8[0] === 0x4E && u8[1] === 0x45 && u8[2] === 0x53 && u8[3] === 0x1A)) {
+            errEl.textContent = '不是有效NES ROM';
+            return;
+          }
+          try {
+            nes.loadROM(u8);
+            lastRomU8 = u8;
+            lastRomStr = null;
+            afterLoad();
+          } catch {
+            let s = '';
+            for (let i = 0; i < u8.length; i += 0x8000) s += String.fromCharCode.apply(null, u8.subarray(i, i + 0x8000));
+            try {
+              nes.loadROM(s);
+              lastRomU8 = null;
+              lastRomStr = s;
+              afterLoad();
+            } catch (e2) {
+              errEl.textContent = 'ROM加载失败:' + e2;
+            }
+          }
+        };
+        r.readAsArrayBuffer(file);
+
+        function afterLoad() {
+          romNameEl.textContent = file.name;
+          btnStart.disabled = false;
+          btnReset.disabled = true;
+          fpsEl.textContent = 'FPS: --';
+          errEl.textContent = '';
+          start();
+          stage.focus();
+        }
+      }
+      // ------- ROM（远程 URL，一键加载） -------
+      async function loadRomFromUrl(url, displayName) {
+        try {
+          errEl.textContent = '';
+          romNameEl.textContent = '下载中…';
+          const res = await fetch(url, {
+            cache: 'no-store'
+          });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const ab = await res.arrayBuffer();
+          const u8 = new Uint8Array(ab);
+          const isINES = (u8[0] === 0x4E && u8[1] === 0x45 && u8[2] === 0x53 && u8[3] === 0x1A);
+          if (!isINES) throw new Error('Not a valid NES ROM (missing iNES header)');
+          try {
+            nes.loadROM(u8);
+            lastRomU8 = u8;
+            lastRomStr = null;
+          } catch (e1) {
+            let s = '';
+            const CHUNK = 0x8000;
+            for (let i = 0; i < u8.length; i += CHUNK) {
+              s += String.fromCharCode.apply(null, u8.subarray(i, i + CHUNK));
+            }
+            nes.loadROM(s);
+            lastRomU8 = null;
+            lastRomStr = s;
+          }
+          romNameEl.textContent = displayName || (url.split('/').pop() || 'ROM');
+          btnStart.disabled = false;
+          btnReset.disabled = true;
+          fpsEl.textContent = 'FPS: --';
+          errEl.textContent = '';
+          start();
+          stage.focus();
+        } catch (e) {
+          errEl.textContent = 'ROM 下载/加载失败：' + (e?.message || e);
+          console.error(e);
+        }
+      }
+      // ------- 键盘 -------
+      function onKey(e, down) {
+        if (!nes) return;
+        if (e.code === 'Tab') {
+          if (down && !turboHeld) {
+            turboHeld = true;
+            clearAudioQueue();
+          } else if (!down && turboHeld) {
+            turboHeld = false;
+            clearAudioQueue();
+          }
+          e.preventDefault();
+          return;
+        }
+        for (const [name, code] of Object.entries(keyMapP1)) {
+          if (e.code === code) {
+            const btn = NES_BUTTONS.find(([n]) => n === name)[1];
+            nes[down ? 'buttonDown' : 'buttonUp'](1, btn);
+            if (down) pressedP1.add(name);
+            else pressedP1.delete(name);
+            e.preventDefault();
+            return;
+          }
+        }
+        for (const [name, code] of Object.entries(keyMapP2)) {
+          if (e.code === code) {
+            const btn = NES_BUTTONS.find(([n]) => n === name)[1];
+            nes[down ? 'buttonDown' : 'buttonUp'](2, btn);
+            if (down) pressedP2.add(name);
+            else pressedP2.delete(name);
+            e.preventDefault();
+            return;
+          }
+        }
+      }
+
+      function releaseAll(player, set) {
+        for (const name of set) {
+          const btn = NES_BUTTONS.find(([n]) => n === name)[1];
+          nes.buttonUp(player, btn);
+        }
+        set.clear();
+        if (player === 1) padPrevP1 = stateObj(false);
+        else padPrevP2 = stateObj(false);
+      }
+      // ------- 手柄 -------
+      function pollGamepad(index, pm, prev, player) {
+        const gps = navigator.getGamepads ? navigator.getGamepads() : [];
+        const gp = gps && gps[index];
+        if (!gp) return;
+        const axisH = gp.axes[pm.AXIS_H] ?? 0,
+          axisV = gp.axes[pm.AXIS_V] ?? 0,
+          th = Math.max(0.2, Math.min(1, pm.AXIS_THRESH || 0.4));
+        const useDpad = [pm.DPAD_UP, pm.DPAD_DOWN, pm.DPAD_LEFT, pm.DPAD_RIGHT].every(Number.isInteger);
+        const now = {
+          LEFT: useDpad ? btnPressed(gp, pm.DPAD_LEFT) : (axisH < -th),
+          RIGHT: useDpad ? btnPressed(gp, pm.DPAD_RIGHT) : (axisH > th),
+          UP: useDpad ? btnPressed(gp, pm.DPAD_UP) : (axisV < -th),
+          DOWN: useDpad ? btnPressed(gp, pm.DPAD_DOWN) : (axisV > th),
+          A: btnPressed(gp, pm.BTN_A) || btnPressed(gp, pm.ALT_A),
+          B: btnPressed(gp, pm.BTN_B) || btnPressed(gp, pm.ALT_B),
+          SELECT: btnPressed(gp, pm.BTN_SELECT),
+          START: btnPressed(gp, pm.BTN_START),
+        };
+        for (const [name, pressed] of Object.entries(now)) {
+          if (pressed !== prev[name]) {
+            const btn = NES_BUTTONS.find(([n]) => n === name)[1];
+            nes[pressed ? 'buttonDown' : 'buttonUp'](player, btn);
+            prev[name] = pressed;
+          }
+        }
+      }
+
+      function btnPressed(gp, idx) {
+        const b = gp.buttons[idx];
+        return !!(b && b.pressed);
+      }
+      // ------- 截图/录制 -------
+      function screenshot() {
+        const a = document.createElement('a');
+        a.href = canvas.toDataURL('image/png');
+        a.download = (romNameEl.textContent || 'shot') + '.png';
+        a.click();
+      }
+
+      function setupRecorder() {
+        try {
+          const cs = canvas.captureStream(60);
+          mediaStream = new MediaStream([...cs.getVideoTracks(), ...mediaDest.stream.getAudioTracks()]);
+          recorder = new MediaRecorder(mediaStream, {
+            mimeType: 'video/webm;codecs=vp9,opus'
+          });
+          recorder.ondataavailable = e => {
+            if (e.data.size) recChunks.push(e.data);
+          };
+          recorder.onstop = () => {
+            const url = URL.createObjectURL(new Blob(recChunks, {
+              type: 'video/webm'
+            }));
+            recChunks = [];
+            recDL.href = url;
+            recDL.style.display = 'inline-block';
+          };
+        } catch (e) {
+          alert('浏览器不支持录制：' + e);
+        }
+      }
+      // ====== 存档（含 ROM + 设置）======
+      function currentSettings() {
+        return {
+          keyMapP1,
+          keyMapP2,
+          padMapP1,
+          padMapP2,
+          swapRB,
+          volume,
+          muted,
+          scale: Number(scaleSel.value) || 2,
+          speed: Number(speedSel.value) || 1,
+          crt: document.getElementById('crt').classList.contains('on'),
+        };
+      }
+
+      function applySettings(s) {
+        try {
+          if (!s) return;
+          if (s.keyMapP1) {
+            keyMapP1 = s.keyMapP1;
+            saveJSON('jsnes_keymap_p1', keyMapP1);
+          }
+          if (s.keyMapP2) {
+            keyMapP2 = s.keyMapP2;
+            saveJSON('jsnes_keymap_p2', keyMapP2);
+          }
+          if (s.padMapP1) {
+            padMapP1 = s.padMapP1;
+            saveJSON('jsnes_padmap_p1', padMapP1);
+          }
+          if (s.padMapP2) {
+            padMapP2 = s.padMapP2;
+            saveJSON('jsnes_padmap_p2', padMapP2);
+          }
+          if (typeof s.swapRB === 'boolean') {
+            swapRB = s.swapRB;
+            document.getElementById('swap').classList.toggle('on', swapRB);
+          }
+          if (typeof s.volume === 'number') {
+            volume = Math.max(0, Math.min(1, s.volume));
+            volEl.value = Math.round(volume * 100);
+          }
+          if (typeof s.muted === 'boolean') {
+            muted = s.muted;
+            btnMute.classList.toggle('on', muted);
+            btnMute.textContent = muted ? '🔇 已静音' : '🔈 静音';
+          }
+          if (typeof s.scale === 'number') applyScale(s.scale);
+          if (typeof s.speed === 'number') {
+            speed = s.speed;
+            speedSel.value = String(s.speed);
+          }
+          const crtOn = !!s.crt;
+          document.getElementById('crt').classList.toggle('on', crtOn);
+          stage.classList.toggle('crt', crtOn);
+        } catch (e) {
+          console.warn('applySettings error', e);
+        }
+      }
+
+      function saveState() {
+        try {
+          const core = nes.toJSON?.();
+          if (!core) return alert('当前构建不支持保存');
+          const romU8 = lastRomU8 ? lastRomU8 :
+            (lastRomStr ? binStrToU8(lastRomStr) : null);
+          const romHash = romU8 ? fnv1aHex(romU8) : null;
+          const romName = romNameEl.textContent || '';
+          const payload = {
+            version: 2,
+            createdAt: Date.now(),
+            meta: {
+              romName,
+              romHash,
+              settings: currentSettings()
+            },
+            romU8: romU8 ? u8ToBase64(romU8) : null,
+            nesState: core
+          };
+          try {
+            localStorage.setItem(STATE_PREFIX + slotSel.value, JSON.stringify(payload));
+            toast(`已保存到槽 #${+slotSel.value+1}${!payload.romU8?'（未携带ROM）':''}`);
+          } catch (e) {
+            console.warn('保存超出容量，回退为精简存档', e);
+            payload.romU8 = null;
+            localStorage.setItem(STATE_PREFIX + slotSel.value, JSON.stringify(payload));
+            toast(`容量不足，已以精简模式保存到槽 #${+slotSel.value+1}`);
+          }
+        } catch (e) {
+          alert('保存失败：' + e);
+        }
+      }
+
+      function loadState() {
+        try {
+          const raw = localStorage.getItem(STATE_PREFIX + slotSel.value);
+          if (!raw) return alert('此槽没有存档');
+          const payload = JSON.parse(raw);
+          const wantU8 = payload.romU8 ? base64ToU8(payload.romU8) : null;
+          const wantHash = payload.meta?.romHash || null;
+          const currU8 = lastRomU8 ? lastRomU8 : (lastRomStr ? binStrToU8(lastRomStr) : null);
+          const currHash = currU8 ? fnv1aHex(currU8) : null;
+          if (wantU8 && (!currHash || currHash !== wantHash)) {
+            try {
+              nes.loadROM(wantU8);
+              lastRomU8 = wantU8;
+              lastRomStr = null;
+              romNameEl.textContent = payload.meta?.romName || 'From Save';
+            } catch (e) {
+              console.warn('切换到存档内ROM失败，尝试字符串回退', e);
+              const asStr = u8ToBinStr(wantU8);
+              nes.loadROM(asStr);
+              lastRomU8 = null;
+              lastRomStr = asStr;
+              romNameEl.textContent = payload.meta?.romName || 'From Save';
+            }
+          }
+          applySettings(payload.meta?.settings);
+          if (!nes.fromJSON) return alert('当前构建不支持读取');
+          nes.fromJSON(payload.nesState);
+          afterStateRestore();
+          toast(`已读取槽 #${+slotSel.value+1}`);
+        } catch (e) {
+          alert('读取失败：' + e);
+        }
+      }
+
+      function clearState() {
+        localStorage.removeItem(STATE_PREFIX + slotSel.value);
+        toast(`已清除槽 #${+slotSel.value+1}`);
+      }
+
+      function exportState() {
+        try {
+          const core = nes.toJSON?.();
+          if (!core) return alert('当前构建不支持导出');
+          const romU8 = lastRomU8 ? lastRomU8 : (lastRomStr ? binStrToU8(lastRomStr) : null);
+          const romHash = romU8 ? fnv1aHex(romU8) : null;
+          const romName = romNameEl.textContent || '';
+          const payload = {
+            version: 2,
+            createdAt: Date.now(),
+            meta: {
+              romName,
+              romHash,
+              settings: currentSettings()
+            },
+            romU8: romU8 ? u8ToBase64(romU8) : null,
+            nesState: core
+          };
+          const b = new Blob([JSON.stringify(payload)], {
+            type: 'application/json'
+          });
+          const a = document.createElement('a');
+          const base = (romName || 'state').replace(/\.[^/.]+$/, '');
+          a.href = URL.createObjectURL(b);
+          a.download = `${base}.state.json`;
+          a.click();
+        } catch (e) {
+          alert('导出失败：' + e);
+        }
+      }
+
+      function importStateFromFile(f) {
+        const r = new FileReader();
+        r.onload = ev => {
+          try {
+            const payload = JSON.parse(ev.target.result);
+            const wantU8 = payload.romU8 ? base64ToU8(payload.romU8) : null;
+            const wantHash = payload.meta?.romHash || null;
+            const currU8 = lastRomU8 ? lastRomU8 : (lastRomStr ? binStrToU8(lastRomStr) : null);
+            const currHash = currU8 ? fnv1aHex(currU8) : null;
+            if (wantU8 && (!currHash || currHash !== wantHash)) {
+              try {
+                nes.loadROM(wantU8);
+                lastRomU8 = wantU8;
+                lastRomStr = null;
+              } catch (e) {
+                const asStr = u8ToBinStr(wantU8);
+                nes.loadROM(asStr);
+                lastRomU8 = null;
+                lastRomStr = asStr;
+              }
+              romNameEl.textContent = payload.meta?.romName || f.name.replace(/\.state\.json$/i, '');
+            }
+            applySettings(payload.meta?.settings);
+            if (!nes.fromJSON) return alert('当前构建不支持读取');
+            nes.fromJSON(payload.nesState);
+            afterStateRestore();
+            toast('已从文件导入存档');
+          } catch (e) {
+            alert('导入失败：' + e);
+          }
+        };
+        r.readAsText(f);
+      }
+      // ------- 外观 -------
+      function applyScale(k) {
+        canvas.style.width = 256 * k + 'px';
+        canvas.style.height = 240 * k + 'px';
+        for (const opt of scaleSel.options) {
+          if (+opt.value === k) {
+            opt.selected = true;
+            break;
+          }
+        }
+      }
+
+      function fitToWindow() {
+        const k = Math.max(1, Math.min(Math.floor((innerWidth - 32) / 256), Math.floor((innerHeight - 200) / 240)));
+        applyScale(k);
+      }
+      async function toggleFullscreen() {
+        if (document.fullscreenElement) await document.exitFullscreen();
+        else await stage.requestFullscreen();
+      }
+      // ------- 可见性恢复 -------
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          if (running) {
+            pausedByVisibility = true;
+            pause();
+          }
+        } else {
+          if (pausedByVisibility) {
+            pausedByVisibility = false;
+            try {
+              const p = audioCtx?.resume?.();
+              if (p && typeof p.then === 'function') {
+                p.then(() => rebuildAudioGraph());
+              } else {
+                rebuildAudioGraph();
+              }
+            } catch {
+              rebuildAudioGraph();
+            }
+            frames = 0;
+            lastTS = performance.now();
+            frameAcc = 0;
+            running = true;
+            rafId = requestAnimationFrame(loop);
+            btnStart.textContent = '暂停';
+            btnReset.disabled = false;
+            btnStart.disabled = false;
+            stage.focus();
+            if (!warmResumedOnce) {
+              warmResumedOnce = true;
+              clearAudioQueue();
+              warming = true;
+              warmUpFrames(24, 6, () => {
+                clearAudioQueue();
+                warming = false;
+              });
+            }
+          }
+        }
+      });
+      window.addEventListener('pageshow', (e) => {
+        if (e.persisted && !running) {
+          try {
+            const p = audioCtx?.resume?.();
+            if (p && typeof p.then === 'function') {
+              p.then(() => rebuildAudioGraph());
+            } else {
+              rebuildAudioGraph();
+            }
+          } catch {
+            rebuildAudioGraph();
+          }
+          frames = 0;
+          lastTS = performance.now();
+          frameAcc = 0;
+          running = true;
+          rafId = requestAnimationFrame(loop);
+          btnStart.textContent = '暂停';
+          btnReset.disabled = false;
+          stage.focus();
+        }
+      });
+      window.addEventListener('pagehide', () => {
+        if (running) {
+          pausedByVisibility = true;
+          pause();
+        }
+      });
+      window.addEventListener('focus', () => {
+        if (!document.hidden) {
+          try {
+            const p = audioCtx?.resume?.();
+            if (p && typeof p.then === 'function') {
+              p.then(() => rebuildAudioGraph());
+            } else {
+              rebuildAudioGraph();
+            }
+          } catch {}
+        }
+      });
+      // ------- 事件/UI 绑定 -------
+      romInput.onchange = e => {
+        const f = e.target.files?.[0];
+        if (f) {
+          romNameEl.textContent = f.name;
+          loadRomFromFile(f);
+          stage.focus();
+        }
+      };
+      btnStart.onclick = () => running ? pause() : start();
+      btnReset.onclick = reset;
+      stage.addEventListener('keydown', e => onKey(e, true));
+      stage.addEventListener('keyup', e => onKey(e, false));
+      stage.addEventListener('click', () => stage.focus());
+      btnMute.onclick = () => {
+        muted = !muted;
+        btnMute.classList.toggle('on', muted);
+        btnMute.textContent = muted ? '🔇 已静音' : '🔈 静音';
+      };
+      volEl.oninput = () => {
+        volume = Math.max(0, Math.min(1, volEl.value / 100));
+      };
+      scaleSel.onchange = () => applyScale(Number(scaleSel.value));
+      fitBtn.onclick = fitToWindow;
+      fsBtn.onclick = toggleFullscreen;
+      btnCrt.onclick = () => {
+        btnCrt.classList.toggle('on');
+        stage.classList.toggle('crt', btnCrt.classList.contains('on'));
+      };
+      btnSwap.classList.add('on');
+      btnSwap.onclick = () => {
+        swapRB = !swapRB;
+        btnSwap.classList.toggle('on', swapRB);
+      };
+      btnShot.onclick = screenshot;
+      speedSel.onchange = () => {
+        speed = Number(speedSel.value) || 1;
+        clearAudioQueue();
+      }
+      document.getElementById('cfgKeysP1').onclick = () => openKeyModal(1);
+      document.getElementById('cfgKeysP2').onclick = () => openKeyModal(2);
+      restoreKeyDefault.onclick = () => {
+        if (keysTitle.dataset.player === '1') {
+          keyMapP1 = {
+            ...defaultKeyMapP1
+          };
+          saveJSON('jsnes_keymap_p1', keyMapP1);
+        } else {
+          keyMapP2 = {
+            ...defaultKeyMapP2
+          };
+          saveJSON('jsnes_keymap_p2', keyMapP2);
+        }
+        renderKeyGrid(+keysTitle.dataset.player);
+      };
+      closeKeys.onclick = () => modalKeys.style.display = 'none';
+
+      function openKeyModal(p) {
+        keysTitle.textContent = `键盘映射（P${p}）`;
+        keysTitle.dataset.player = String(p);
+        renderKeyGrid(p);
+        modalKeys.style.display = 'flex';
+      }
+
+      function renderKeyGrid(p) {
+        keyGrid.innerHTML = '';
+        const km = p === 1 ? keyMapP1 : keyMapP2;
+        for (const [name] of NES_BUTTONS) {
+          const row = document.createElement('div');
+          row.className = 'row';
+          const l = document.createElement('div');
+          l.textContent = name;
+          const b = document.createElement('button');
+          b.className = 'kbd';
+          b.textContent = km[name] || '(未设置)';
+          b.onclick = () => {
+            b.textContent = '…按一个键';
+            const h = (e) => {
+              e.preventDefault();
+              km[name] = e.code;
+              b.textContent = e.code;
+              saveJSON(p === 1 ? 'jsnes_keymap_p1' : 'jsnes_keymap_p2', km);
+              window.removeEventListener('keydown', h, true);
+            };
+            window.addEventListener('keydown', h, true);
+          };
+          row.appendChild(l);
+          row.appendChild(b);
+          keyGrid.appendChild(row);
+        }
+      }
+      document.getElementById('cfgPadP1').onclick = () => openPadModal(1);
+      document.getElementById('cfgPadP2').onclick = () => openPadModal(2);
+      restorePadDefault.onclick = () => {
+        if (padTitle.dataset.player === '1') {
+          padMapP1 = {
+            ...defaultPadMap
+          };
+          saveJSON('jsnes_padmap_p1', padMapP1);
+        } else {
+          padMapP2 = {
+            ...defaultPadMap
+          };
+          saveJSON('jsnes_padmap_p2', padMapP2);
+        }
+        renderPadGrid(+padTitle.dataset.player);
+      };
+      closePad.onclick = () => modalPad.style.display = 'none';
+
+      function openPadModal(p) {
+        padTitle.textContent = `手柄映射（P${p} = 手柄${p-1})`;
+        padTitle.dataset.player = String(p);
+        renderPadGrid(p);
+        modalPad.style.display = 'flex';
+      }
+
+      function renderPadGrid(p) {
+        padGrid.innerHTML = '';
+        const pm = p === 1 ? padMapP1 : padMapP2;
+        const items = [
+          ['AXIS_H', '水平轴索引', pm.AXIS_H],
+          ['AXIS_V', '垂直轴索引', pm.AXIS_V],
+          ['AXIS_THRESH', '轴阈值(0.2~1.0)', pm.AXIS_THRESH],
+          ['BTN_A', '按钮 A', pm.BTN_A],
+          ['BTN_B', '按钮 B', pm.BTN_B],
+          ['ALT_A', '备用 A', pm.ALT_A],
+          ['ALT_B', '备用 B', pm.ALT_B],
+          ['BTN_SELECT', '选择', pm.BTN_SELECT],
+          ['BTN_START', '开始', pm.BTN_START],
+          ['DPAD_UP', 'D-Pad 上', pm.DPAD_UP],
+          ['DPAD_DOWN', 'D-Pad 下', pm.DPAD_DOWN],
+          ['DPAD_LEFT', 'D-Pad 左', pm.DPAD_LEFT],
+          ['DPAD_RIGHT', 'D-Pad 右', pm.DPAD_RIGHT]
+        ];
+        items.forEach(([key, label, val]) => {
+          const row = document.createElement('div');
+          row.className = 'row';
+          const l = document.createElement('div');
+          l.textContent = label;
+          const v = document.createElement('span');
+          v.className = 'kbd';
+          v.textContent = val;
+          const b = document.createElement('button');
+          b.textContent = '捕捉';
+          b.onclick = () => {
+            b.textContent = '…按手柄';
+            capturePadInput(p - 1, (type, idx, val2) => {
+              if (key.startsWith('AXIS')) {
+                if (type !== 'axis') return false;
+                if (key === 'AXIS_THRESH') pm.AXIS_THRESH = Math.max(0.2, Math.min(1, Math.abs(val2 || 0.4)));
+                else if (key === 'AXIS_H') pm.AXIS_H = idx;
+                else if (key === 'AXIS_V') pm.AXIS_V = idx;
+                v.textContent = (key === 'AXIS_THRESH') ? pm.AXIS_THRESH : idx;
+              } else {
+                if (type !== 'button') return false;
+                pm[key] = idx;
+                v.textContent = idx;
+              }
+              saveJSON(p === 1 ? 'jsnes_padmap_p1' : 'jsnes_padmap_p2', pm);
+              b.textContent = '捕捉';
+              return true;
+            });
+          };
+          row.appendChild(l);
+          row.appendChild(v);
+          row.appendChild(b);
+          padGrid.appendChild(row);
+        });
+        const tip = document.createElement('div');
+        tip.className = 'tip';
+        tip.textContent = '捕捉不到？先按一下手柄任意键唤醒；Safari 需在“开始”运行后再捕捉。';
+        padGrid.appendChild(tip);
+      }
+
+      function capturePadInput(padIndex, onPick) {
+        const t0 = performance.now();
+        (function tick() {
+          const gps = navigator.getGamepads ? navigator.getGamepads() : [];
+          const gp = gps && gps[padIndex];
+          if (gp) {
+            for (let i = 0; i < gp.buttons.length; i++) {
+              if (gp.buttons[i]?.pressed) {
+                if (onPick('button', i, 1)) return;
+              }
+            }
+            let max = 0,
+              idx = 0;
+            for (let a = 0; a < gp.axes.length; a++) {
+              const v = Math.abs(gp.axes[a]);
+              if (v > max) {
+                max = v;
+                idx = a;
+              }
+            }
+            if (max > 0.3) {
+              if (onPick('axis', idx, gp.axes[idx])) return;
+            }
+          }
+          if (performance.now() - t0 < 5000) requestAnimationFrame(tick);
+        })();
+      }
+      // 拖拽
+      ['dragenter', 'dragover'].forEach(ev => window.addEventListener(ev, e => {
+        e.preventDefault();
+        dropHint.style.display = 'flex';
+      }));
+      ['dragleave', 'drop'].forEach(ev => window.addEventListener(ev, e => {
+        e.preventDefault();
+        if (ev === 'drop') return;
+        dropHint.style.display = 'none';
+      }));
+      window.addEventListener('drop', e => {
+        dropHint.style.display = 'none';
+        const f = e.dataTransfer.files?.[0];
+        if (!f) return;
+        if (/\.(state\.json|json)$/i.test(f.name)) importStateFromFile(f);
+        else if (/\.nes$/i.test(f.name)) {
+          romNameEl.textContent = f.name;
+          loadRomFromFile(f);
+          stage.focus();
+        } else alert('不支持的文件类型');
+      });
+      // 录制
+      recStartBtn.onclick = () => {
+        if (!recorder) setupRecorder();
+        if (!recorder) return;
+        recChunks = [];
+        recDL.style.display = 'none';
+        recorder.start();
+        recStartBtn.disabled = true;
+        recStopBtn.disabled = false;
+      };
+      recStopBtn.onclick = () => {
+        if (recorder && recorder.state === 'recording') {
+          recorder.stop();
+          recStartBtn.disabled = false;
+          recStopBtn.disabled = true;
+        }
+      };
+      // 存档按钮
+      saveBtn.onclick = saveState;
+      loadBtn.onclick = loadState;
+      clearBtn.onclick = clearState;
+      exportBtn.onclick = exportState;
+      importInp.onchange = e => {
+        const f = e.target.files?.[0];
+        if (f) importStateFromFile(f);
+        e.target.value = '';
+      };
+      // 代理所有带 data-rom-url 的链接，点击即可加载
+      document.addEventListener('click', (e) => {
+        const a = e.target.closest('[data-rom-url]');
+        if (!a) return;
+        e.preventDefault();
+        const url = a.getAttribute('data-rom-url');
+        const name = a.getAttribute('data-rom-name') || a.textContent.trim() || (url.split('/').pop() || 'ROM');
+        if (!url) return;
+        loadRomFromUrl(url, name);
+      });
+      // 启动
+      init();
+      // 地址栏 ?rom=https://... 自动加载
+      (function autoLoadFromQuery() {
+        const p = new URLSearchParams(location.search);
+        const url = p.get('rom');
+        if (url) loadRomFromUrl(url, url.split('/').pop());
+      })();
+      // ===== 工具：哈希 / 编解码 =====
+      function fnv1aHex(u8) {
+        let h = 0x811c9dc5 | 0;
+        for (let i = 0; i < u8.length; i++) {
+          h ^= u8[i];
+          h = Math.imul(h, 0x01000193);
+        }
+        return ('00000000' + (h >>> 0).toString(16)).slice(-8);
+      }
+
+      function u8ToBase64(u8) {
+        let s = '';
+        const CH = 0x8000;
+        for (let i = 0; i < u8.length; i += CH) {
+          s += String.fromCharCode.apply(null, u8.subarray(i, i + CH));
+        }
+        return btoa(s);
+      }
+
+      function base64ToU8(b64) {
+        const s = atob(b64),
+          u8 = new Uint8Array(s.length);
+        for (let i = 0; i < s.length; i++) u8[i] = s.charCodeAt(i) & 255;
+        return u8;
+      }
+
+      function binStrToU8(str) {
+        const u8 = new Uint8Array(str.length);
+        for (let i = 0; i < str.length; i++) u8[i] = str.charCodeAt(i) & 255;
+        return u8;
+      }
+
+      function u8ToBinStr(u8) {
+        let s = '';
+        const CH = 0x8000;
+        for (let i = 0; i < u8.length; i += CH) {
+          s += String.fromCharCode.apply(null, u8.subarray(i, i + CH));
+        }
+        return s;
+      }
+    })();
+  </script>
 </body>
-</html>
