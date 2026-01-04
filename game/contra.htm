@@ -1,177 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
 <head>
-  <meta charset="utf-8" />
-  <title>jsNES — 存档携带游戏 + 个性化设置 + 远程ROM链接（音频链重建 / 分帧预热 / 双人）</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <style>
-    :root {
-      --gap: 10px;
-    }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="http://ooyang.cn/favicon.ico" />
+<title>魂斗罗1 | 福州老杨</title>
+<meta name="title" content="魂斗罗1" />
+<meta name="description" content="《魂斗罗》（Contra）是由Konami于1987年推出的一系列卷轴射击类单机游戏。故事背景是根据著名恐怖片《异形（Alien）》改编，人物原型来源于著名影星施瓦辛格和史泰龙。1987年第一款魂斗罗诞生在名为Jamma的街机上。游戏名称的含义是“具有优秀战斗能力和素质的人”，它是赋予最强战士的称呼。 FC上的两部魂斗罗影响了整整一代游戏玩家，在当时与《超级马里奥》齐名，几乎成为FC时代电子游戏的代名词。此外KONAMI于1989年还在日式计算机MSX2上推出了大型游戏机的同名移植版。“魂斗罗”的含义是“具有优秀战斗能力和素质的人”，它是赋予最强战士的称呼。       魂斗罗成为了经典，很多射击游戏都成为了魂斗罗类游戏。魂斗罗对动作射击游戏的影响是不可估量的。以至于后来众所周知的动作射击名作《合金弹头》在设计上都受到了来自当年《魂斗罗》的深刻影响，特别是SNVCS上的《魂斗罗·异形战争》，两作相同的火爆程度和那似曾相识的关卡便可以看出《魂斗罗》为射击游戏领导了一场全新的游戏革命。" />
+<meta name="keywords" content="Game," />
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?2593792a8d16bc9ab393449c82b032f8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<link rel="stylesheet" type="text/css" href="/css/bearblog.css">
 
-    body {
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      margin: 16px;
-    }
-
-    .bar {
-      display: flex;
-      gap: var(--gap);
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    label.btn,
-    button,
-    a.btn {
-      padding: 6px 10px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      background: #f7f7f7;
-      cursor: pointer;
-      text-decoration: none;
-      color: #111;
-    }
-
-    .btn-toggle.on {
-      background: #e9f7ff;
-      border-color: #9ad4ff;
-    }
-
-    .status {
-      color: #555
-    }
-
-    .err {
-      color: #b00020
-    }
-
-    #stage {
-      margin-top: 12px;
-      display: grid;
-      place-items: center;
-      outline: none;
-      position: relative;
-    }
-
-    canvas {
-      image-rendering: pixelated;
-      border: 1px solid #eee;
-      border-radius: 10px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, .08);
-      background: #000;
-    }
-
-    .group {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    select,
-    input[type="range"] {
-      padding: 2px 4px;
-    }
-
-    .crt::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, .15) 0, rgba(0, 0, 0, .15) 1px, transparent 2px, transparent 3px);
-      mix-blend-mode: multiply;
-      border-radius: 10px;
-    }
-
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, .4);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 999;
-    }
-
-    .modal {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, .2);
-      padding: 16px;
-      max-width: 720px;
-      width: calc(100% - 32px);
-    }
-
-    .modal h3 {
-      margin: 0 0 8px
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
-
-    .row {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      justify-content: space-between;
-      border: 1px dashed #eee;
-      padding: 6px 8px;
-      border-radius: 8px;
-    }
-
-    .kbd {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      background: #f3f3f3;
-      border-radius: 6px;
-      padding: 3px 6px;
-      border: 1px solid #e5e5e5;
-    }
-
-    .tip {
-      color: #666;
-      font-size: 12px;
-    }
-
-    .modal .footer {
-      display: flex;
-      justify-content: flex-end;
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    .drop-hint {
-      position: fixed;
-      inset: 0;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      background: rgba(30, 144, 255, .12);
-      border: 3px dashed #1e90ff;
-      color: #1e90ff;
-      font-weight: 600;
-      font-size: 20px;
-      z-index: 998;
-    }
-  </style>
 </head>
-
 <body>
+  <header>    <div class="overlay"></div>
+	<a href="/" class="title" title="福州老杨"><h1>OOyang</h1></a>
+<nav><a href="/" title="首页">Home</a><a href="/a" target="_blank" title="Website网址导航">Navigation</a><a href="/posts" title="文章列表">Article</a><a href="/about" title="关于我们">About Us</a><a href="https://github.com/fzlaoyang/BBS/issues/1" target="_blank" title="联系我们">Contact</a><hr></nav>
+</header>
+  <main>
+
+<h2 style="text-align: center;">魂斗罗1</h2>
+
+<content><style>
+:root {--gap: 10px;}
+.bar {display: flex;gap: var(--gap);align-items: center;flex-wrap: wrap;}
+label.btn,
+button,
+a.btn {padding: 6px 10px;border: 1px solid #ddd;border-radius: 8px;background: #f7f7f7;cursor: pointer;text-decoration: none;color: #111;}
+.btn-toggle.on {background: #e9f7ff;border-color: #9ad4ff;}
+.status {color: #555}
+.err {color: #b00020}
+#stage {margin-top: 12px;display: grid;place-items: center;outline: none;position: relative;}
+canvas {
+  image-rendering: pixelated;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .08);
+  background: #000;
+}
+.group {display: flex;align-items: center;gap: 6px;}
+select,
+input[type="range"] {padding: 2px 4px;}
+.crt::after {content: "";position: absolute;inset: 0;pointer-events: none;background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, .15) 0, rgba(0, 0, 0, .15) 1px, transparent 2px, transparent 3px);
+  mix-blend-mode: multiply;border-radius: 10px;}
+.modal-backdrop {position: fixed;inset: 0;background: rgba(0, 0, 0, .4);display: none;align-items: center;  justify-content: center;z-index: 999;}
+.modal {background: #fff;border-radius: 12px;box-shadow: 0 10px 40px rgba(0, 0, 0, .2);padding: 16px;max-width: 720px;  width: calc(100% - 32px);}
+.modal h3 {margin: 0 0 8px}
+.grid {display: grid;grid-template-columns: 1fr 1fr;gap: 8px;}
+.row {display: flex;gap: 8px;align-items: center;justify-content: space-between;border: 1px dashed #eee;padding: 6px 8px;border-radius: 8px;}
+.kbd {font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;background: #f3f3f3;border-radius: 6px;padding: 3px 6px;border: 1px solid #e5e5e5;}
+.tip {color: #666;font-size: 12px;}
+.modal .footer {display: flex;justify-content: flex-end;gap: 8px;margin-top: 10px;}
+.drop-hint {position: fixed;inset: 0;display: none;align-items: center;justify-content: center;background: rgba(30, 144, 255, .12);border: 3px dashed #1e90ff;color: #1e90ff;font-weight: 600;font-size: 20px;z-index: 998;}
+  </style>
   <div class="bar">
     <label class="btn">选择ROM<input id="rom" type="file" accept=".nes" hidden></label>
-    <!-- 新增：示例远程 ROM 链接 -->
-    <a href="#" class="btn" id="demoRom" data-rom-url="https://assets.codepen.io/5782383/tank.nes" data-rom-name="tank.nes">加载示例ROM1</a>
-    <a href="#" class="btn" id="demoRom" data-rom-url="https://assets.codepen.io/5782383/1943.nes" data-rom-name="tank.nes">加载示例ROM2</a>
-
+	<a href="#" class="btn" id="demoRom" data-rom-url="contra.nes" data-rom-name="tank.nes">魂斗罗1</a>
+    <a href="#" class="btn" id="demoRom" data-rom-url="tank.nes" data-rom-name="tank.nes">坦克</a>
+    <a href="#" class="btn" id="demoRom" data-rom-url="1943.nes" data-rom-name="tank.nes">1943</a>
     <button id="toggle" disabled>开始</button>
     <button id="reset" disabled>复位</button>
-
     <div class="group">
       <button id="mute" class="btn-toggle">🔈 静音</button>
       <label>音量 <input id="vol" type="range" min="0" max="100" value="100"></label>
       <button id="screenshot">📷 截图</button>
     </div>
-
     <div class="group">
       <label>显示倍数
         <select id="scale">
@@ -185,7 +86,6 @@
       <button id="fs">⛶ 全屏</button>
       <button id="crt" class="btn-toggle">📺 CRT</button>
     </div>
-
     <div class="group">
       <label>速度
         <select id="speed">
@@ -198,7 +98,6 @@
       </label>
       <span class="tip">按住 <span class="kbd">Tab</span> 临时快进（×2 当前速度，最高 ×6）</span>
     </div>
-
     <div class="group">
       <button id="swap" class="btn-toggle on">🎨 色彩修正</button>
       <button id="cfgKeysP1">⌨️ P1 键盘映射</button>
@@ -206,7 +105,6 @@
       <button id="cfgPadP1">🎮 P1 手柄映射</button>
       <button id="cfgPadP2">🎮 P2 手柄映射</button>
     </div>
-
     <div class="group">
       <label>存档槽<select id="slot">
           <option value="0">#1</option>
@@ -219,20 +117,16 @@
       <button id="exportState">⬇️ 导出</button>
       <label class="btn">导入<input id="importState" type="file" accept=".json,.state.json,application/json" hidden></label>
     </div>
-
     <div class="group">
       <button id="recStart">⏺ 开始录制</button>
       <button id="recStop" disabled>⏹ 停止录制</button>
       <a id="recDownload" style="display:none" download="recording.webm">⬇️ 下载视频</a>
     </div>
-
     <span class="status" id="romName">未加载</span>
     <span class="status" id="fps">FPS: --</span>
     <span class="err" id="err"></span>
   </div>
-
   <div id="stage" tabindex="0"><canvas id="screen" width="256" height="240"></canvas></div>
-
   <!-- 键盘映射 -->
   <div id="modalKeys" class="modal-backdrop">
     <div class="modal">
@@ -245,7 +139,6 @@
       </div>
     </div>
   </div>
-
   <!-- 手柄映射 -->
   <div id="modalPad" class="modal-backdrop">
     <div class="modal">
@@ -258,9 +151,7 @@
       </div>
     </div>
   </div>
-
   <div id="dropHint" class="drop-hint">拖放 .nes 或 .state.json 到此</div>
-
   <script src="https://unpkg.com/jsnes/dist/jsnes.min.js"></script>
   <script>
     (function() {
@@ -338,10 +229,10 @@
       // ------- 输入映射 -------
       const C = window.jsnes.Controller;
       const NES_BUTTONS = [
-        ['UP', C.BUTTON_UP],
-        ['DOWN', C.BUTTON_DOWN],
-        ['LEFT', C.BUTTON_LEFT],
-        ['RIGHT', C.BUTTON_RIGHT],
+        ['上', C.BUTTON_UP],
+        ['下', C.BUTTON_DOWN],
+        ['左', C.BUTTON_LEFT],
+        ['右', C.BUTTON_RIGHT],
         ['A', C.BUTTON_A],
         ['B', C.BUTTON_B],
         ['SELECT', C.BUTTON_SELECT],
@@ -1425,4 +1316,21 @@
       }
     })();
   </script>
+</content>
+
+
+<p> 
+  <a href="http://ooyang.cn/tags/game/">#Game</a>
+  </p>
+
+  </main>
+  <footer>
+<small><script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+Total visits:<span id="busuanzi_site_pv">load...</span> | 
+Page views:<span id="busuanzi_page_pv">load...</span><br>
+Copyright © 2025 ooyang.cn</small>
+
+</footer>
+
 </body>
+</html>
